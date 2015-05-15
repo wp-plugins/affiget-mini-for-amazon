@@ -1,0 +1,394 @@
+.afg-toolbar {
+	display: block;
+	background-color: #eff7fe;
+	border-radius: 4px;
+	box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+	box-sizing: border-box;
+	border: 1px #ddd solid;
+	position: fixed;
+
+	left: 50%; 
+	padding: 0;
+	
+	height: 31px;
+	z-index: 1999;
+
+	width: 380px;	
+	margin-right: -190px;
+	margin-left: -190px;	
+
+	font-family: Arial,sans-serif;
+	font-size: 8pt;
+}
+
+.afg-toolbar.wide { 
+	width: 600px;	
+	margin-left:  -300px;
+	margin-right: -300px;
+	
+  -webkit-transition: width 2s ease-out, margin: 2s ease-out;
+      -moz-transition: width 2s ease-out, margin: 2s ease-out;
+        -o-transition: width 2s ease-out, margin: 2s ease-out;
+           transition: width 2s ease-out, margin: 2s ease-out;	
+}
+
+.afg-toolbar.top {
+	top: -31px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;		
+}
+
+.afg-toolbar.bottom {
+	bottom: 0px;	
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-bottomright: 0px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;	
+}	
+
+/* 
+Infobar items are these:
+.afg-toolbar a.logo
+.afg-toolbar a.info,
+.afg-toolbar a.view, 
+.afg-toolbar a.edit, 
+.afg-toolbar a.publish, 
+.afg-toolbar a.delete
+.afg-toolbar a.close
+*/
+
+/* item defaults */
+.afg-toolbar a {
+	text-decoration: none;	
+	margin: 0 5px;
+	color: #888;
+	display:inline-block;
+	cursor: pointer;
+
+	-webkit-font-smoothing: antialiased;
+	-webkit-transition: opacity 500ms linear;
+    -moz-transition: opacity 500ms linear;
+    -o-transition: opacity 500ms linear;
+    -ms-transition: opacity 500ms linear;
+    transition: opacity 500ms linear;
+	font-family: Arial,sans-serif;
+	font-size: 8pt;
+}
+
+.afg-toolbar a:focus, .afg-toolbar a:active {
+	font-family: Arial,sans-serif;
+	font-size: 8pt;
+}
+
+/* fonts */
+.afg-toolbar a.close span {
+	font-weight: bold;
+}
+
+.afg-toolbar a:not(.info){
+	font-size:8pt;
+}
+
+.afg-toolbar a.info, .afg-toolbar input[type="text"] {
+	/*font-style: italic;*/
+	/*font-weight: bold;*/
+	font-size: 9pt;
+	font-family: Arial,sans-serif;
+}
+
+/* floats */
+.afg-toolbar a.logo,
+.afg-toolbar a.info {
+	float:left;
+}
+
+.afg-toolbar a.view, 
+.afg-toolbar a.edit, 
+.afg-toolbar a.publish, 
+.afg-toolbar a.delete,
+.afg-toolbar a.close {
+	float:right;
+}
+
+/* margins */
+.afg-toolbar a.logo {
+	margin-top: 2px; 
+	margin-bottom: 2px;
+}
+
+.afg-toolbar a.view, 
+.afg-toolbar a.edit, 
+.afg-toolbar a.publish, 
+.afg-toolbar a.delete,
+.afg-toolbar a.close {
+	margin-top:6px;
+}
+
+.afg-toolbar a.info, .afg-toolbar a.info:active, .afg-toolbar a.info:focus {
+	margin-top:6px;
+	margin-left: 2px;		
+}
+
+/* opacity */
+.afg-toolbar a.view, 
+.afg-toolbar a.edit, 
+.afg-toolbar a.publish, 
+.afg-toolbar a.delete {
+	opacity: 0;
+}
+	
+.afg-toolbar:hover a.view, 
+.afg-toolbar:hover a.edit, 
+.afg-toolbar:hover a.publish, 
+.afg-toolbar:hover a.delete {
+	opacity: 0.999;
+}
+
+.afg-toolbar a.info, 
+.afg-toolbar input[type="text"],
+.afg-toolbar a.close {
+	opacity: 0.999;
+}
+
+/* colors */
+.afg-toolbar a.info .default{
+	color: #888;
+}
+.afg-toolbar a.info .success{
+	color: #338833;
+}
+
+.afg-toolbar a.info .problem{
+	color: #883333;
+}
+
+.afg-toolbar a.info .advice{
+	color: #333388;
+}
+
+.afg-toolbar a.info .status{
+	color: #333;
+}
+
+.afg-toolbar a.disabled {
+	color: #ccc !important;	
+}
+
+.afg-toolbar a.view:hover {
+	color: #338833;
+}
+
+.afg-toolbar a.edit:hover {
+	color: #0066c0;
+}
+
+.afg-toolbar a.publish:hover {
+	color: orange;
+}
+
+.afg-toolbar a.delete:hover {
+	color: #dd3333;
+}
+
+.afg-toolbar a.publish.disabled:hover, a.delete.disabled:hover {
+	color: #ccc;
+}
+
+.afg-toolbar a.close {
+	color: #888;
+}
+
+.afg-toolbar a.close:hover {
+	color: #222;
+}
+
+/* misc */
+.afg-toolbar a.logo {
+	cursor: help;
+}
+
+.afg-toolbar a.info .default {
+	cursor: text;
+}
+
+.icon {
+	width: 24px;
+	height: 24px;	
+}
+
+.icon.logo {
+	background: transparent url(../img/toolbar-sprites.png) 0 0 no-repeat;
+}
+
+.afg-toolbar.pro .icon.logo {
+	background: transparent url(../img/toolbar-sprites.png) -133px 0 no-repeat;
+}
+	
+.afg-toolbar input {
+	height: 22px;
+	float:left;
+	padding: 1px 24px 1px 4px;
+	line-height: normal;
+	margin-left: -2px;
+	margin-top: 4px;	
+	border: none;
+	border-radius: 4px;	
+	background-color: #eff7fe;
+
+    outline-style: none;
+	box-shadow:none;
+	border-color:transparent;
+
+	width: 368px;
+	
+	/*-webkit-transition: width 1.5s ease, background-color 600ms ease;
+    -moz-transition: width 1.5s ease, background-color 600ms ease;
+    -o-transition: width 1.5s ease, background-color 600ms ease;
+    -ms-transition: width 1.5s ease, background-color 600ms ease;
+    transition: width 1.5s ease, background-color 600ms ease;	*/
+	transition: width 0.5s ease-out, background-color 0.5s linear;	
+}
+
+.afg-toolbar input.wide {
+	width: 510px; 
+	background-color: #E3EFFA;
+}
+
+.afg-toolbar input:focus {
+    outline-style: none;
+	box-shadow:none;
+	border-color:transparent;	
+}
+
+.afg-toolbar .btnOk {
+	vertical-align: top;
+	margin-left: -22px;
+	margin-top: 4px;
+	padding: 1px 2px 0px 4px;
+	border-left: 1px solid #CAE3FA;
+	cursor: pointer;
+	background-color: #E3EFFA;
+	height: 22px;
+	width: 22px;
+	border-radius: 4px;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;	
+
+	z-index: 10;	
+	position: relative;
+	
+	color: silver;
+
+	opacity: 0.999;
+	-webkit-font-smoothing: antialiased;
+	-webkit-transition: color 500ms, background-color 500ms;
+    -moz-transition: color 500ms, background-color 500ms;
+    -o-transition: color 500ms, background-color 500ms;
+    -ms-transition: color 500ms, background-color 500ms;
+    transition: color 500ms, background-color 500ms;
+}
+
+.afg-toolbar .btnOk:hover {
+	/*color: #338833;*/
+	color: white;
+	background-color: #CAE3FA;
+}
+
+/* stuff for flipping-text effect */
+.afg-toolbar .info {}
+
+.rotating {
+  display: inline-block;
+  vartical-align: top;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotateX(0) rotateY(0) rotateZ(0);
+  -moz-transform: rotateX(0) rotateY(0) rotateZ(0);
+  -ms-transform: rotateX(0) rotateY(0) rotateZ(0);
+  -o-transform: rotateX(0) rotateY(0) rotateZ(0);
+  transform: rotateX(0) rotateY(0) rotateZ(0);
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-transform-origin-x: 50%;
+  	
+}
+
+.afg-infobar.wide .rotating {
+	width: 358px;
+}
+
+.rotating.flip {
+  position: relative;
+}
+
+.rotating .front, .rotating .back {
+  left: 0;
+  top: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rotating .front {
+  position: absolute;
+  display: inline-block;
+  -webkit-transform: translate3d(0,0,1px);
+  -moz-transform: translate3d(0,0,1px);
+  -ms-transform: translate3d(0,0,1px);
+  -o-transform: translate3d(0,0,1px);
+  transform: translate3d(0,0,1px);
+}
+
+.rotating.flip .front {
+  z-index: 1;
+}
+
+.rotating .back {
+  display: block;
+  opacity: 0;
+}
+
+.rotating.flip .back {
+  z-index: 2;
+  display: block;
+  opacity: 1;
+  
+  -webkit-transform: rotateY(180deg) translate3d(0,0,0);
+  -moz-transform: rotateY(180deg) translate3d(0,0,0);
+  -ms-transform: rotateY(180deg) translate3d(0,0,0);
+  -o-transform: rotateY(180deg) translate3d(0,0,0);
+  transform: rotateY(180deg) translate3d(0,0,0);
+}
+
+.rotating.flip.up .back {
+  -webkit-transform: rotateX(180deg) translate3d(0,0,0);
+  -moz-transform: rotateX(180deg) translate3d(0,0,0);
+  -ms-transform: rotateX(180deg) translate3d(0,0,0);
+  -o-transform: rotateX(180deg) translate3d(0,0,0);
+  transform: rotateX(180deg) translate3d(0,0,0);
+}

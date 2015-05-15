@@ -1,0 +1,30 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+.afg-element {
+	margin-bottom: 1.5em;
+}
+.afg_element {
+	margin: 0.5em 0;
+	clear:left;
+}
+.afg_element h2, .afg_element h3, .afg_element h4, .afg_element h5 {
+	margin: 0.5em 0;
+}
+
+/*.clearfix{ overflow: hidden; zoom: 1; display: block; }*/
+.clearfix {
+    display: inline-block;
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+.clearfix {
+    display: block;
+}

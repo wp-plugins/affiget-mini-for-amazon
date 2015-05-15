@@ -1,0 +1,1968 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AffiGet Mini\n"
+"POT-Creation-Date: 2015-05-02 02:09+0200\n"
+"PO-Revision-Date: 2015-05-02 02:09+0200\n"
+"Last-Translator: Saru Tole <sarutole@affiget.com>\n"
+"Language-Team: AffiGet <info@affiget.com>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;_n;_x;_n_noop;_ex;_nx;"
+"_nx_noop;esc_html_x;esc_attr__;esc_attr_e;esc_attr_x\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: D:\\xampp\\htdocs\\affiget.demo\\wp-content\\plugins"
+"\\affiget-mini\n"
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:96
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:107
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:324
+msgid "AffiGet Settings"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:283
+msgid "AffiGet Reviews"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:286
+#, php-format
+msgid ""
+"AffiGet enables a new post type, called %s.<br/>The only way to create new "
+"reviews is by means of the <em>AffiGet Bookmarklet</em>"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:287
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:89
+msgid "Reviews"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:320
+msgid "AffiGet Setup"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:323
+#, php-format
+msgid "To start posting your reviews,<br/>please complete %s."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/class-affiget-admin.php:366
+msgid "Settings"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:46
+msgid "<em>Amazon Associates</em> account"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:48
+#, php-format
+msgid "Please enter your credentials for the %s programme."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:49
+msgid "Amazon Associates"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:98
+msgid "Access key"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:101
+msgid "Secret key"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:104
+msgid "Associate id"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:107
+msgid "Amazon site / Locale"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:112
+msgid "How often should Amazon product data be updated"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:112
+msgid "Update period"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:121
+msgid "Save settings"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:123
+msgid "Account details seem fine."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:124
+msgid "Account details not right."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:137
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:157
+msgid "Amazon.com.br - Brasil"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:138
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:158
+msgid "Amazon.ca - Canada"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:139
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:159
+msgid "Amazon.cn - China"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:140
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:160
+msgid "Amazon.de - Germany"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:141
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:161
+msgid "Amazon.es - Spain"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:142
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:162
+msgid "Amazon.fr - France"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:143
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:163
+msgid "Amazon.in - India"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:144
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:164
+msgid "Amazon.it - Italy"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:145
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:165
+msgid "Amazon.co.jp - Japan"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:146
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:166
+msgid "Amazon.co.uk - United Kingdom"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:147
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:167
+msgid "Amazon.com - United States"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:185
+msgid "1 hour"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:186
+msgid "2 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:187
+msgid "3 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:188
+msgid "6 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:189
+msgid "12 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:190
+msgid "24 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:191
+msgid "36 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:192
+msgid "2 days"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:193
+msgid "3 days"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:429
+msgid "AffiGet setup is almost complete:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:431
+#, php-format
+msgid "Please enter %s for the Amazon Associates programme."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/amazon/class-affiget-admin-amazon.php:432
+msgid "your account details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:29
+msgid "Your site seems to be offline or misconfigured:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:30
+msgid ""
+"It seems like you do not have the permissions \\nrequired to add/edit "
+"content on this site:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:31
+msgid "For more details, contact your administrator."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:32
+#, php-format
+msgid ""
+"Use AffiGet to instantly post reviews to your blog\\nwhile browsing Amazon!"
+"\\n\\nThis button creates posts for your website\\n%s (%s).\\n\\nPlease "
+"navigate to a product page on Amazon to see it in action."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:33
+msgid "AffiGet is creating a product review for your site...."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:50
+msgid "You are not allowed to edit posts. Some features are disabled."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:56
+msgid "AffiGet bookmarklet"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:57
+msgid ""
+"<em>Drag</em> the <b>Afg+ Button</b> you see below to your Bookmarks/"
+"Favorites toolbar."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:65
+msgid ""
+"Submit product data as a new draft post. Selected text will serve as an "
+"introduction."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:73
+msgid "You have to drag me to your Bookmarks/Favorites toolbar first!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:81
+msgid "Toolbar not showing?"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:86
+msgid "If your Bookmarks/Favorites toolbar is nowhere to be seen,"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:86
+msgid "you have to unhide it first:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:88
+msgid ""
+"<strong><i>FireFox:</i></strong> right-click anywhere on the top toolbar. "
+"Check \"Bookmark toolbar\"."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:89
+msgid ""
+"<strong><i>Chrome:</i></strong> in the top-right corner of the browser "
+"window, click the Chrome menu. Select Bookmarks > \"Show Bookmarks Bar\"."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:90
+msgid ""
+"<strong><i>Safari:</i></strong> go to the View menu and select \"Show "
+"Bookmarks Bar\" or \"Show Favorites bar\"."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:91
+msgid ""
+"<strong><i>Internet Explorer:</i></strong> Click the Tools button, point to "
+"Toolbars, and click \"Favorites Bar\" to mark it."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/admin/bookmarklet/class-affiget-admin-bookmarklet.php:92
+msgid "OK, got it!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:184
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:227
+msgid "Show on Afg+ Dialog"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:186
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:229
+msgid "Status Help"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:188
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:231
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:251
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:267
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:701
+msgid "Yes"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:190
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:233
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:253
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:269
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:701
+msgid "No"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:199
+msgid "Title on page"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:201
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:210
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:280
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:92
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:68
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:88
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:104
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:148
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:160
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:175
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:54
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:63
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:73
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:88
+msgid "Help"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:208
+msgid "Short label"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:217
+msgid "Description on <em>Afg+ Dialog</em>"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:219
+msgid "Description Help"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:242
+msgid "Show on page automatically"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:244
+msgid "Presentation Help"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:262
+msgid "Enable shortcode"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:264
+msgid "Shortcode Help"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:278
+msgid "Metabox position"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-element.php:279
+msgid "Placement in a review details metabox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:66
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:416
+msgid "Description"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:89
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:90
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:91
+#, php-format
+msgid "View %s:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:92
+#, php-format
+msgid "Add New %s:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:93
+msgid "Add New"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:94
+#, php-format
+msgid "Edit %s:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:95
+#, php-format
+msgid "Update %s:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:96
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:97
+msgid "Not found"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-abstract-meta.php:98
+msgid "Not found in Trash"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-mini.php:372
+msgid "AffiGet requires PHP version 5.2 or later!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-mini.php:379
+msgid ""
+"AffiGet will attempt to write debug logs to your content dir, so please make "
+"it writable:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-mini.php:388
+msgid ""
+"AffiGet will attempt to upload product images to your uploads dir, so please "
+"make it recursively writable:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/core/class-affiget-mini.php:395
+msgid ""
+"AffiGet will not function properly, unless you disable <em>display of errors "
+"and warnings</em>.<br/><small>In your wp-config.php set "
+"<code>WP_DEBUG_DISPLAY</code> to <code>false</code> and "
+"<code>display_errors</code> to <code>0</code>.</small>"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:22
+msgid "AffiGet is not supposed to work on this site!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:30
+msgid "Wrong user key!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:92
+#, php-format
+msgid "AffiGet Mini v.%s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:93
+msgid ""
+"A <strong>draft product review</strong> successfully submitted to your site."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:94
+msgid "AffiGet works only on Amazon product pages!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:95
+msgid "A review for this product already exists on your site."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:96
+msgid "Edit"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:97
+msgid "Edit product review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:98
+msgid "Click to start editing this review title"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:99
+msgid "Click to set this title for your review or hit ESC to cancel"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:100
+msgid "Title for your review cannot be empty!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:101
+msgid "Review title could not be changed."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:102
+msgid "Publish"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:103
+msgid "Make this review public"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:104
+msgid "Product review successfully published."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:105
+msgid "Product review could not be published."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:106
+msgid "This review is already published."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:107
+msgid "View"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:108
+msgid "View product review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:109
+msgid "Delete"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:110
+msgid "Are you sure you want to move this review to trash?"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:111
+msgid "Trash product review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:112
+msgid "Product review successfully moved to trash."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:113
+msgid "Product review could not be moved to trash."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:114
+msgid "This review cannot be mvoed to trash, because it is already published."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:115
+msgid "Close"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:116
+msgid "Close this toolbar"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/dialog/class-affiget-dialog.php:117
+msgid "Closing..."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:67
+msgid "Test Metabox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:77
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:363
+msgid "Test Text"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:78
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:90
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:98
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:106
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:115
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:123
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:137
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:144
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:152
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:169
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:178
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:186
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:193
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:200
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:214
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:227
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:240
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:252
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:261
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:269
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:278
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:285
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:298
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:364
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:458
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:466
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:473
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:480
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:487
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:494
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:501
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:539
+msgid "field description (optional)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:89
+msgid "Test Text Small"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:97
+msgid "Test Text Medium"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:105
+msgid "Website URL"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:114
+msgid "Test Text Email"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:122
+msgid "Test Time"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:129
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:130
+msgid "Time zone"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:136
+msgid "Test Date Picker"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:143
+msgid "Test Date Picker (UNIX timestamp)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:151
+msgid "Test Date/Time Picker Combo (UNIX timestamp)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:168
+msgid "Test Money"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:177
+msgid "Test Color Picker"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:185
+msgid "Test Text Area"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:192
+msgid "Test Text Area Small"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:199
+msgid "Test Text Area for Code"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:206
+msgid "Test Title Weeeee"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:207
+msgid "This is a title description"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:213
+msgid "Test Select"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:219
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:232
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:244
+msgid "Option One"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:220
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:233
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:245
+msgid "Option Two"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:221
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:234
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:246
+msgid "Option Three"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:226
+msgid "Test Radio inline"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:239
+msgid "Test Radio"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:251
+msgid "Test Taxonomy Radio"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:260
+msgid "Test Taxonomy Select"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:268
+msgid "Test Taxonomy Multi Checkbox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:277
+msgid "Test Checkbox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:284
+msgid "Test Multi Checkbox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:289
+msgid "Check One"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:290
+msgid "Check Two"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:291
+msgid "Check Three"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:297
+msgid "Test wysiwyg"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:305
+msgid "Test Image"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:306
+msgid "Upload an image or enter a URL."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:312
+msgid "Multiple Files"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:313
+msgid "Upload or add multiple images/attachments."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:320
+msgid "oEmbed"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:321
+msgid ""
+"Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
+"href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
+"Embeds</a>."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:354
+msgid "About Page Metabox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:385
+msgid "Repeating Field Group"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:393
+msgid "Generates reusable form entries"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:395
+msgid "Entry {#}"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:396
+msgid "Add Another Entry"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:397
+msgid "Remove Entry"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:409
+msgid "Entry Title"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:417
+msgid "Write a short description for this entry"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:423
+msgid "Entry Image"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:429
+msgid "Image Caption"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:450
+msgid "User Profile Metabox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:457
+msgid "Extra Info"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:465
+msgid "Avatar"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:472
+msgid "Facebook URL"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:479
+msgid "Twitter URL"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:486
+msgid "Google+ URL"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:493
+msgid "Linkedin URL"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:500
+msgid "User Field"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:523
+msgid "Theme Options Metabox"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/example-functions.php:538
+msgid "Site Background Color"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2.php:112
+msgid "Metabox configuration is required to have an ID parameter"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2.php:302
+msgid "Click to toggle"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Ajax.php:37
+msgid "Please Try Again"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Ajax.php:133
+msgid "Remove Embed"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Ajax.php:137
+#, php-format
+msgid "No oEmbed Results Found for %s. View more info at"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Field.php:885
+msgid "Add Group"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Field.php:886
+msgid "Remove Group"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Field.php:908
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Field.php:912
+msgid "None"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:128
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:165
+msgid "Clear"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:129
+msgid "Default"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:130
+msgid "Select Color"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:131
+msgid "Current Color"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:155
+msgid "mm/dd/yy"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:156
+msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:157
+msgid "Su, Mo, Tu, We, Th, Fr, Sa"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:158
+msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:159
+msgid ""
+"January, February, March, April, May, June, July, August, September, "
+"October, November, December"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:160
+msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:161
+msgid "Next"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:162
+msgid "Prev"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:163
+msgid "Today"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:164
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:174
+msgid "Done"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:168
+msgid "Choose Time"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:169
+msgid "Time"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:170
+msgid "Hour"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:171
+msgid "Minute"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:172
+msgid "Second"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:173
+msgid "Now"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:175
+msgid "hh:mm TT"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:181
+msgid "Use this file"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:182
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:967
+msgid "Remove Image"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:183
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:353
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:986
+msgid "Remove"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:184
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:981
+msgid "File:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:185
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:984
+msgid "Download"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_hookup.php:186
+msgid "Select / Deselect All"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:294
+msgid "Add Row"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:722
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:770
+msgid "No terms"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:835
+msgid "Add or Upload Files"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/CMB2_Types.php:893
+msgid "Add or Upload File"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/libs/cmb2/includes/helper-functions.php:254
+msgid "Save"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:39
+msgid "Product"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:49
+msgid "ASIN:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:121
+msgid "Image"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:157
+msgid "Amazon"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:174
+msgid "View this product on Amazon"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:212
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:214
+msgid "Resync now"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:219
+msgid "Click to refetch product data from Amazon"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:221
+msgid "Data sync.:"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:313
+msgid "Cannot update product data: missing or invalid product code!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:320
+msgid "Product data successfully updated."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-admin.php:327
+msgid "Product data could not be updated!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:101
+msgid "review could not be identified"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:115
+msgid "review could not be found"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:123
+msgid "invalid product code"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:152
+msgid "review data could not be loaded"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:194
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:404
+msgid "nonce could not be verified"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:203
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:247
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:383
+msgid "unknown user key"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:256
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:393
+msgid "post id not specified"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:265
+msgid "product code not specified"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:286
+msgid "product data is not attached"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:361
+msgid "review data could not be updated"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:413
+msgid "post could not be deleted"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:431
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:540
+msgid "post not specified"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:439
+msgid "current user cannot read post "
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:448
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:560
+msgid "field not specified"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:463
+msgid "unknown field requested"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:501
+msgid "Preview not available."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:529
+msgid "ajax retrieval not supported"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:549
+msgid "current user cannot edit post "
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:575
+msgid "trying to update an unknown field"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:587
+msgid "nonce could not be verified: "
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:598
+msgid "new value not specified"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:620
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:654
+msgid "field could not be updated"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:669
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:676
+msgid "update could not be performed"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-controller.php:793
+#, php-format
+msgid "Product %s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:88
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:90
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:204
+msgid "Review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:150
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:151
+msgid "Post status"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:166
+msgid "-Introduction"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:167
+msgid "Introduction"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:168
+msgid "Introduction/Excerpt for this review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:184
+msgid "-Product Details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:185
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:28
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:65
+msgid "Product Details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:186
+msgid "Available/presented product details. Also editable on the front-end!"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:203
+msgid "-Review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:205
+msgid "Main review text"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:221
+msgid "-Conclusion"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:222
+msgid "Conclusion"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:223
+msgid "Conclusion/Summary for this review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:239
+msgid "-Star Ratings"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:240
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:51
+msgid "Rating"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:241
+msgid "Stars"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:257
+msgid "-Pricing Details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:258
+msgid "Pricing"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:259
+msgid "Pricing Details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:275
+msgid "-Call-to-Action"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:276
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-meta.php:277
+msgid "Call-to-Action"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/class-affiget-review-renderer.php:59
+msgid "Review Details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:35
+msgid "Saved privately"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:35
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:169
+msgid "Save privately"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:36
+msgid "Saved as a draft"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:36
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:170
+msgid "Save as a draft"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:37
+msgid "Marked for review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:37
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:171
+msgid "Save + Mark for review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:38
+msgid "Scheduled for publishing"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:38
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:39
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:172
+msgid "Save + Make public"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:39
+msgid "Published"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:52
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:67
+msgid "Open"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:53
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:68
+msgid "Closed"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:54
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:69
+msgid "Open, changeable"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:55
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:70
+msgid "Closed, changeable"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:57
+msgid "Comment status"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:58
+msgid "Default comment status, whether it can be changed on Afg+ dialog."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:72
+msgid "Trackback status"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:73
+msgid "Default trackback status, whether it can be changed on Afg+ dialog."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:82
+msgid "Autoscheduled (\"auto\")"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:83
+msgid "Creation time (\"now\")"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:86
+msgid "Post date"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:87
+msgid "Date/time to assign to every new review"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:96
+msgid "Every hour"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:97
+msgid "Every 2 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:98
+msgid "Every 3 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:99
+msgid "Every 4 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:100
+msgid "Every 5 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:101
+msgid "Every 6 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:102
+msgid "Every 7 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:103
+msgid "Every 8 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:104
+msgid "Every 12 hours"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:105
+msgid "Every day"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:106
+msgid "Every 2nd day"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:107
+msgid "Every 3rd day"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:108
+msgid "Every week"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:109
+msgid "Every month"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:111
+msgid "Auto-post frequency"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:112
+msgid "Post frequency for auto-scheduling"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:121
+msgid " 6:00 AM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:122
+msgid " 7:00 AM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:123
+msgid " 8:00 AM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:124
+msgid " 9:00 AM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:125
+msgid "10:00 AM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:126
+msgid "11:00 AM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:127
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:145
+msgid "12:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:128
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:146
+msgid " 1:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:129
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:147
+msgid " 2:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:130
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:148
+msgid " 3:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:131
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:149
+msgid " 4:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:132
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:150
+msgid " 5:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:133
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:151
+msgid " 6:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:135
+msgid "No auto-posts before"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:136
+msgid "No auto-posts will be scheduled BEFORE this hour."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:152
+msgid " 7:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:153
+msgid " 8:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:154
+msgid " 9:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:155
+msgid "10:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:156
+msgid "11:00 PM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:157
+msgid "12:00 AM"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:159
+msgid "No auto-posts after"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:160
+msgid "No auto-posts will be scheduled AFTER this hour"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:174
+msgid "Default status for first save"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/class-affiget-review-element-post-status.php:175
+msgid "Suggested status for a review when it gets saved for the first time"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:29
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:66
+msgid "Technical Details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:30
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:40
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:67
+msgid "Add To Baby Registry"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:31
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:41
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:68
+msgid "Add To Wedding Registry"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:32
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:69
+msgid "Add To Wishlist"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:33
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:70
+msgid "Tell A Friend"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:34
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:71
+msgid "All Customer Reviews"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:35
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:72
+msgid "All Offers"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:38
+msgid "Buy now on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:39
+msgid "More details on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:42
+msgid "Add To Wishlist on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:43
+msgid "Tell a friend via Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:44
+msgid "All customer reviews on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:45
+msgid "All Offers on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:48
+#, php-format
+msgid "Buy %s now on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:49
+#, php-format
+msgid "See details about %s on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:50
+#, php-format
+msgid "Add %s to Baby Registry on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:51
+#, php-format
+msgid "Add %s to Wedding Registry on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:52
+#, php-format
+msgid "Add %s to Wishlist on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:53
+#, php-format
+msgid "Tell a friend about %s via Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:54
+#, php-format
+msgid "See all Customer Reviews about %s on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:55
+#, php-format
+msgid "See all Offers related to %s on Amazon.com"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:121
+msgid "Call to Action"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/call-to-action/class-affiget-review-element-call-to-action.php:385
+msgid "nice button"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:60
+msgid "New"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:61
+msgid "Used"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:62
+msgid "Collectible"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:63
+msgid "Refurbished"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:66
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:86
+msgid "Allowed conditions"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:67
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:87
+msgid ""
+"A list of conditions to take into account when calculating the best price."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:76
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:54
+msgid "List price"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:77
+msgid "Best price"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:78
+msgid "Saved amount"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:79
+msgid "Saved percentage"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:80
+msgid "Condition"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:81
+msgid "Items in store"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:82
+msgid "Offer details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:83
+msgid "Variant details"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:96
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:167
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:80
+msgid "Table - labels in first column (default)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:97
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:168
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:81
+msgid "List - labels in front of values"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:98
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:169
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:82
+msgid "Form - small labels below values"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:99
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:170
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:83
+msgid "Generic - divs and spans"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:267
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:283
+#, php-format
+msgid "$%s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:474
+#, php-format
+msgid "Regular price: %s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:476
+#, php-format
+msgid "Price from: %s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:482
+#, php-format
+msgid "Price from: %1$s%2$s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:484
+#, php-format
+msgid "Current offer: %1$s%2$s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:489
+msgid "(special)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:490
+msgid "(new)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:491
+msgid "(used)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:492
+msgid "(refurbished)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:493
+msgid "(collectible)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:494
+msgid "(variant)"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/pricing-details/class-affiget-review-element-pricing-details.php:503
+#, php-format
+msgid "You save: %1$s %2$s"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:35
+msgid "ASIN"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:36
+msgid "Title"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:37
+msgid "Author"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:38
+msgid "Publisher"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:39
+msgid "Binding"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:40
+msgid "Edition"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:41
+msgid "ISBN-10"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:42
+msgid "Department"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:43
+msgid "Publication date"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:44
+msgid "Number of pages"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:45
+msgid "Languages"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:46
+msgid "Item dimensions"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:47
+msgid "Label"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:48
+msgid "Manufacturer"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:49
+msgid "Product group"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:50
+msgid "Studio"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:51
+msgid "Number of items"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:52
+msgid "Package dimensions"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:53
+msgid "Product type name"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:55
+msgid "Lowest New Price"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:56
+msgid "Lowest Used Price"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:57
+msgid "Lowest Collectible Price"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:58
+msgid "Lowest Refurbished Price"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:59
+msgid "Is eligible for trade-in"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:60
+msgid "Trade-in value"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:62
+msgid "EAN list"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:63
+msgid "EAN"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:146
+msgid "Enabled product attributes"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:147
+msgid ""
+"A comma-separated list, e.g. <br/><code>Title,Author,Publisher,NumberOfPages,"
+"ISBN</code>."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:158
+msgid "A subset of product attributes to show to visitors by default"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:159
+msgid ""
+"A comma-separated list, e.g. <br/><code>Title,Author,Publisher,NumberOfPages,"
+"Binding,ISBN,PublicationDate</code>."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/product-details/class-affiget-review-element-product-details.php:575
+#, php-format
+msgid "%s page on Amazon"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/review-part/class-affiget-element-review-part.php:42
+#, php-format
+msgid "%d lines"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/review-part/class-affiget-element-review-part.php:51
+#, php-format
+msgid "%d line"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/review-part/class-affiget-element-review-part.php:64
+msgid "Size"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/review-part/class-affiget-element-review-part.php:66
+msgid "Size Help"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:52
+msgid "Rating aspects"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:53
+msgid ""
+"A comma-separated list, e.g. <br/><code>Design, Quality, Service, Price</"
+"code>."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:60
+msgid "Bad, Poor, Normal, Good, Perfect"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:61
+msgid "Rating scores"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:62
+msgid ""
+"A comma-separated list, e.g. <br/><code>Bad, Poor, Normal, Good, Perfect</"
+"code>."
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:71
+msgid "Path to images"
+msgstr ""
+
+#: D:\xampp\htdocs\affiget.demo\wp-content\plugins\affiget-mini/review/elements/star-ratings/class-affiget-review-element-star-ratings.php:72
+#, php-format
+msgid "Must contain images: %s"
+msgstr ""

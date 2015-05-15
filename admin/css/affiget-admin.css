@@ -1,0 +1,38 @@
+/**
+ * All of the CSS for dashboard-specific functionality should be included in this file.
+ */
+.afg-spinner {
+	background: url('../img/spinner.gif') no-repeat;
+	background-size: 16px 16px;
+	/*display: none;*/
+	visibility: hidden;
+	opacity: .7;
+	filter: alpha(opacity=70);
+	width: 16px;
+	height: 16px;
+	margin: 8px 6px 0;
+}
+
+.afg-btn-wrap{
+	display: inline-block;
+	width: 25em;	
+}
+
+.afg-btn-wrap *{
+	float: left;	
+}
+
+.edit-php .wp-list-table .column-image{
+	width: 50px;
+}
+
+.edit-php .wp-list-table .afg-amazon-ico {
+	vertical-align: text-bottom;
+}
+.afg-dismiss{
+	float:right;
+	margin-top: 0.5em;
+}
+.afg-dismiss a{
+	text-decoration: none;	
+}

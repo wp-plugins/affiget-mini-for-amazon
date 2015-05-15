@@ -1,0 +1,42 @@
+.afg-widget.wrapper input[type="text"] {
+	/*clear: left;*/
+	width: 100%;
+}
+.afg-widget.wrapper .option{
+	margin: 1em 0;
+}
+.afg-star-ratings {display:block; margin-top:0; }
+.afg-star-ratings ul {list-style: none !important; margin: 0; padding:0; line-height: 1;}
+.afg-star-ratings table{ 
+	width: auto;
+	border: none;
+	border-collapse: collapse;
+}
+
+.entry-content .afg-star-ratings img,
+.widget .afg-star-ratings img,
+.afg-star-ratings img {
+	box-shadow: none;
+	border: none;	
+}
+
+.entry-content .afg-star-ratings th,
+.afg-star-ratings th{
+	padding: 0 0.75em 0 0;
+	width: 33%;
+	border: none;
+	line-height: 1.5;
+	text-align: left;
+}
+.entry-content .afg-star-ratings td,
+.afg-star-ratings td{
+	padding: 0;
+	width: 66%;
+	min-width: 100px;
+	border: none;
+	line-height: 1.5;
+}
+.entry-content .afg-star-ratings li {margin: 0; padding:0; line-height: 1;}
+.afg-star-ratings label {display:inline-block !important; vertical-align:top; min-width: 4em; padding: 0px 12px 7px 0px;}
+.afg-star-ratings div {display:inline-block !important; height: 1.25em; padding-bottom:4px;}
+.entry-content .afg-star-ratings img {box-shadow: none;}

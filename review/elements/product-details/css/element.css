@@ -1,0 +1,307 @@
+.afg-feature-list {
+	display: block;
+	min-width: 14em;
+	vertical-align: top;
+	border: 1px solid transparent;
+}
+
+.afg-feature-list.placeholder .spinner {
+	display: block;
+	clear:   left;
+	float:   none;
+}
+
+.afg-feature-list th,
+.afg-feature-list td{
+	vertical-align: text-top;
+	text-align: left;
+	min-height: 16px;
+}
+
+.afg-feature-list th,
+.afg-feature-list li label {
+	width: 33%;
+	min-width: 6.5em;
+	padding: 0;
+}
+
+.afg-feature-list td,
+.afg-feature-list li span {
+	width: 66%;
+	min-width: 6.5em;
+	padding: 0;
+}
+
+.afg-feature-list tr.new-entry{
+	color: #888;
+}
+.afg-feature-list select.items{
+	width: 26em;
+	font-size: 1em;
+	padding: 0;
+	margin:0;
+}
+
+.afg-feature-list input[type="text"], .afg-feature-list input[type="text"]:focus {
+	font-size: 1em;
+	padding: 0 0 0 1px !important;
+	margin: 0 0 0 -1px;
+	border: none;
+}
+
+.entry-content .afg-feature-list dl, 
+.entry-content .afg-feature-list dt, 
+.entry-content .afg-feature-list dd,
+.entry-content .afg-feature-list ul,
+.entry-content .afg-feature-list li,
+.entry-content .afg-feature-list table,
+.entry-content .afg-feature-list th,
+.entry-content .afg-feature-list td {
+	margin: 0; 
+	padding: 0; 
+	line-height: 1.5;
+	vertical-align: top;
+}
+
+.afg-feature-list th, .afg-feature-list dt, .afg-feature-list label {
+	font-weight: bold;
+}
+.afg-feature-list dt:after, .afg-feature-list label:after {
+	content: ": ";
+}
+.afg-feature-list dd, .afg-feature-list td, .afg-feature-list li span  {
+	
+}
+.afg-feature-list .hidden {
+	display: none; 
+}
+
+.afg-feature-list:not(.editing) .empty {
+	display: none;
+}
+
+.afg-feature-list .disabled,
+.disabled input.label, 
+.disabled input.value,
+.entry-content .afg-feature-list .disabled th,
+.entry-content .afg-feature-list .disabled td,
+.entry-content .afg-feature-list .disabled td a,
+.entry-content .afg-feature-list .disabled td a:visited {
+	color: #ccc;
+	text-decoration: line-through;
+}
+
+.entry-content .afg-feature-list .disabled th,
+.entry-content .afg-feature-list th {
+   -webkit-transition: padding 1s ease-out;
+      -moz-transition: padding 1s ease-out;
+        -o-transition: padding 1s ease-out;
+           transition: padding 1s ease-out;	
+}
+
+.entry-content .afg-feature-list.editing th:first-child {
+	/*text-indent: -16px; *//*the width of .dragger.ui-icon*/	
+}
+
+.offset-left, 
+.offset-right, 
+.offset-above, 
+.offset-below {
+	position: relative;
+	height: 0;
+	width: 0;
+}
+
+.offset-above .ui-icon, 
+.offset-below .ui-icon {
+	opacity: 0;
+   -webkit-transition: opacity 1s ease-out;
+      -moz-transition: opacity 1s ease-out;
+        -o-transition: opacity 1s ease-out;
+           transition: opacity 1s ease-out;
+	background-color: rgba(100,100,100,0.2);
+    left: -16px;
+	position:absolute;	
+}
+
+.offset-above .ui-icon {	
+	top: -16px;
+}
+.offset-below .ui-icon {
+	top: 16px;
+}
+
+.offset-above.mod .ui-icon,
+.offset-below.mod .ui-icon {
+	opacity: 1; 		
+}
+
+.offset-right{
+	float: right;
+}
+
+.dragger, .disabler {
+	position:absolute;
+}
+
+.dragger{
+	left: -15px;	
+}
+
+.ui-icon-circlesmall-plus{
+	width: 15px;
+	height: 15px;
+	background-repeat: no-repeat;
+	background-image: url(data:image/gif;base64,R0lGODlhEAAQAIABAP///////yH5BAEAAAEALAAAAAAQABAAAAIcjI+py+1vgJygVXTX3TZM34GilmQK9UHqyrZrAQA7);
+}
+
+.ui-icon-circlesmall-close{
+	width: 15px;
+	height: 15px;
+	background-repeat: no-repeat;
+	background-image: url(data:image/gif;base64,R0lGODlhEAAQAIABAP///////yH5BAEAAAEALAAAAAAQABAAAAIdjI+py+1vgJygVXRX3SGrC1rd6CVliVESxLbu6xYAOw==);
+}
+
+.ui-icon-shuffle{
+	width: 15px;
+	height: 15px;	
+	background-repeat: no-repeat;
+	background-image: url(data:image/gif;base64,R0lGODlhEAAQAIABAP///////yH5BAEAAAEALAAAAAAQABAAAAIajI+py+3PQJQGWLokxRHWsE3HxTmlh6bqmhQAOw==);
+}
+
+.disabler{
+	/*background-position: 0 -208px;*/
+}
+
+.dragger,
+.disabler {
+	display: none;
+ 	background-repeat: no-repeat;
+    display: block;
+    overflow: hidden;
+    text-indent: -99999px;	
+}
+
+.editing .dragger,
+.editing .disabler {
+	display: inline-block;
+	opacity: 0;	
+	vertical-align: text-top;
+	cursor: pointer;	
+	background-color: #999;
+   -webkit-transition: opacity 500ms ease-out;
+      -moz-transition: opacity 500ms ease-out;
+        -o-transition: opacity 500ms ease-out;
+           transition: opacity 500ms ease-out;		
+}
+
+.editing th, .editing td {
+	cursor: text;
+}
+
+.editing tr:hover .dragger,
+.editing tr:hover .disabler {
+	opacity: 1;	
+}
+
+/*.afg-feature-list-dragger {
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	background: green;
+	cursor: grab;  
+}*/
+
+.entry-content .afg-feature-list img { 
+	box-shadow: none;
+}
+.lang-pub-label:after, .lang-orig-label:after{
+	content: ": ";	
+}
+
+.afg-feature-list.editable:not(.editing):hover {
+	border: 1px dotted #18C443;
+}
+
+.entry-content .afg-feature-list.editing { 
+	/*position: relative;*/	
+	border: 15px solid rgba(100,100,100,0.25);
+	margin: -15px -15px 0px -15px; 
+	border-radius: 10px;	
+}
+
+.entry-content .afg-feature-list.editing a{
+	cursor: text;
+}
+
+.afg-feature-list .edit{	
+  position: relative;
+  height: 0;
+  width: 0;
+  float: right;
+  top: -15px;
+  left: -37px;
+  cursor: pointer;
+}
+.afg-feature-list .edit span{
+  position: absolute;
+  height: 15px;
+  font-size: 10px;
+  padding: 0px 3px;
+  width: 32px;
+  opacity: 1;
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+  color: #159E37;
+/*   -webkit-transition: color, background-color 1s linear;
+      -moz-transition: color, background-color 1s linear;
+        -o-transition: color, background-color 1s linear;
+           transition: color, background-color 1s linear;
+*/			
+}
+
+.afg-feature-list:hover .edit span{
+  background-color: #18C443;
+  color: white;
+}
+
+.afg-feature-list.editing .edit {
+	display: none;
+}
+
+.afg-feature-list.editing .close{	
+  position: relative;
+  height: 0;
+  width: 0;
+  float: right;
+  top: 0px;
+  left: -38px;
+  cursor: pointer;
+}
+.afg-feature-list.editing .close span{
+  position: absolute;
+  height: 15px;
+  font-size: 10px;
+  padding: 0px 3px;
+  width: 32px;
+  opacity: 1;
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+  color: #159E37;
+/*   -webkit-transition: color, background-color 1s linear;
+      -moz-transition: color, background-color 1s linear;
+        -o-transition: color, background-color 1s linear;
+           transition: color, background-color 1s linear;
+*/			
+}
+
+.afg-feature-list.editing:hover .close span{
+  background-color: #18C443;
+  color: white;
+}
+
+.afg-feature-list:not(.editing) .close {
+	display: none;
+}

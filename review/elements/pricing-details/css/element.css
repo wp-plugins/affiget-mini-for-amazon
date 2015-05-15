@@ -1,0 +1,45 @@
+body.wp-admin.widgets-php .option.preview,
+body.wp-admin.widgets-php .afg-pricing-details {
+	display: none;
+}
+.afg-pricing-details, 
+.afg-pricing-details ul {
+	margin: 0;
+	padding: 0;
+}
+.entry-content .afg-pricing-details li {
+	margin: 0;
+} 
+
+.afg-pricing-details.widget-settings {
+  border: 1px dotted silver;
+  padding: 0 1em;
+}
+
+.entry-content .afg-pricing-details li, 
+.afg-pricing-details li {
+    line-height: 1.75em;
+    list-style: none outside none;
+}
+.entry-content .afg-pricing-details .condition,
+.afg-pricing-details .condition {
+	color: silver;
+}
+.entry-content .afg-pricing-details .list-price.old,
+.afg-pricing-details .list-price.old {
+	text-decoration: line-through;
+}
+
+.entry-content .afg-pricing-details .best-price, 
+.afg-pricing-details .best-price {
+	color: #990000;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.entry-content .afg-pricing-details .saved-amount,
+.entry-content .afg-pricing-details .saved-percentage,
+.afg-pricing-details .saved-amount,  
+.afg-pricing-details .saved-percentage {
+	color: #990000;
+}
