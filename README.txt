@@ -28,7 +28,7 @@ A more advanced version of this plugin is nearly finished. If you want to partic
 
 == Installation ==
 
-1. Upload the 'affiget-mini' folder to the /wp-content/plugins directory.
+1. Upload the 'affiget-mini-for-amazon' folder to the /wp-content/plugins directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Navigate to the AffiGet Settings page in WordPress dashboard: 
 	* input your *Amazon Associates* credentials;
@@ -56,5 +56,5 @@ Consider upgrading to [AffiGet Pro](http://affiget.com/ "Upgrade today!") -- a p
 7. You can click Publish/Delete to remotely publish/trash your review post.
 8. A review constructed by AffiGet Mini (using standard Twenty Twelve theme). Note, the rating stars and the product attributes table are front-end editable!
 9. The AffiGet Settings page
-10. The Reviews page (note the product image and a link to the source Amazon page; also, tags are assigned automatically).
+10. The Reviews page (note the product image and a link to the source Amazon page; also, category is assigned automatically).
 11. The Review editing page. Note, highlighted elements are resolved automatically.
