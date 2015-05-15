@@ -3,7 +3,7 @@ Contributors: sarutole
 Tags: Amazon,products,reviews,marketing,monetization,revenue,Amazon Associate,freemium,affiliate marketing,aws,custom post type
 Requires at least: 3.2
 Tested up to: 4.2.1
-Stable tag: 1.0
+Stable tag: 1.0.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,17 +11,20 @@ Instantly post reviews to your blog WHILE browsing Amazon!
 
 == Description ==
 
-Many affiliate plugins work exclusively on the administration section of your self-hosted WordPress site ("Dashboard"). This method of creating reviews is boring and counter-intuitive. And it feels like work...
+Many affiliate plugins work exclusively on the administration section of your self-hosted WordPress site ("Dashboard"). Let's face it &ndash; this method of creating reviews is boring, error-prone and counter-intuitive. And it feels like work...
 
-To counter that, we have developed AffiGet. The most important difference, and **the "killer feature"** of it, is that it has a bookmarklet — a button you can drag to the Bookmarks toolbar of your favorite browser. Later, when you are on some Amazon site, you click that button, and, at that same instant, a new post, containing a fully formed review, is added to your blog. You can jump right in to revise it, or you can proceed with your browsing.
+To counter that, we have developed AffiGet. 
 
-This means you can fully utilize all the navigation and recommendation features provided by Amazon, to find a product that might be of interest to your readers, and "bookmark" as many of them as you like, without ever losing your navigation trail or interrupting your train of thought. *No other affiliate WordPress plugin provides such a streamlined and natural experience!*
+With AffiGet, you can fully utilize all the navigation and recommendation features provided by Amazon, to find a product that might be of interest to your readers, and "bookmark" as many of them as you like, without ever losing your navigation trail or interrupting your train of thought. *No other affiliate WordPress plugin provides such a streamlined and natural experience!*
 
-Note, however, that this is NOT a "make quick money online" kind of a plugin. It was designed with a dedicated blogger/curator in mind. We hope AffiGet will become an indispensable tool you will use to grow your magazine-style curated product catalog and your reputable niche sites.
+Note, however, that this is NOT a "make quick money online" kind of a plugin. It was designed with a dedicated blogger/curator in mind. We hope AffiGet will become an indispensable tool you use to grow your niche site or your magazine-style curated product catalog.
 
-AffiGet utilizes the official Amazon Product Advertising API to fetch most of the publicly available product details, including editorial description, all images, exact pricing information, etc. All the links referring your site's visitors back to Amazon will be embellished with your affiliate tag. As usual, you will get 4-10% commissions from all the qualifying purchases they make there.
+AffiGet utilizes the official Amazon Product Advertising API to fetch most of the publicly available product details, including editorial description, all images, exact pricing information, etc. No "page scrapping" is involved, therefore all product details are always correct and up-to-date. All the links referring your site's visitors back to Amazon will be embellished with your affiliate tag. As usual, you will get 4-10% commissions from all the qualifying purchases they make there.
 
 In order for this plugin to work, you have to provide the credentials for your [Amazon Associates](https://affiliate-program.amazon.com/ "Join now!") account (which is free and relatively easy to get).
+
+= AffiGet Pro =
+A more advanced version of this plugin is nearly finished. If you want to participate in a BETA test, please subscribe to our launch list on [AffiGet.com](http://affiget.com).
 
 == Installation ==
 
@@ -45,7 +48,7 @@ Consider upgrading to [AffiGet Pro](http://affiget.com/ "Upgrade today!") -- a p
 == Screenshots ==
 
 1. The Afg+ bookmarklet as seen in Chrome's Bookmarks bar.
-2. The AffiGet Mini infobar slides into view after single-click on the Afg+ bookmarklet.
+2. The AffiGet Mini infobar slides into view after a single-click on the Afg+ bookmarklet.
 3. Infobar shows current title of the review post. Initially it is the same as product's title.
 4. You can modify the title right on the infobar.
 5. After you submit your new title, the post's slug will be modified, too.
