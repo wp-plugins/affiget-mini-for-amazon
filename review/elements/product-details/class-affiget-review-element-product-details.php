@@ -127,12 +127,14 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 		//metabox
 		add_action( 'afg_review_renderer__register_metabox_fields', array(&$this, 'register_cmb2_fields'));
-		add_action( 'cmb2_render_afg_product_details', array(&$this, 'render_cmb2_field'), 10, 5 );
+		add_action( "cmb2_render_{$this->control_id}", array(&$this, 'render_cmb2_field'), 10, 5 );
+		add_filter( "cmb2_types_esc_{$this->control_id}", array(&$this, 'escape_cmb2_field'), 10, 4 );
 
 		//assets
 		add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts_and_styles'));
 		add_action( 'wp_enqueue_scripts', array(&$this, 'enqueue_scripts_and_styles'));
 
+		add_action( 'afg_review_controller__inherit_from_latest_in_category', array(&$this, 'inherit_from_latest_in_category'), 10, 5 );
 	}
 
 	protected function get_settings_config(){
@@ -241,6 +243,15 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 			$this->render_html( $post_id, null, $this->name, AFG_META_PREFIX . $this->name, $nonce );
 		}
+	}
+
+	function escape_cmb2_field( $null, $meta_value, $args, $field ){
+		//if any non-null value is returned, dumb default escaping is avoided
+		//afg_log(__METHOD__, compact('null', 'meta_value', 'args', 'field'));
+
+		//short-circuit default escaping, as it results in PHP notices
+		//(because passed values cannot be easily converted to string)
+		return true;
 	}
 
 	protected function _prepare_items( &$items, $post_id, $fieldname ){
@@ -475,12 +486,10 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 	function get_default_value( $params = null ){
 
-		//$configure = (isset( $params['prepare_widget_settings'] ) && $params['prepare_widget_settings']);
-
 		$preset    = (isset( $params['widget_data'] ) && $params['widget_data']) ? $params['widget_data'] : false;
 
-		$prototype = false;
-		$product   = false;
+		$prototype = false; //product_details meta value
+		$product   = false; //product data
 
 		$post_id   = (isset( $params['post_id']) && $params['post_id']) ? absint( $params['post_id'] ) : false;
 		if( $post_id ){
@@ -538,8 +547,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 			$i++;
 		}
 
-		//afg_log(__METHOD__.':'.__LINE__, compact('result') );
-		if( $post_id && ! false === $prototype ){
+		if( $post_id && ! $prototype ){
 			update_post_meta( $post_id, AFG_META_PREFIX . $this->name, $result );
 		}
 
@@ -705,6 +713,23 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 		return esc_html( $value );
 	}
 
+	function inherit_from_latest_in_category( $post_id, $product_data, $is_new, $cats, $prototype_post_id ){
+
+		$params = array(
+				'post_id'     => $post_id, //will take product_details from this post
+		);
+
+		if( $prototype_post_id ){
+			$preset = get_post_meta( $prototype_post_id, AFG_META_PREFIX . 'product_details', true );
+			if( $preset !== false ){
+				$params['widget_data'] = $preset; //will use configuration from this post's product_details
+			}
+		}
+
+		$result = $this->get_default_value( $params );
+		//note, the result will be cached to AFG_META_PREFIX . 'product_details'
+	}
+
 	function enqueue_scripts_and_styles( $hook ) {
 
 		if( $this->meta->is_element_style_needed() ){
@@ -730,6 +755,28 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 							//'jquery-effects-pulsate' //pulsate when loosing focus without save
 					),
 					AFG_VER
+			);
+
+			$msg = array(
+					'modifyTableHint'   => __('Modify product details', 'afg'),
+					'modifyTable'       => __('Modify table', 'afg'),
+					'minimizeTableHint' => __('Exit the editing mode', 'afg'),
+					'minimizeTable'     => __('Minimize table', 'afg'),
+					'hideItemHint'      => __('Hide this item from your visitors', 'afg'),
+					'unhideItemHint'    => __('Make this item visible to everyone', 'afg'),
+					'dragItemHint'      => __('Drag this item to its new position', 'afg'),
+			);
+
+			$params = array(
+					'initialMode' => is_admin() ? 'editing': 'viewing',
+					'wpAjaxUrl'   => admin_url('admin-ajax.php'),
+					'msg'         => $msg
+			);
+
+			wp_localize_script('afg-feature-list-script', 'dummy;
+	window.affiget = window.affiget || {};
+	affiget.params = affiget.params || {};
+	affiget.params.feature_list', $params
 			);
 		}
 	} // end enqueue_scripts_and_styles

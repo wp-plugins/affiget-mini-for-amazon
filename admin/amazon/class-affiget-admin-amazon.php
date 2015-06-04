@@ -350,10 +350,14 @@ class AffiGet_Admin_Amazon {
 
 		$result = $this->fetch_product_details( $product_code, $responseGroups );
 
+		//afg_log(__METHOD__, array( $product_code => $result ));
+
 		if( ! is_wp_error( $result )){
 			if( 'JSON' == $output ){
+				//afg_log(__METHOD__, array( $product_code => $result->toJSON() ));
 				return $result->toJSON();
 			} elseif( ARRAY_A == $output ) {
+				//afg_log(__METHOD__, array( $product_code => json_decode( $result->toJSON(), true )));
 				return json_decode( $result->toJSON(), true );
 			}
 		}
@@ -383,9 +387,9 @@ class AffiGet_Admin_Amazon {
 					AmazonProduct_ResponseGroup::PROMOTION_SUMMARY,
 					AmazonProduct_ResponseGroup::EDITORIAL_REVIEW,  //includes product description
 					AmazonProduct_ResponseGroup::VARIATION_SUMMARY,	//only parent items have this!
-					AmazonProduct_ResponseGroup::VARIATIONS, 		//for child items!
+					//AmazonProduct_ResponseGroup::VARIATIONS, 		//for child items!
 					//AmazonProduct_ResponseGroup::VARIATION_IMAGES //for child items!
-					AmazonProduct_ResponseGroup::VARIATION_MATRIX //for child items!
+					//AmazonProduct_ResponseGroup::VARIATION_MATRIX //for child items!
 			);
 			if( empty( $responseGroups )){
 				$responseGroups = $defaultResponseGroups;

@@ -341,7 +341,7 @@
 				return;
 			}
 		}
-		console.clear();
+		//console.clear();
 		this.showToolbarPlaceholder('top');
 		console.time('Afg+ time: showup time');/*start the timers!*/
 		console.time('Afg+ time: started in');

@@ -313,7 +313,7 @@ Infobar items are these:
 
 .rotating {
   display: inline-block;
-  vartical-align: top;
+  vertical-align: top;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;

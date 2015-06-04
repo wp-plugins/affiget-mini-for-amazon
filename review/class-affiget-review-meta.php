@@ -343,7 +343,7 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 	 */
 	public function filter_pre_get_posts( $query ) {
 
-		if( ! is_admin() && ! is_singular() && ! in_the_loop() ){
+		if( ! $query->is_admin && ! $query->in_the_loop && ! $query->is_page ){
 
 			$afg_types = array( $this->_post_type_name );
 
@@ -351,6 +351,10 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 
 			if( $types == 'nav_menu_item' ){
 				return;
+			}
+
+			if( ! $types ){
+				$types = 'post';
 			}
 
 			if( is_array( $types ) ){

@@ -187,6 +187,8 @@ class AffiGet_Review_Admin {
 
 		if( ! $post ) return;
 
+		if( $post->post_type != $this->meta->post_type_name ) return;
+
 		$amazon_link = $this->get_amazon_link( $post->ID, 'button button-small' );
 
 		if( $amazon_link ){
@@ -206,6 +208,8 @@ class AffiGet_Review_Admin {
 
 		if( ! $post ) return;
 
+		if( $post->post_type != $this->meta->post_type_name ) return;
+
 		$product_sync = get_post_meta( $post->ID, AFG_META_PREFIX . 'product_data_timestamp', true );
 
 		if( $product_sync ){
@@ -214,7 +218,7 @@ class AffiGet_Review_Admin {
 			$product_sync = sprintf( __( 'Resync now', 'afg' ));
 		}
 
-		$link = str_replace('&update_product=true', '', $_SERVER['REQUEST_URI']).'&update_product=true';
+		$link = str_replace('&update_product=true', '', $_SERVER['REQUEST_URI']).'&update_product=true&_wpnonce='.wp_create_nonce('update_product');
 
 		$link = '<a href="'.$link.'" title="' . __('Click to refetch product data from Amazon', 'afg').'">' . $product_sync . '</a>';
 
@@ -266,10 +270,10 @@ class AffiGet_Review_Admin {
 
 	function update_product_maybe() {
 
-		//echo 'Edit:' .$_REQUEST['post'];
-
-		if( $this->is_sync_required( $_REQUEST['post'] ) || (isset( $_REQUEST['update_product'] ) && 'true' == $_REQUEST['update_product'] )){
-			$this->do_update_product( $_REQUEST['post'] );
+		if( isset( $_REQUEST['post']) && 0 < absint( $_REQUEST['post'] ) && $this->is_sync_required( absint( $_REQUEST['post'] )) || (isset( $_REQUEST['update_product'] ) && 'true' == $_REQUEST['update_product'] )){
+			if( check_admin_referer('update_product') ){
+				$this->do_update_product( absint( $_REQUEST['post'] ));
+			}
 		}
 	}
 

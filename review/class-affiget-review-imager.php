@@ -15,6 +15,13 @@ class AffiGet_Review_Imager
 	public function __construct(){
 
 		add_action( AffiGet_Review_Controller::EVENT_IMAGES_UPDATED, array(&$this, 'sideload_images') );
+
+		if( ! function_exists('download_url') ){
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		if( ! function_exists('media_handle_sideload') ){
+			require_once ABSPATH . 'wp-admin/includes/media.php';
+		}
 	}
 
 	//

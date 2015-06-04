@@ -89,7 +89,7 @@ class AffiGet_Review_Renderer {
 		global $post;
 
 		if( $post->post_type != $this->meta->post_type_name ){
-			return;
+			return $content;
 		}
 
 		$content = '';

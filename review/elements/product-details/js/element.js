@@ -19,7 +19,7 @@
 
 		    return this.each(function() {
 		    	
-		    	var $ctrl = $(this), $input, $inLabel, $inValue, $inLabelRevert, $inValueRevert, $disabler, post, nonce;
+		    	var $ctrl = $(this), $input, $inLabel, $inValue, $disabler, post, nonce;
 		    	
 		    	if( 'stopEditing' == method ){
 		    		return stopEditing();
@@ -31,7 +31,7 @@
 		    		var $post, $edit, $done;
 		    		
 			    	if( typeof $ctrl.data('afg-already-created') !== 'undefined' && $ctrl.data('afg-already-created') != null){
-			    		//console.log( 'afg-feature-list ', $ctrl.attr('id'), 'already-created' );
+			    		////console.log( 'afg-feature-list ', $ctrl.attr('id'), 'already-created' );
 		    			//refresh view, maybe?
 			    		return;
 			    	}
@@ -51,20 +51,21 @@
 			    		return;
 			    	}*/			    		
 			    	
-			    	$ctrl.data('mode', opts.initialMode);
-			    	
 			    	/* if element has no nonce data, it will be read-only */			    	
 			    	nonce = $ctrl.data('nonce') || false;
 			    	if( nonce ){
 			    		$ctrl.addClass('editable');
 			    		
-			    		$edit = $('<div class="edit" title="Modify product details"><span>Edit</span></div>');
-			    		$edit.on('click', startEditing );
-			    		$ctrl.prepend( $edit );
-			    		$done = $('<div class="close" title="Finish editing"><span>Done</span></div>');
-			    		$done.on('click', stopEditing );
-
-			    		$ctrl.append( $done );
+			    		if( 'viewing' == opts.initialMode ){
+					    	$ctrl.data('mode', opts.initialMode);
+					    	
+				    		$edit = $('<div class="edit" title="'+opts.msg['modifyTableHint']+'"><span>'+opts.msg['modifyTable']+'</span></div>');
+				    		$edit.on('click', startEditing );
+				    		$ctrl.prepend( $edit );
+				    		$done = $('<div class="close" title="'+opts.msg['minimizeTableHint']+'"><span>'+opts.msg['minimizeTable']+'</span></div>');
+				    		$done.on('click', stopEditing );
+				    		$ctrl.append( $done );
+			    		}			    		
 			    	
 				    	/*$ctrl.on( 'click.afg', function(ev){
 				    		$('.afg-feature-list').not( $ctrl ).afgFeatureList('stopEditing');
@@ -74,7 +75,11 @@
 	
 				    	$ctrl.find('table,ul,th,li.label,td,li.span,div.list,div.item').disableSelection();
 				    	$disabler = $('<span class="offset-right"><span class="disabler ui-icon"></span></span>');
-			    	}				    	
+				    	
+				    	if( 'editing' == opts.initialMode ){
+				    		startEditing();
+				    	}
+			    	}
 				    	
 			    	//if( nonce || ! hasContent() ){ //the content is editable OR not there yet 
 			    		prepareInput();
@@ -112,7 +117,7 @@
 			    		$ctrl.find('td').contents().wrap('<span class="value"></span>');
 			    		$ctrl.find('td:empty').append('<span class="value"></span>');
 			    		
-			    		$ctrl.find('.label,li.label').before('<span class="offset-left"><span class="dragger ui-icon ui-icon-shuffle"></span></span>');
+			    		$ctrl.find('.label,li.label').before('<span class="offset-left"><span class="dragger ui-icon ui-icon-reorder" title="'+opts.msg['dragItemHint']+'"></span></span>');
 
 			    		if( $ctrl.is('.contains-table') ){
 				    		$ctrl.find('.list tbody').sortable({
@@ -139,10 +144,10 @@
 		    	
 		    	function onDisablerClick( $icon, $item ){
 		    		
-    				if( $icon.is('.ui-icon-circlesmall-close')){
-    					$icon.removeClass('ui-icon-circlesmall-close').addClass('ui-icon-circlesmall-plus');
+    				if( $icon.is('.ui-icon-show')){
+    					$icon.removeClass('ui-icon-show').addClass('ui-icon-hide');
     				} else {
-    					$icon.removeClass('ui-icon-circlesmall-plus').addClass('ui-icon-circlesmall-close');
+    					$icon.removeClass('ui-icon-hide').addClass('ui-icon-show');
     				}
     				$item.toggleClass('disabled');
     				
@@ -151,7 +156,11 @@
 		    	} /* onDisablerClick */
 		    	
 		    	function onItemClick( ev ){
-	    			var $trg = $(ev.target), $item = $trg.closest('.item');	  
+	    			var $trg = $(ev.target), $item;
+	    			
+	    			$item = $trg.closest('.item');
+	    			
+	    			//console.log( 'onItemClick', $trg[0] );
 	    			
 	    			if( $trg.is('.disabler') ){
 	    				onDisablerClick( $trg, $item );
@@ -160,12 +169,19 @@
 	    			} else if( $trg.is('span.label,span.value,label') ){
 	    				showItemEditor( $item, $trg);
 	    			} else if( $trg.is('th') ){
-	    				showItemEditor( $item, $trg.children('.label'));		    				
+	    				showItemEditor( $item, $trg.children('span.label'));		    				
 	    			} else if( $trg.is('td') ){
-	    				showItemEditor( $item, $trg.children('.value'));		    				
+	    				showItemEditor( $item, $trg.children('span.value'));		    				
 	    			} else if( $trg.is('a') ){
 		    			showItemEditor( $item, $trg.parent());
 		    			return false; /*prevent navigation*/
+		    		} else if( $trg.is('input')){
+		    			//console.log('In focus:', $trg.is('input:focus'));
+		    			if( ! $trg.is('input:focus') ){
+		    				$trg.focus();
+		    			}
+		    			//showItemEditor( $item, $trg);
+		    			return true;
 		    		}
 		    	} /* onItemClick */
 
@@ -177,9 +193,9 @@
 		    		}	    		
 		    		
 		    		if( $item.is('.disabled') ){
-		    			$disabler.attr('title','Unhide item').children().addClass('ui-icon-circlesmall-plus').removeClass('ui-icon-circlesmall-close');
+		    			$disabler.attr('title', opts.msg['unhideItemHint']).children().addClass('ui-icon-hide').removeClass('ui-icon-show');
 		    		} else {
-		    			$disabler.attr('title','Hide item').children().addClass('ui-icon-circlesmall-close').removeClass('ui-icon-circlesmall-plus');	
+		    			$disabler.attr('title', opts.msg['hideItemHint']).children().addClass('ui-icon-show').removeClass('ui-icon-hide');	
 		    		}
 		    		
 		    		if( $ctrl.is('.contains-table') ){
@@ -201,13 +217,13 @@
 		    	
 		    	function startEditing(){ 
 
-		    		if( !$ctrl.is('.editable') ){
-		    			//console.log( 'This control is not editable!');
+		    		if( ! $ctrl.is('.editable') ){
+		    			////console.log( 'This control is not editable!');
 		    			return;
 		    		}
 		    		if( $ctrl.data('mode') === 'editing' ) return;
 		    		
-		    		//console.log( $ctrl.attr('id'),'start editing');		    		
+		    		////console.log( $ctrl.attr('id'),'start editing');		    		
 		    		
 		    		_extendListForEditing();
 		    		
@@ -229,11 +245,11 @@
 		    		
 		    		if( $ctrl.data('mode') !== 'editing' ) return;
 		    		
-		    		//console.log( $ctrl.attr('id'), 'stop editing');
+		    		////console.log( $ctrl.attr('id'), 'stop editing');
 		    		
 		    		$ctrl.find('.disabled').addClass('hidden');
 		    		
-		    		//console.log($ctrl.attr('id'),'unbinding item events', $ctrl.find('.item').length);
+		    		////console.log($ctrl.attr('id'),'unbinding item events', $ctrl.find('.item').length);
 		    		
 		    		$ctrl.off('.afg', '.item')
 		    			.removeClass('editing')
@@ -245,132 +261,141 @@
 	    			
 	    			/*$ctrl.width( $ctrl.width() - 29 );*//* fat border is no more, restore original width*/	    			
 	    			
-		    		stopItemEdit(null, null, true);
+		    		hideItemEditor();
 		    		submitData();
 		    		
 	    			return $ctrl;
 		    	} /* stopEditing */
 		    	
-		    	function stopItemEdit( $inLabel, $inValue, $hideInput ){
-		    		var $label, $value;
-		    		
-		    		$inLabel = $inLabel || $ctrl.find('input.label');
-		    		$inValue = $inValue || $ctrl.find('input.value');		    		 
-		    		
-		    		if( ! $inLabel.length || ! $inValue.length ){ 
-		    			return;
-		    		}
-		    		
-		    		//console.log('stopItemEdit', $inLabel, $inValue, $hideInput);
-		    		
-		    		$label = $inLabel.prev(); 
-    				$label.data('initial-val', $inLabel.val()).removeData('modified-val');
-    				if( $label.has('a').length ){    					
-    					$label.find('a').text( $inLabel.val() );
-					} else {
-						$label.text( $inLabel.val() );
-					}	    			
-    				
-		    		$value = $inValue.prev(); 
-    				$value.data('initial-val', $inValue.val()).removeData('modified-val');
-    				if( $value.has('a').length ){
-    					$value.find('a').text( $inValue.val() );
-					} else {
-						$value.text( $inValue.val() );
-					}
-    				if( $hideInput ){
-	    				$inLabel.hide().next().hide();    				
-	    				$label.show();
-	    				$inValue.hide().next().hide();
-	    				$value.show();
-		    		}
-		    	}
-		    	
 	    		function showItemEditor( $item, $active ){
 	    			var $label, $value;
-
+	    			
+	    			if( $active.is('input') ){
+	    				return true;
+	    			}	    			
+	    			
     				$label   = $item.find('.label:not(input)');
     				$value   = $item.find('.value:not(input)');
+    				
+	    			////console.log( 'showItemEditor', $item, $active.text() );    				
 	    			
 	    			setupItemEdit();
 	    			startItemEdit();
 	    			
 	    			function setupItemEdit(){
 	    				
-	    				if( typeof $inLabel === 'undefined' ){
+	    	    		if( typeof $inLabel === 'undefined' || null == $inLabel ){
+	    					
 			    			$inLabel = $('<input class="label" type="text" />');
 			    			$inLabel.on('keyup', function(ev){
+			    				
 			    				if( ev.keyCode == 27 ){
-			    					cancelInput(null, $inLabel);
+			    					ev.preventDefault();
+				    				ev.stopPropagation();
+				    				
+				    				$inLabel.blur();
+				    				
+			    					//revertInputChanges( null, $( ev.target ));
+			    					hideItemEditor();
+			    					
 			    				} else if( ev.keyCode == 13 ){
-			    					applyInput(null, $inLabel);
+			    					ev.preventDefault();
+				    				ev.stopPropagation();			    					
+			    					$inValue.focus(); //note, inLabel.blur() gets called, as a result
 			    				}
-			    				ev.preventDefault();
-			    				ev.stopPropagation();
-			    				return false;
+			    				
+			    			}).on('blur', function( ev ){
+			    				var $target = $( ev.target );
+			    				
+			    				//console.log('blur.label', $target.val());
+			    				submitInputChanges( null, $target );
+			    				return true;
+			    				
+			    			}).on('click', function( ev ){
+			    				
+			    				//console.log('click.label', ev.target.value);
+			    				return true;			    				
 			    			});
 			    			
 	    					$inValue = $('<input class="value" type="text" />');
 			    			$inValue.on('keyup', function(ev){
+			    				var $nextItem;
+			    				
 			    				if( ev.keyCode == 27 ){
-			    					cancelInput( null, $inValue );
+			    					ev.preventDefault();
+				    				ev.stopPropagation();	
+				    				
+				    				$inValue.blur();
+				    				
+			    					//revertInputChanges( null, $( ev.target ));
+			    					hideItemEditor();
+			    					
 			    				} else if( ev.keyCode == 13 ){
-			    					applyInput( null, $inValue );
+			    					ev.preventDefault();
+				    				ev.stopPropagation();
+				    				
+				    				$nextItem = $inValue.closest('.item').next();
+				    				if( ! $nextItem.length ){
+				    					$nextItem = $inValue.closest('.list').find('.item:first-child');
+				    				}
+				    				
+				    				$inValue.blur();
+				    				
+			    					showItemEditor( $nextItem, $nextItem.find('span.label') );
 			    				}
-			    				ev.preventDefault();
-			    				ev.stopPropagation();
-			    				return false;
-			    			});			    			
-	    					$inLabelRevert  = $('<span class="offset-above"><span class="ui-icon ui-icon-arrowrefresh-1-w"></span></span>');
-	    					$inValueRevert  = $('<span class="offset-above"><span class="ui-icon ui-icon-arrowrefresh-1-w"></span></span>');
+			    			}).on('blur', function( ev ){
+			    				var $target = $( ev.target );
+			    				
+			    				//console.log('blur.value', $target.val());
+			    				submitInputChanges( null, $target );
+			    				return true;
+			    				
+			    			}).on('click', function( ev ){
+			    				
+			    				//console.log('click.value', ev.target.value);
+			    				return true;
+			    			});
+			    			
 	    				} else {
-	    					cancelInput();     				
+	    					//revertInputChanges();
+		    	    		hideItemEditor();	    					
 	    				}
 	    			} /* setupItemEdit */
 	    			
 	    	    	function startItemEdit(){
-	    	    		var val = '';
-
-	    	    		if( typeof $label.data('modified-val') !== 'undefined' && $label.data('modified-val') !== null){
-	    	    			//console.log('continue editing: ', $label.data('modified-val'));
-	    	    			val = $label.data('modified-val');
-	    	    		} else {
-	    	    			val = $label.text();
-	    	    		}    	
-	    	    		$inLabel.val( val );
-	    	    		//console.log( $inLabel.val() );	    	    		
-	    	    		$label.data('initial-val', $label.text()).hide();
 	    	    		
-	    	    		if( typeof $value.data('modified-val') !== 'undefined' && $value.data('modified-val') !== null){
-	    	    			val = $value.data('modified-val');
-	    	    		} else {
-	    	    			val = $value.text();
-	    	    		}    		
-	    	    		$inValue.val( val );
-	    	    		$value.data('initial-val', $value.text()).hide();	    	    		
+	    	    		$inLabel.val( $label.text() );
+	    	    		$label.data('initial-val', $label.text());
 	    	    		
-	    	    		unveilItemEdit();
+	    	    		$inValue.val( $value.text() );
+	    	    		$value.data('initial-val', $value.text());	    	    		
+	    	    		
+	    	    		unveilItemEditor();
 	    	    	} /* startItemEdit */
 	    	    	
-	    	    	function unveilItemEdit( callback, delay ){	    	    		
+	    	    	function unveilItemEditor( callback, delay ){	    	    		
 	    	    		var h, lh = $label.innerHeight(), vh = $value.innerHeight();
 
 	    	    		h = (vh > 0 && vh < lh) ? vh : lh;/*smaller nonzero*/  
 	    	    		
 	    	        	delay = delay || 600;
-	    	        	
+
+	    	        	$label.hide();
 	    				$inLabel
 	    					.css({
-								'width': $label.parent().width(),
+								'width': ($label.parent().width()-5),
+								'margin-right': 5,
 								'height': h,
 								'font': $label.parent().css('font'),
+								'font-weight': $label.parent().css('font-weight'),
+								'font-size': $label.parent().css('font-size'),
 								'text-transform': $label.css('text-transform'),
 								'background': $label.parent().css('background')
 							})
 							.insertAfter( $label )
-	    	        		.after( $inLabelRevert )
 	    	        		.show();
-    				
+	    				
+	    				$value.hide();
 		    			$inValue
 			    			.css({
 								'width': $value.parent().width(),
@@ -380,12 +405,11 @@
 								'background': $value.parent().css('background')
 							})
 	    	        		.insertAfter( $value )
-	    	        		.after( $inValueRevert )
 	    	        		.show();
 	    	        	
-	    	        	if( $active.is('.label') ){
+	    	        	if( $active.is('.label')){
 	    	        		$inLabel.focus();
-	    	    		} else {
+	    	    		} else if( $active.is('.value')){
 	    	    			$inValue.focus();
 	    	    		}
 	    	        	
@@ -394,141 +418,106 @@
 	    						callback(); 
 	    		        	}, delay);
 	    	    		}
-	    	    	} /* unveilItemEdit */
+	    	    	} /* unveilItemEditor */
 	    	    	
-	    	    	function applyInput( callback, $input ){
-	    	    		
-	    				if( typeof $input === 'undefined' ){
-	    					
-	    					/* allowing empty! */
-	    					
-		    				/*if( '' == $.trim( $inLabel.val()) ){
-		    					cancelInput( null, $inLabel );
-		    					return;
-		    				}
-		    				if( '' == $.trim( $inValue.val()) ){
-		    					cancelInput( null, $inValue );
-		    					return;
-		    				}*/
-	    					
-	    					if( $.trim( $inLabel.prev().data('initial-val')) == $.trim( $inLabel.val())
-   	    					&&	$.trim( $inValue.prev().data('initial-val')) == $.trim( $inValue.val())){
-    		    					cancelInput();/*neither was modified --> cancel both*/
-    		    					return;	    						
-   	    					}	    					
-	    					
-	    					stopItemEdit( $inLabel, $inValue, false );
-	    					
-    						//TODO call callback properly
-	    					submitData();
-	    					
-		    				hideItemEdit(function(){
-		    					$inLabel.prev().show();
-		    					$inValue.prev().show();
-		    	    			if( typeof callback === 'function'){    	    				
-		    	    				callback();
-		    	    			}		    					
-		    				});		    				
-	    				} else {
-		    				if( $input.is('.label')){
-			    				if( $.trim( $input.prev().data('initial-val')) != $.trim( $input.val())){
-			    					
-				    				//console.log('apply modifications');
-				    				
-			    					$input.prev().removeData('modified-val');
-			    					
-			    					if( $input.prev().has('a').length ){
-			        					$input.prev().find('a').text( $input.val() );
-			    					} else {
-			    						$input.prev().text( $input.val() );
-			    					}
-				    				
-			    					//TODO:submit mods to server( $inValue.val() && $inLabel.val());
-			    					
-			    					//pass callback forward to be peformed on success!	    				
-			    	    			if( typeof callback === 'function'){    	    				
-			    	    				callback();
-			    	    			}				    				
-			    				}
-			    				$inValue.focus();
-			    			} else {
-			    				if( !$input.val() ){
-			    					$item.addClass('empty');
-			    				} else {
-			    					$item.removeClass('empty');
-			    				}
-			    				applyInput();/*apply both*/
-			    			}		    				
-	    				}
-	    	    	} /* applyInput */	    			
-	    			
-	    	    	function cancelInput( callback, $input ){
-	    	    		
-	    	    		/* avoid referencing $label and %value in this func! */
-	    	    		var $l = $inLabel.prev(), $v = $inValue.prev();
-	    	    		
-	    	    		//console.log('cancel item mods', callback, $input);
+	    	    	function submitInputChanges( callback, $input ){
+	    	    		var $span; 
 	    	    		
 	    	    		if( typeof $input === 'undefined' ){
 	    	    			
-		    	    		if( $.trim( $inLabel.val() ) == '' ){
-		    	    			$l.removeData('modified-val');
-		    	    		} else {
-		    	    			$l.data('modified-val', $inLabel.val());
-		    	    		}
-    	    				
-		    	    		if( $.trim( $inValue.val() ) == '' ){
-		    	    			$v.removeData('modified-val');
-		    	    		} else {
-		    	    			$v.data('modified-val', $inValue.val());
-		    	    		}
-		    	    		
-		    	    		hideItemEdit(function(){
-		    	    			$l.show();
-		    	    			if( $l.has('a').length ){
-		    	    				$l.find('a').text( $l.data('initial-val') );
-		    	    			} else {
-		    	    				$l.text( $l.data('initial-val') );
-		    	    			}
-		    	    			$v.show();
-		    	    			if( $v.has('a').length ){
-		    	    				$v.find('a').text( $v.data('initial-val') );
-		    	    			} else {
-		    	    				$v.text( $v.data('initial-val') );
-		    	    			}
-		    	    			if( typeof callback === 'function'){
+	    	    			submitInputChanges( null, $inLabel );
+	    	    			submitInputChanges( callback, $inValue );
+	    	    			
+	    	    		} else if( typeof $input !== 'undefined' ){
+	    	    			
+	    	    			$span = $input.prev();
+	    	    			
+		    				if( $.trim( $span.data('initial-val')) != $.trim( $input.val()) ){
+		    					/* input value is different from the initial value */
+		    					
+		    					/* assign new value to the underlying span */
+		    					if( $span.has('a').length ){
+		        					$span.find('a').text( $input.val() );
+		    					} else {
+		    						$span.text( $input.val() );
+		    					}
+		    					
+		    					/* assign new value as a new initial-val?
+		    					$span
+		    						.removeData('modified-val')
+	    							.data('initial-val', $input.val());
+		    					*/	    							
+		    					
+		    					submitData();
+		    					
+		    					//XXX: pass callback forward, to be peformed only on success!	    				
+		    	    			if( typeof callback === 'function'){    	    				
 		    	    				callback();
-		    	    			}    			
-		    	    		});
-	    	    		} else {
-		    	    		if( $.trim( $input.val() ) == '' ){
-		    	    			$input.prev().removeData('modified-val');
-		    	    		} else {
-		    	    			$input.prev().data('modified-val', $input.val());
-		    	    		}
-	    	    		}	    	    		
-	    	    	} /* cancelInput */
-	    	    	
-	    	    	function hideItemEdit( callback, delay ){
+		    	    			}
+		    				}			    				
+	    				}
+	    					
+	    				if( $input.is('.value') ){
+	    					if( '' == $.trim( $input.val() )){ /* the value part is empty --> mark item as empty */
+		    					$item.addClass('empty');
+		    				} else {
+		    					$item.removeClass('empty');
+		    				}
+	    				}
+	    	    	} /* submitInputChanges */	    			
+	    			
+	    	    	function revertInputChanges( callback, $input ){
 	    	    		
-	    	    		delay = delay || 0;
+	    	    		/* avoid referencing $label and $value in this func! */
+	    	    		var $span;
 	    	    		
-	    	    		$inLabel.hide().next().hide();
-	    	    		$inValue.hide().next().hide();
+	    	    		if( typeof $input !== 'undefined' ){
+	    	    			
+	    	    			/* assign initial value to span */
+	    	    			$span = $input.prev();
+	    	    			if( $span.has('a').length ){
+	    	    				$span.find('a').text( $span.data('initial-val') );
+	    	    			} else {
+	    	    				$span.text( $span.data('initial-val') );
+	    	    			} 
+	    	    			
+	    	    			/* store current input value as a modified-val -- might be useful in the future */
+	    	    			$span.data('modified-val', $.trim( $input.val() ));
+	    	    			$input.val( $span.data('initial-val') );	    	    			
 
-    	    			if( typeof callback == 'function'){
-    	    				if( delay ){
-    	    					setTimeout( function(){
-    	    						callback();
-    	    					}, delay); /* wait for the css transition to complete, maybe */
-    	    				} else {
-    	    					callback();
-    	    				}
-    	    			}
-	    	    	} /* hideItemEdit */	    			
+		    	    		if( typeof callback === 'function'){
+	    	    				callback();
+	    	    			}    			
+	    	    			
+	    	    		} else {
+	    	    			
+	    	    			revertInputChanges( null, $inLabel );
+	    	    			revertInputChanges( callback, $inValue );
+	    	    			
+	    	    		}
+	    	    		
+	    	    	} /* revertInputChanges */
 	    	    	
-	    		}/* showItemEditor */		    	
-		    	
+	    		}/* showItemEditor */
+
+    	    	function hideItemEditor( callback, delay ){
+    	    		
+    	    		delay = delay || 0;
+    	    		
+    	    		$ctrl.find('.item input.label').hide().prev().show(); //hide input, show preceding span
+    	    		$ctrl.find('.item input.value').hide().prev().show();
+
+	    			if( typeof callback == 'function'){
+	    				if( delay ){
+	    					setTimeout( function(){
+	    						callback();
+	    					}, delay ); /* wait for the css transition to complete, maybe */
+	    				} else {
+	    					callback();
+	    				}
+	    			}
+    	    	} /* hideItemEditor */		    		
+	    		
 	    		function collectData(){
     	    		var data = {};
     	    		
@@ -598,11 +587,11 @@
 		    		data['field' ] = $ctrl.data('field') || opts.field;
 		    		data[ field  ] = payload;
 		    		data['wid'   ] = $ctrl.data('wid') || ''; 
-		    		data['_wpnonce'] = nonce;
+		    		data['_wpnonce']    = nonce;
 		    		data['afg_post_id'] = $ctrl.data('post') || opts.post;		    		
 		    		
 		    		$.post( opts.wpAjaxUrl, data, function( result ){
-		    			//console.log( result );
+		    			////console.log( result );
     				}, function( result ){ 
     					console.error( 'Posting failed.' );
     				});
@@ -632,7 +621,7 @@
 			    		}
 		    		}*/
 		    		
-		    		//console.log('Download content for', $ctrl.attr('id'));
+		    		////console.log('Download content for', $ctrl.attr('id'));
 
     				$ctrl.data('attempted-loading', true);
     				
@@ -661,7 +650,7 @@
 	    				$ctrl.find('.spinner').hide();
 	    				$ctrl.find('.loading').text('Could not load items.');
 	    				/* on error: destroy and recreate */
-	    				//console.log( response );
+	    				////console.log( response );
     				});
 		    		
 		    	} /* downloadContent */			    	
@@ -676,7 +665,16 @@
 				initialMode:    'viewing',
 				wpAjaxUrl:      '/wp-admin/admin-ajax.php',
 				actionRetrieve: 'afg_retrieve_review_field',				
-				actionUpdate:   'afg_update_review_field',			
+				actionUpdate:   'afg_update_review_field',
+				msg: {
+					'modifyTableHint':   'Modify product details',		
+					'modifyTable':       'Modify table',
+					'minimizeTableHint': 'Exit the editing mode',		
+					'minimizeTable':     'Minimize table',
+					'hideItemHint':      'Hide this item from your visitors',
+					'unhideItemHint':    'Make this item visible to everyone',
+					'dragItemHint':      'Drag this item to its new position'
+				}
 	    };
 
 		/* params will be feeded to page via wp_localize_script */
@@ -701,7 +699,7 @@
 		/*Page Builder by SiteOrigin triggers this */
 		$(document).on('panelsopen', function(e) {
 		    var dialog = $(e.target);
-		    //console.log('panelsopen', e);
+		    ////console.log('panelsopen', e);
 		    // Check that this is for our widget class
 		    if( !dialog.has('.afg-feature-list') ) return;
 
@@ -709,12 +707,12 @@
 		});
 		
 		$(document).on('form_loaded', function(e1, e2) {
-			//console.log('form_loaded', e1, e2);
+			////console.log('form_loaded', e1, e2);
 		});
 
 		/* Event on the standard widgets page at /wp-admin/widgets.php */
 		$(document).on('widget-updated widget-added', function(e){
-			//console.log(e);
+			////console.log(e);
 		    $('.afg-feature-list').afgFeatureList();
 		});		
 		
@@ -723,7 +721,7 @@
 			if( ! options.data ){ 
 				return;
 			}
-			//console.log(options, jqXHR);
+			////console.log(options, jqXHR);
 			if( -1 === options.data.indexOf('so_panels_widget_form') && -1 === options.data.indexOf('so_panels_get_prebuilt_layout')){
 				return;
 			}

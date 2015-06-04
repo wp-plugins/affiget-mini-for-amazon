@@ -696,7 +696,7 @@ class AffiGet_Review_Controller {
 		if( $post_id && $post_id != 'undefined' ){
 			$oldPost = get_post( $post_id, ARRAY_A );
 			if( $oldPost ){
-				afg_log( 'Existing Product Post found by post_id (' . $post_id . ').' );
+				//afg_log( 'Existing Product Post found by post_id (' . $post_id . ').' );
 			} else{
 				afg_log( 'WARNING: no Product could be found by the specified post_id (' . $post_id . ')!' );
 			}
@@ -1064,6 +1064,125 @@ class AffiGet_Review_Controller {
 		die();
 	}
 
+	function _assign_description( $post_id, $product_data, $is_new ){
+
+		$current = get_post_meta( $post_id, AFG_META_PREFIX . 'review_content', true );
+		if( ! $current ){
+			$descriptions = $this->meta->pick_product_data_value( $product_data, 'EditorialReviews' );
+			$description = '';
+			if(! empty( $descriptions )){
+				foreach( $descriptions as $desc ){
+					if( 'Product Description' == $desc['Source'] ){
+						$description = html_entity_decode( $desc['Content'] );
+						break;
+					}
+				}
+			}
+
+			$description = apply_filters( 'afg_review_controller__assign_description', $description, $post_id, $product_data, $is_new );
+			if( $description ){
+				update_post_meta( $post_id, AFG_META_PREFIX . 'review_content', $description );
+			}
+		}
+	}
+
+	function _assign_category_and_tags( $post_id, $product_data, $is_new ){
+
+		if( ! $is_new ) return;
+
+		$category = $this->meta->pick_product_data_value( $product_data, 'ProductGroup' );
+
+		$tags = array();
+
+		//take ProductTypeName
+		$tag      = $this->meta->pick_product_data_value( $product_data, 'ProductTypeName' );
+		$tag      = strtolower( str_replace('_', '-', $tag ));
+		if( $tag ){
+			$tags[] = $tag;
+		}
+
+		//take Deparment
+		$tag      = $this->meta->pick_product_data_value( $product_data, 'Department' );
+		$tag      = strtolower( str_replace('_', '-', $tag ));
+		if( $tag ){
+			$tags[] = $tag;
+		}
+
+		$taxarr = apply_filters( 'afg_review_controller__assign_category_and_tags',
+				array(
+					'category' => array( $category ),
+					'post_tag' => $tags
+				),
+				$post_id,
+				$product_data,
+				$is_new
+		);
+
+		if( ! empty( $taxarr )){
+			$this->meta->storage->commit_taxonomic_fields( $post_id, $taxarr );
+
+			$this->inherit_from_latest_in_category( $taxarr, $post_id, $product_data, $is_new );
+		}
+	}
+
+	protected function inherit_from_latest_in_category( $taxarr, $post_id, $product_data, $is_new ){
+
+		//cats of current post
+		$cats = wp_get_object_terms( $post_id, 'category', array('fields' => 'ids') );
+
+		//find last review in category
+		$args = array(
+				'posts_per_page' => 1,
+				'category__in'   => array( $cats[0] ),
+				'post_type'      => $this->meta->post_type_name,
+				'meta_key'       => AFG_META_PREFIX . 'product_details'
+		);
+
+		$prototype_post_id = 0;
+
+		$latest_cat_review = new WP_Query( $args );
+		if( $latest_cat_review->have_posts() ){
+			$prototype_post_id = $latest_cat_review->post->ID;
+		} else {
+			unset( $args['category__in'] );
+			$latest_review = new WP_Query( $args );
+			if( $latest_review->have_posts() ){
+				$prototype_post_id = $latest_review->post->ID;
+			}
+		}
+
+		do_action('afg_review_controller__inherit_from_latest_in_category', $post_id, $product_data, $is_new, $cats, $prototype_post_id );
+	}
+
+	function _assign_title( $post_id, $product_data, $is_new ){
+
+		$asin = $this->meta->pick_product_data_value( $product_data, 'ASIN' );
+		$p = get_post( $post_id );
+
+		if( ! $is_new || $p->post_title != sprintf(__( 'Product %s', 'afg' ), $asin ))
+			return; //do not change title if the post is not considered "new" OR the title has been modified
+
+		$post_title = $this->meta->pick_product_data_value( $product_data, 'Title' );
+		$post_name  = sanitize_title_with_dashes( $post_title, '', 'save' );
+
+		//update post title to match product title
+		$postarr = array(
+				'ID'         => $post_id,
+				'post_title' => $post_title,
+				'post_name'  => $post_name
+		);
+
+		$postarr = apply_filters( 'afg_review_controller__assign_title',
+				$postarr,
+				$post_id,
+				$product_data,
+				$is_new
+		);
+		if( ! empty( $postarr ) ){
+			$result = wp_update_post( $postarr, true );
+		}
+	}
+
 	//method to download full details by product ASIN and
 	public function fetch_amazon_product_data( $product_code, $post_id = null  ){
 
@@ -1074,79 +1193,24 @@ class AffiGet_Review_Controller {
 			//echo '<pre>'.print_r( $product, true ).'</pre>';
 			return false;
 		} else {
+
 			$is_new = false !== get_post_meta( $post_id, AFG_META_PREFIX . 'product_data', true );
 
 			update_post_meta( $post_id, AFG_META_PREFIX . 'product_code', $product_code );
-
 			update_post_meta( $post_id, AFG_META_PREFIX . 'product_data', $product_data );
-
 			update_post_meta( $post_id, AFG_META_PREFIX . 'product_data_timestamp', time() );
 
-			$current = get_post_meta( $post_id, AFG_META_PREFIX . 'review_content', true );
-			if( ! $current ){
-				$descriptions = $this->meta->pick_product_data_value( $product_data, 'EditorialReviews' );
-				$description = '';
-				if(! empty( $descriptions )){
-					foreach( $descriptions as $desc ){
-						if( 'Product Description' == $desc['Source'] ){
-							$description = html_entity_decode( $desc['Content'] );
-							break;
-						}
-					}
-				}
-				if( $description ){
-					update_post_meta( $post_id, AFG_META_PREFIX . 'review_content', $description );
-				}
-			}
-
-			$images     = $this->meta->pick_product_data_value( $product_data, 'Images' );
-			$post_title = $this->meta->pick_product_data_value( $product_data, 'Title' );
-			$post_name  = sanitize_title_with_dashes( $post_title, '', 'save' );
-
-			if( $is_new ){
-
-				$category = $this->meta->pick_product_data_value( $product_data, 'ProductGroup' );
-
-				$tags = array();
-
-				//take ProductTypeName
-				$tag      = $this->meta->pick_product_data_value( $product_data, 'ProductTypeName' );
-				$tag      = strtolower( str_replace('_', '-', $tag ));
-				if( $tag ){
-					$tags[] = $tag;
-				}
-
-				//take Deparment
-				$tag      = $this->meta->pick_product_data_value( $product_data, 'Department' );
-				$tag      = strtolower( str_replace('_', '-', $tag ));
-				if( $tag ){
-					$tags[] = $tag;
-				}
-
-				$this->meta->storage->commit_taxonomic_fields(
-						$post_id,
-						array(
-							'category' => array( $category ),
-							'post_tag' => $tags
-						)
-				);
-
-				//update post title to match product title
-				$postarr = array(
-						'ID'         => $post_id,
-						'post_title' => $post_title,
-						'post_name'  => $post_name
-				);
-				$result = wp_update_post( $postarr, true );
-
-			} else {
-
-			}
+			add_action( AffiGet_Review_Controller::EVENT_PRODUCT_UPDATED, array( &$this, '_assign_description'), 10, 3 );
+			add_action( AffiGet_Review_Controller::EVENT_PRODUCT_UPDATED, array( &$this, '_assign_category_and_tags'), 10, 3 );
+			add_action( AffiGet_Review_Controller::EVENT_PRODUCT_UPDATED, array( &$this, '_assign_title'), 100, 3 );
 
 			do_action( AffiGet_Review_Controller::EVENT_PRODUCT_UPDATED, $post_id, $product_data, $is_new );
 
-			if( $is_new ){
+			$thumb_id = get_post_meta( $post_id, '_thumbnail_id', true );
+			if( $is_new || false === $thumb_id ){ //is new OR has no featured image attached, yet.
 				$product_images = array();
+
+				$images   = $this->meta->pick_product_data_value( $product_data, 'Images' );
 				foreach( $images as $img ){
 					$product_images[] = array( 'source' => $img );
 					//can also pass 'title', 'caption', 'filename', 'alt', 'status'
@@ -1158,6 +1222,7 @@ class AffiGet_Review_Controller {
 					//to download and attach actual image files
 				}
 
+				$post_title = $this->meta->pick_product_data_value( $product_data, 'Title' );
 				do_action( AffiGet_Review_Controller::EVENT_IMAGES_UPDATED,
 						compact('post_id', 'product_code', 'product_images', 'post_title')
 				);

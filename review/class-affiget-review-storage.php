@@ -276,15 +276,15 @@ class AffiGet_Review_Storage {
 				}
 				$terms = $this->_maybe_insert_missing_terms( array_values( $terms ), $tax );
 			}
-			//now $resolved is properly indexed by term_id
+			//now $terms are properly indexed by term_id
 
-			$t = null;
+			$term_ids = null;
 			if( ! empty( $terms )){
-				$t = array_keys( $terms );
+				$term_ids = array_keys( $terms );
 			} else {
 				//echo 'Taxonomy is empty:'.$tax;
 			}
-			$result = wp_set_object_terms( $post_id, $t, $tax, $append = false );
+			$result = wp_set_object_terms( $post_id, $term_ids, $tax, $append = false );
 		}
 		return $taxonomic_data;
 	}
@@ -418,17 +418,6 @@ class AffiGet_Review_Storage {
 		return wp_delete_post( $post_id, $hard_delete );
 	}
 
-	function _exclude_fields( array $fields, $context ){
-
-		//we don't need/want these fields on Afg+ dialog
-		$exclude_fields = array('ancestors', 'filter', 'post_content_filtered', 'guid', 'post_category', 'tags_input', 'to_ping', 'pinged', 'menu_order', 'post_mime_type');
-		foreach( $exclude_fields as $excl ){
-			unset( $fields[ $excl ] );
-		}
-
-		return $fields;
-	}
-
 	//
 	//adapted from from get_terms_by()
 	//
@@ -445,11 +434,12 @@ class AffiGet_Review_Storage {
 		//assuming names & ids are already sanitized
 		$list  = "'" . join( "','", $names_or_ids ) . "'";
 
-		//echo '<br/><pre>Requested names:' . print_r( $names_or_ids, true );
+		//afg_log( __METHOD__ .' ('. $taxonomy.') Requested names:', $names_or_ids );
 
 		$terms = $wpdb->get_results( $wpdb->prepare( "SELECT t.term_id, t.name FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy = %s AND (t.name IN ( $list ) OR t.term_id IN ( $list ))", $taxonomy ), OBJECT_K );
 
 		//echo '<br/>Query results:<pre>' . print_r( $terms, true ).'</pre>';
+		//afg_log( __METHOD__ . ' Retrieved names:', $terms );
 
 		$resolved = array();
 
@@ -484,25 +474,28 @@ class AffiGet_Review_Storage {
 		}
 
 		//echo '<br/>New terms:' . print_r( $new_terms, true );
+		//afg_log( __METHOD__ . ' New terms:', $terms );
 
 		if( ! empty( $new_terms )){
 
 			foreach( $new_terms as $term ){
 				if( $term != '' ){
-					//echo '<br/>Inserting term:'.print_r( $term, true );
+					//afg_log( __METHOD__ . ' Inserting term:', $term );
 					$inserted = wp_insert_term( $term, $taxonomy );
 					if( is_wp_error( $inserted ) ){
 						//echo '<pre>';
 						//print_r( $inserted );
-						throw new AffiGet_Exception("Term '{$term}' could not be inserted into taxonomy '{$taxonomy}'.");
+						//afg_log( __METHOD__ . " Term '{$term}' could not be inserted into taxonomy '{$taxonomy}'.", $inserted );
+						//throw new AffiGet_Exception("Term '{$term}' could not be inserted into taxonomy '{$taxonomy}'.");
 					} else {
 						$resolved[ $inserted['term_id'] ] = $term;
+						//afg_log( __METHOD__ . " Term inserted: ", array( $inserted['term_id'], $resolved[ $inserted['term_id'] ] ));
 					}
 				}
 			}
 		}
 
-		//echo 'Resolved terms:' . print_r( $resolved, true ).'';
+		//afg_log(__METHOD__ . ' Resolved terms:', $resolved );
 
 		return $resolved;
 	}
