@@ -1,31 +1,79 @@
 === AffiGet Mini for Amazon ===
 Contributors: sarutole
-Tags: Amazon,products,reviews,marketing,monetization,revenue,Amazon Associate,freemium,affiliate marketing,aws,custom post type
+Tags: Amazon,products,reviews,online marketing,affiliate marketing,ads,advertising,monetization,revenue,Amazon affiliates,Amazon Associates,Amazon Associate,affiliate site,review sites,niche blog,freemium
 Requires at least: 3.5
 Tested up to: 4.2.2
 Stable tag: 1.0.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Browse Amazon. "Like" products. Earn money.
+Browse Amazon. "Like" products. Make money. A dead-simple formula for your online success.
 
 == Description ==
 
 AffiGet Mini is a free plugin to **remotely add Amazon products to your blog**.
 
-If you want to **grow your review site or niche blog**, you will find AffiGet indispensable! 
+Use AffiGet to **build profitable review sites** and to **monetize your blog**. 
 
 Here's how this works:
 
 1. While browsing Amazon, you find a product that might be of interest to your readers.
-2. You click a button, and AffiGet **automatically adds a detailed product review** to your WordPress site.
+2. You click a button, and AffiGet **automatically adds a detailed product review** to your self-hosted WordPress site.
 3. Your visitors go to Amazon via a link on your site, and you get 4-10% commissions from all their qualifying purchases.
 
-AffiGet utilizes the official Amazon Product Advertising API; therefore, **all product details are always correct and up-to-date**. To make money for featuring/promoting some Amazon products on your site, you have to join the [Amazon Associates](https://affiliate-program.amazon.com/ "Join now!") programme.
+AffiGet utilizes the official Amazon Product Advertising API; therefore, **all product details are always correct and up-to-date**. To make money for featuring/promoting some Amazon products on your site, you have to register for the [Amazon Associates](https://affiliate-program.amazon.com/ "Join now!") programme -- it free and easy to join!
 
-To have a fine control over how your reviews are displayed, consider upgrading to [AffiGet Pro](http://affiget.com) -- a premium version of this plugin.
+With AffiGet, you can create reviews for products *on all Amazon sites* (Amazon.co.uk, Amazon.de, etc.).
 
-= Automatic reviews =
+= Automatic content creation =
+
+AffiGet Mini **automatically populates your review posts** with all the relevant product details and meta information:
+* post title
+* auto-scheduled/current date
+* category/tags
+* product description
+* product attributes
+* [... and more](https://wordpress.org/plugins/affiget-mini-for-amazon/other_notes "for more details see the Other notes section").
+
+= Remote-editing capabilities =
+ 
+AffiGet Mini comes with a powerful bookmarklet, which allows to **remotely create and modify the most important aspects of your review**.
+This means you can create a review, change its title and/or status, and move on to the next product which piques your interest.
+
+= Useful administrative features =
+
+AffiGet Mini seemlessly extends the admin Dashboard with handy **productivity features**:
+* a thumb image and a link to the Amazon product page in the Reviews list; 
+* a link-button to instantly resync product data; 
+* a switch to change publishing date from auto-scheduled to current ("Auto" vs "Now");
+* metaboxes to modify the most relevant aspects of a review; 
+* [... and more](https://wordpress.org/plugins/affiget-mini-for-amazon/other_notes "for more details see the Other notes section").
+
+= A welcoming design without effort =
+
+AffiGet does not force its design on you -- the presentation of reviews take cue from your WordPress theme. 
+
+On the front side, as well as in the RSS feeds, the reviews created with AffiGet will show up alongside your regular posts.
+
+For more details, please see the [Other notes](https://wordpress.org/plugins/affiget-mini-for-amazon/other_notes "click for more details") section.
+
+= Built by professionals =
+
+AffiGet is **engineered to work nicely with all well-behaved WordPress plugins and themes**.
+
+The plugin is thoroughly tested with the latest versions of Firefox, Chrome and Safari.
+
+Its functionality can be easily tweaked and extended with custom plugins via strategically placed programmatic hooks.
+
+AffiGet *can be easily translated* to different languages (contributions would be most welcome!).
+
+= AffiGet Pro =
+
+[AffiGet Pro](http://affiget.com "Upgrade today!") is a premium version of this plugin: it comes with **professional email support, extended configuration settings, and a number of widgets** (that integrate beautifully with Page Builder by SiteOrigin plugin to provide a fine control over the front-end presentation of your reviews).
+
+== Other Notes ==
+= Automatic content creation =
+
 AffiGet Mini **automatically adds the following details** to every new review:
 
 * **Post title** (initially the same as product title, but you can change that);
@@ -38,7 +86,8 @@ AffiGet Mini **automatically adds the following details** to every new review:
 * **Post tags** (based on Product Type Name and Department attributes);
 * **Comment status** (inherited from the last saved review);
 
-= Bookmarklet features =
+= Remote-editing capabilities =
+
 Here are the actions you can **perform remotely, without having to leave Amazon** product page:
 
 * **Change post title** (post slug is updated accordingly);
@@ -48,8 +97,9 @@ Here are the actions you can **perform remotely, without having to leave Amazon*
 * **Delete review**;
 * If a review for a current product already exists, it will not get duplicated -- you will be *modifying the existing one* instead.
 
-= Administrative features =
-In addition to the standard WordPress functionality, AffiGet Mini adds these **administrative productivity features** to the dashboard:
+= Useful administrative features =
+
+AffiGet Mini adds these **productivity features** to the Dashboard:
 
 * A new "Reviews" content type.
 * List of reviews:
@@ -65,7 +115,8 @@ In addition to the standard WordPress functionality, AffiGet Mini adds these **a
 	* A metabox with pricing details.
 	* A metabox with a call-to-action (i.e. an image which will represent a link to Amazon product page).
 
-= Presentation features =
+= A welcoming design without effort =
+
 On the front side, as well as in the RSS feed, the reviews created by AffiGet will show up alongside your regular posts.
 
 There are some elements that AffiGet Mini **automatically adds these elements to the review page**:
@@ -83,19 +134,15 @@ There are some elements that AffiGet Mini **automatically adds these elements to
 * **Pricing details**;
 * **Call-to-action** (an image representing a link to Amazon product page).
 
-Please note, that the presentation of Featured image, gallery, excerpt/introduction is defined by your theme -- AffiGet has no effect on how these elements are presented on your site.  
+Please note, that the presentation of Featured image, gallery, excerpt/introduction is defined by your theme -- AffiGet has no effect on how these elements are presented on your site.
 
-= Technical notes =
+= Built by professionals =
 
-AffiGet is **engineered to work nicely with all well-behaved WordPress plugins and themes**. 
+AffiGet is **engineered to work nicely with all well-behaved WordPress plugins and themes**.
 
-AffiGet *works with all Amazon sites* (Amazon.co.uk, Amazon.de, etc.).
+Its functionality can be easily tweaked and extended with custom plugins via strategically placed programmatic hooks.
 
 AffiGet *can be easily translated* to different languages (contributions would be most welcome!).
-
-= AffiGet Pro =
-
-[AffiGet Pro](http://affiget.com "Upgrade today!") is a premium version of this plugin: it comes with **professional email support, extended configuration settings, and a number of widgets** (that integrate beautifully with Page Builder by SiteOrigin plugin to provide a fine control over the front-end presentation of your reviews).
 
 == Installation ==
 
@@ -105,9 +152,7 @@ AffiGet *can be easily translated* to different languages (contributions would b
 	* input your *Amazon Associates* credentials;
 	* drag the *Afg+ button* to your Bookmarklets toolbar.
 	
-After you activate AffiGet, a new menu item is added to your Dashboard, labelled "Reviews".
-
-The plugin is thoroughly tested with the latest versions of Firefox, Chrome and Safari. 
+After you activate AffiGet, a new menu item is added to your Dashboard, labeled "Reviews".
 
 == Frequently Asked Questions ==
 
