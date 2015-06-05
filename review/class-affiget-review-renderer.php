@@ -84,6 +84,19 @@ class AffiGet_Review_Renderer {
 		));*/
 	}
 
+	public function get_the_excerpt( $excerpt ){
+
+		global $post;
+
+		if( $post->post_type != $this->meta->post_type_name ){
+			return $excerpt;
+		}
+
+		$intro = get_post_meta( $post->ID, AFG_META_PREFIX . 'review_intro', true );
+
+		return $intro; //$post->post_excerpt
+	}
+
 	public function the_content( $content ){
 
 		global $post;
@@ -91,8 +104,6 @@ class AffiGet_Review_Renderer {
 		if( $post->post_type != $this->meta->post_type_name ){
 			return $content;
 		}
-
-		$content = '';
 
 		$review_data = $this->meta->load_post( $post->ID );
 

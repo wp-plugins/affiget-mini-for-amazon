@@ -299,6 +299,10 @@ class AffiGet_Mini {
 		$this->loader->add_action( 'wp_ajax_afg_get_front_styles',        $this->review_meta->renderer, 'ajax_get_front_styles' );
 
 		$this->loader->add_action( 'the_content', $this->review_meta->renderer, 'the_content');
+
+		$this->loader->add_action( 'get_the_excerpt', $this->review_meta->renderer, 'get_the_excerpt');
+
+
 	}
 
 	/**
