@@ -29,12 +29,11 @@ class AffiGet_Review_Element_Pricing_Details extends AffiGet_Abstract_Element
 
 		parent::__construct( $meta, $name, $params ); //calls resolve_settings(), which calls get_settings_config()
 
-		if( ! $this->is_enabled() ) return;
+		if( ! $this->is_status( AffiGet_Abstract_Element::STATUS_ENABLED ) ) return;
 
 		$element_name = $this->name;
-		if( ! is_admin() && $this->is_auto_presentation()){
-			add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
-		}
+
+		add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
 
 		//metavalue
 		$meta_key = AFG_META_PREFIX . $this->name;
@@ -88,8 +87,8 @@ class AffiGet_Review_Element_Pricing_Details extends AffiGet_Abstract_Element
 						'help'    => __('Help'),
 				),
 
-				'presentation_format' => array(
-						'name'    => 'presentation_format',
+				'display_format' => array(
+						'name'    => 'display_format',
 						'atts'    => '',
 						'type'    => 'dropdown',
 						'options' => array(
@@ -198,7 +197,7 @@ class AffiGet_Review_Element_Pricing_Details extends AffiGet_Abstract_Element
 
 	function render_html( $post_id, $items, $fieldname, $input_id, $nonce, $context = 'not-widget', $params = null ){
 
-		$format = $this->settings['presentation_format'];
+		$format = $this->settings['display_format'];
 
 		printf('<div class="afg-element %s %s %s" data-post="%d" data-field="%s" data-nonce="%s" data-input="%s" data-wid="%s">',
 				'afg-pricing-details',
@@ -611,7 +610,7 @@ class AffiGet_Review_Element_Pricing_Details extends AffiGet_Abstract_Element
 
 	function enqueue_scripts_and_styles( $hook ) {
 
-		if( $this->meta->is_element_style_needed() ){
+		if( $this->meta->is_review_style_needed() ){
 			wp_enqueue_style( 'afg-pricing-details-style',
 					plugins_url( '/css/element.css', (__FILE__)),
 					array(),
@@ -619,7 +618,7 @@ class AffiGet_Review_Element_Pricing_Details extends AffiGet_Abstract_Element
 			);
 		}
 
-		if( $this->meta->is_element_script_needed() ){
+		if( $this->meta->is_review_script_needed() ){
 			wp_enqueue_script( 'afg-pricing-details-script',
 					plugins_url( '/js/element.js', (__FILE__)),
 					array('afg-raty-script'),

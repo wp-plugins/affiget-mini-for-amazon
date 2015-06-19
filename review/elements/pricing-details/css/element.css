@@ -2,6 +2,7 @@ body.wp-admin.widgets-php .option.preview,
 body.wp-admin.widgets-php .afg-pricing-details {
 	display: none;
 }
+
 .afg-pricing-details, 
 .afg-pricing-details ul {
 	margin: 0;

@@ -7,7 +7,7 @@
  * Plugin Name:       AffiGet Mini
  * Plugin URI:        http://affiget.com/mini/
  * Description:       Instantly post reviews to your blog WHILE browsing Amazon!
- * Version:           1.0.5
+ * Version:           1.1.0
  * Author:            Saru Tole
  * Author URI:        http://sarutole.com/
  * License:           GPL-2.0+
@@ -16,12 +16,15 @@
  * Domain Path:       /languages
  */
 /* Copyright 2013-2015 Saru Tole (sarutole@affiget.com) */
- 
+
 if ( ! defined( 'WPINC' ) )
 	die;
 
 if ( ! defined( 'AFG_VER' ))
-	define( 'AFG_VER', '1.0.5' );
+	define( 'AFG_VER', '1.1.0' );
+
+if ( ! defined( 'AFG_MINI' ))
+	define( 'AFG_MINI', 'AffiGet-Mini' );
 
 if ( ! defined( 'AFG_PREFIX' ))
 	define( 'AFG_PREFIX', 'afg_' );

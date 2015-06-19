@@ -88,10 +88,10 @@ abstract class AffiGet_Abstract_Meta {
 				'menu_name'           => $plural,
 				'parent_item_colon'   => sprintf( _x( 'Parent %s:', 'Parent item', 'afg' ), $singular ),
 				'all_items'           => sprintf( _x( 'All %s', 'All Items', 'afg'), $plural ),
-				'view_item'           => sprintf( _x( 'View %s:', 'View Item', 'afg' ), $singular ),
+				'view_item'           => sprintf( _x( 'View %s', 'View Item', 'afg' ), $singular ),
 				'add_new_item'        => sprintf( _x( 'Add New %s:', 'Add New Item', 'afg' ), $singular ),
 				'add_new'             => __( 'Add New', 'afg' ),
-				'edit_item'           => sprintf( _x( 'Edit %s:', 'Edit Item', 'afg' ), $singular ),
+				'edit_item'           => sprintf( _x( 'Edit %s', 'Edit Item', 'afg' ), $singular ),
 				'update_item'         => sprintf( _x( 'Update %s:', 'Update Item', 'afg' ), $singular ),
 				'search_items'        => sprintf( _x( 'Search %s', 'Search Items', 'afg'), $plural ),
 				'not_found'           => __( 'Not found', 'afg' ),
@@ -108,7 +108,7 @@ abstract class AffiGet_Abstract_Meta {
 				'show_ui'             => true,
 				'show_in_menu'        => true,
 				'show_in_nav_menus'   => false,
-				'show_in_admin_bar'   => false,
+				'show_in_admin_bar'   => true,
 				'menu_position'       => 5,
 				'menu_icon'           => 'dashicons-star-half',
 				'can_export'          => true,
@@ -204,23 +204,29 @@ abstract class AffiGet_Abstract_Meta {
 	}
 
 	/**
-	 * Get elements filtered by their presentation status.
+	 * Get elements filtered by property value.
 	 *
 	 * @return AffiGet_Abstract_Element array
 	 */
-	public function get_presentation_elements(){
+	public function get_elements_by_status( $status ){
 
 		$result = array();
+
 		foreach( $this->_elements as $key => $obj ) {
-			if( $obj->is_auto_presentation() ){
+			if( $obj->is_status( $status ) ){
 				$result[ $key ] = $obj;
 			}
 		}
-		return apply_filters( "afg_{$this->_post_type_name}_meta__get_presentation_elements", $result );
+		return apply_filters( "afg_{$this->_post_type_name}_meta__get_elements_by_status", $result, $status );
+	}
+
+	public function get_elements(){
+
+		return apply_filters( "afg_{$this->_post_type_name}_meta__get_elements", $this->_elements );
 	}
 
 	/**
-	 * Get an array representation of the post (and all of its extended fields).
+	 * Get an array redisplay of the post (and all of its extended fields).
 	 *
 	 * Derivative classes should override this.
 	 *

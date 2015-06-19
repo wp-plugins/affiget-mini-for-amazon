@@ -170,11 +170,10 @@ class AffiGet_Review_Admin {
 			$url = $this->meta->pick_product_data_value( $product_data, 'DetailPageURL' );
 
 
-			$amazon_link = sprintf('<a title="%s" target="afg_amazon_link" class="%s" href="%s"><img class="afg-amazon-ico" src="%s" width="16px" height="16px"/></a>',
+			$amazon_link = sprintf('<a title="%s" target="afg_amazon_link" class="afg-amazon-link %s" href="%s"></a>',
 					esc_attr__('View this product on Amazon', 'afg'),
 					esc_attr( $css_class ),
-					esc_attr( $url ),
-					AFG_ADMIN_URL . 'img/amazon-ico.png'
+					esc_attr( $url )
 			);
 			return $amazon_link;
 		}
@@ -190,15 +189,10 @@ class AffiGet_Review_Admin {
 		if( $post->post_type != $this->meta->post_type_name ) return;
 
 		$amazon_link = $this->get_amazon_link( $post->ID, 'button button-small' );
-
 		if( $amazon_link ){
-		?>
-		<style type="text/css">#afg-product-link a {padding: 2px 3px; margin-left: 5px; margin-right:3px;}</style>
-		<script type="text/javascript">/* <![CDATA[ */
-		jQuery(document).ready(function($){
-			$('#edit-slug-box').append('<span id="afg-product-link"><?php echo $amazon_link; ?></span>');
-		});
-		/* ]]> */</script><?php
+			echo '<span id="afg-product-link">';
+			echo $amazon_link;
+			echo '</span>';
 		}
 	}
 
@@ -213,29 +207,21 @@ class AffiGet_Review_Admin {
 		$product_sync = get_post_meta( $post->ID, AFG_META_PREFIX . 'product_data_timestamp', true );
 
 		if( $product_sync ){
-			$product_sync = sprintf( _x('%s ago', 'Time difference', 'afg'), human_time_diff( $product_sync, time() ));
+			$product_sync = sprintf( esc_attr_x('%s ago', 'Time difference', 'afg'), human_time_diff( $product_sync, time() ));
 		} else {
-			$product_sync = sprintf( __( 'Resync now', 'afg' ));
+			$product_sync = esc_attr__( 'Resync now', 'afg' );
 		}
 
 		$link = str_replace('&update_product=true', '', $_SERVER['REQUEST_URI']).'&update_product=true&_wpnonce='.wp_create_nonce('update_product');
 
-		$link = '<a href="'.$link.'" title="' . __('Click to refetch product data from Amazon', 'afg').'">' . $product_sync . '</a>';
+		$link = '<a href="'.$link.'" title="' . esc_attr__('Click to refetch product data from Amazon', 'afg').'">' . $product_sync . '</a>';
 
-		$product_sync = sprintf( '<strong>%s</strong> %s.', __('Data sync.:', 'afg'), $link );
+		$product_sync = sprintf( '<span id="afg-data-sync">%s</span> %s.', __('Data sync.:', 'afg'), $link );
 
-		?>
-	<style type="text/css">
-	#afg-product-sync { display: inline-block; clear:left; }
-	#afg-product-sync a {text-decoration: none; color: #21759B; }
-	#afg-product-sync a:hover {text-decoration: underline; color: #D54E21; }
-	</style>
-	<script type="text/javascript">/* <![CDATA[ */
-	  jQuery(document).ready(function($){
-		$('#edit-slug-box').append('<br /><div id=\'afg-product-sync\'><?php echo $product_sync; ?></div>');
-	  });
-	/* ]]> */</script>
-	<?php
+		echo '<div class="misc-pub-section afg-product-sync">';
+		echo $product_sync;
+		$this->admin_post_edit_product_link();
+		echo '</div>';
 	}
 
 	function add_update_product_var( $public_query_vars ) {
@@ -270,15 +256,25 @@ class AffiGet_Review_Admin {
 
 	function update_product_maybe() {
 
-		if( isset( $_REQUEST['post']) && 0 < absint( $_REQUEST['post'] ) && $this->is_sync_required( absint( $_REQUEST['post'] )) || (isset( $_REQUEST['update_product'] ) && 'true' == $_REQUEST['update_product'] )){
-			if( check_admin_referer('update_product') ){
-				$this->do_update_product( absint( $_REQUEST['post'] ));
+		if( isset( $_REQUEST['post']) && 0 < absint( $_REQUEST['post'] )){
+
+			$post_id = absint( $_REQUEST['post'] );
+			if( $this->is_sync_required( $post_id )){
+
+				//update unconditionally
+				$this->do_update_product( $post_id );
+
+			} elseif( isset( $_REQUEST['update_product'] ) && 'true' == $_REQUEST['update_product'] ){
+
+				//also check nonce
+				if( check_admin_referer('update_product')){
+					$this->do_update_product( $post_id );
+				}
 			}
 		}
 	}
 
 	function update_product_for_post_maybe( $wp ) {
-
 		global $post;
 
 		//$post is null when the post is scheduled for the future
@@ -286,8 +282,12 @@ class AffiGet_Review_Admin {
 		if( ! $post )
 			return;
 
-		if( $this->is_sync_required( $post->ID ) || (isset( $wp->query_vars['update_product']) && 'true' === $wp->query_vars['update_product'] )){
+		if( $this->is_sync_required( $post->ID )){
 			$this->do_update_product( $post->ID );
+		} elseif((isset( $wp->query_vars['update_product']) && 'true' === $wp->query_vars['update_product'] )){
+			if( check_admin_referer('update_product')){
+				$this->do_update_product( $post->ID );
+			}
 		}
 	}
 

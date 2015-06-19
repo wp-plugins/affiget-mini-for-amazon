@@ -115,19 +115,18 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 		parent::__construct( $meta, $name, $params ); //calls resolve_settings(), which calls get_settings_config()
 
-		if( ! $this->is_enabled() ) return;
+		if( ! $this->is_status( AffiGet_Abstract_Element::STATUS_ENABLED ) ) return;
 
 		$element_name = $this->name;
-		if( ! is_admin() && $this->is_auto_presentation()){
-			add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
-		}
+
+		add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
 
 		$meta_key = AFG_META_PREFIX . $this->name;
 		add_filter( "sanitize_post_meta_{$meta_key}", array(&$this, 'sanitize_value' ), 10, 3);
 
 		//metabox
 		add_action( 'afg_review_renderer__register_metabox_fields', array(&$this, 'register_cmb2_fields'));
-		add_action( "cmb2_render_{$this->control_id}", array(&$this, 'render_cmb2_field'), 10, 5 );
+		add_action( "cmb2_render_{$this->control_id}",    array(&$this, 'render_cmb2_field'), 10, 5 );
 		add_filter( "cmb2_types_esc_{$this->control_id}", array(&$this, 'escape_cmb2_field'), 10, 4 );
 
 		//assets
@@ -145,7 +144,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 						'atts'    => 'size="55"',
 						'type'    => 'text',
 						'default' => implode(',', apply_filters('afg_product_details_available_items', array_keys( $this->features ), $this->name )),
-						'label'   => __('Enabled product attributes', 'afg'),
+						'label'   => __('Enabled attributes', 'afg'),
 						'hint'    => __('A comma-separated list, e.g. <br/><code>Title,Author,Publisher,NumberOfPages,ISBN</code>.', 'afg'),
 						'help'    => __('Help'),
 				),
@@ -157,12 +156,12 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 								isset( $this->init_params['visible_attributes'] ) ? $this->init_params['visible_attributes'] : array('Title','Author','Edition','Binding','ISBN','Publisher','NumberOfPages','PublicationDate'),
 								$this->name )
 						),
-						'label'   => __('A subset of product attributes to show to visitors by default', 'afg'),
+						'label'   => __('Visible attributes', 'afg'),
 						'hint'    => __('A comma-separated list, e.g. <br/><code>Title,Author,Publisher,NumberOfPages,Binding,ISBN,PublicationDate</code>.', 'afg'),
 						'help'    => __('Help'),
 				),
-				'presentation_format' => array(
-						'name'    => 'presentation_format',
+				'display_format' => array(
+						'name'    => 'display_format',
 						'atts'    => '',
 						'type'    => 'dropdown',
 						'options' => array(
@@ -172,7 +171,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 								'divs'  => __('Generic - divs and spans', 'afg'), /* divs and spans */
 						),
 						'default' => 'table',
-						'label'   => __('', 'afg'),
+						'label'   => __('Display format', 'afg'),
 						'hint'    => __('', 'afg'),
 						'help'    => __('Help'),
 				),
@@ -279,7 +278,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 	function render_html( $post_id, $items, $fieldname, $input_id, $nonce, $context = 'not-widget', $params = null ){
 
-		$format = $this->settings['presentation_format'];
+		$format = $this->settings['display_format'];
 
 		printf('<div class="afg-element %s %s %s" data-post="%d" data-field="%s" data-nonce="%s" data-input="%s" data-wid="%s">',
 				'afg-feature-list',
@@ -732,7 +731,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 	function enqueue_scripts_and_styles( $hook ) {
 
-		if( $this->meta->is_element_style_needed() ){
+		if( $this->meta->is_review_style_needed() ){
 
 			wp_enqueue_style( 'afg-feature-list-style',
 					plugins_url( '/css/element.css', (__FILE__)),
@@ -741,7 +740,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 			);
 		}
 
-		if( $this->meta->is_element_script_needed() ){
+		if( $this->meta->is_review_script_needed() ){
 
 			wp_enqueue_script( 'afg-feature-list-script',
 					plugins_url( '/js/element.js', (__FILE__)),

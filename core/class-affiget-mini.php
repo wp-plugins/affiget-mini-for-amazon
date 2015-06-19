@@ -87,7 +87,7 @@ class AffiGet_Mini {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'AffiGet-Mini';
+		$this->plugin_name = AFG_MINI;
 		$this->version     = AFG_VER;
 
 		$this->load_dependencies();
@@ -195,8 +195,9 @@ class AffiGet_Mini {
 
 		$this->admin = new AffiGet_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_scripts' );
+		$this->loader->add_filter( 'admin_body_class', $this, 'admin_body_classes', 10, 1 );
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_scripts_and_styles' );
 
 		//declare settings pages
 		$this->loader->add_action( 'admin_menu', $this->admin, 'admin_menu' );
@@ -231,20 +232,11 @@ class AffiGet_Mini {
 		$this->loader->add_action( 'wp_ajax_afg_retrieve_review_field',         $review_controller, 'ajax_retrieve_review_field' );
 		$this->loader->add_action( 'wp_ajax_nopriv_afg_retrieve_review_field',  $review_controller, 'ajax_retrieve_review_field' );
 
-		$this->loader->add_action( 'wp_ajax_afg_get_admin_post_js',          $this->review_meta->renderer, 'ajax_get_admin_post_js' );
-		//$this->loader->add_action( 'wp_ajax_nopriv_afg_get_admin_post_js', $this->review_meta->renderer, 'ajax_get_admin_post_js' );
-
-		$this->loader->add_action( 'wp_ajax_afg_get_admin_post_css',         $this->review_meta->renderer, 'ajax_get_admin_post_css' );
-		//$this->loader->add_action( 'wp_ajax_nopriv_afg_get_admin_post_css',  $this->review_meta->renderer, 'ajax_get_admin_post_css' );
-
-		$this->loader->add_action( 'admin_head-post.php',                    $review_admin, 'admin_post_edit_product_link', 11);
-		$this->loader->add_action( 'admin_head-post-new.php',                $review_admin, 'admin_post_edit_product_link', 11);
-		$this->loader->add_action( 'admin_head-post.php',                    $review_admin, 'admin_post_edit_product_sync', 10);
-		$this->loader->add_action( 'admin_head-post-new.php',                $review_admin, 'admin_post_edit_product_sync', 10);
-		$this->loader->add_filter( 'query_vars',                             $review_admin, 'add_update_product_var' );
-		$this->loader->add_filter( 'manage_posts_columns',                   $review_admin, 'admin_list__inject_image_column', 10, 2);
-		$this->loader->add_action( 'manage_posts_custom_column',             $review_admin, 'admin_list__post_data_row', 10, 2);
-		$this->loader->add_action( 'post_row_actions',                       $review_admin, 'admin_list__product_link', 10, 2);
+		$this->loader->add_filter( 'query_vars',                  $review_admin, 'add_update_product_var' );
+		$this->loader->add_filter( 'manage_posts_columns',        $review_admin, 'admin_list__inject_image_column', 10, 2);
+		$this->loader->add_action( 'manage_posts_custom_column',  $review_admin, 'admin_list__post_data_row', 10, 2);
+		$this->loader->add_action( 'post_row_actions',            $review_admin, 'admin_list__product_link', 10, 2);
+		$this->loader->add_action( 'post_submitbox_misc_actions', $review_admin, 'admin_post_edit_product_sync');
 
 		//afg itself is initialized in "init" action -- product update should be performed later!
 		if( is_admin() ){
@@ -267,6 +259,11 @@ class AffiGet_Mini {
 		//$this->loader->add_action( 'pre_post_update', $review_admin, 'build_post_content' );
 
 		$this->loader->add_action( 'cmb2_init',   $this->review_meta->renderer, 'register_metaboxes');
+
+		$this->loader->add_action( 'add_meta_boxes',  		$this->review_meta->renderer, 'add_display_formats_metabox' );
+		$this->loader->add_action( 'save_post',             $this->review_meta->renderer, 'save_display_formats_meta', 10, 2 );
+		$this->loader->add_action( 'admin_enqueue_scripts', $this->review_meta->renderer, 'pass_script_params' );
+
 	}
 
 	/**
@@ -277,6 +274,49 @@ class AffiGet_Mini {
 
 		return $this->admin;
 	}
+
+	function admin_body_classes( $classes ){
+		global $post;
+
+		$ver = explode('.', AFG_VER);
+		$cnt = count( $ver );
+
+		if( is_object( $post )){
+			if( $post->post_type === $this->review_meta->post_type_name ){
+				$classes .= ' afg-post-type-review';
+			}
+		}
+
+		$classes .= ' afg-mini';
+		$classes .= ' afg-mini-ver-' . str_replace('.', '_', AFG_VER);
+
+		if( $cnt > 0 ) $classes .= ' afg-mini-major-' . $ver[0];
+		if( $cnt > 1 ) $classes .= ' afg-mini-minor-' . $ver[1];
+
+		return $classes;
+	}
+
+	function public_body_classes( $classes, $class ){
+		global $post;
+
+		if( is_object( $post )){
+			if( $post->post_type === $this->review_meta->post_type_name ){
+				$classes[] = ' afg-post-type-review';
+			}
+		}
+
+		$ver = explode('.', AFG_VER);
+		$cnt = count( $ver );
+
+		$classes[] = ' afg-mini';
+		$classes[] = ' afg-mini-ver-' . str_replace('.', '_', AFG_VER);
+
+		if( $cnt > 0 ) $classes[] = ' afg-mini-major-' . $ver[0];
+		if( $cnt > 1 ) $classes[] = ' afg-mini-minor-' . $ver[1];
+
+		return $classes;
+	}
+
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
@@ -290,18 +330,17 @@ class AffiGet_Mini {
 		$this->loader->add_action( 'init', $this, 'check_environment' );
 		$this->loader->add_action( 'init', $this->review_meta, 'register_custom_post_type' );
 
-		$plugin_public = new AffiGet_Public( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_filter( 'body_class', $this, 'public_body_classes', 10, 2 );
+
+		$plugin_public = new AffiGet_Public( $this->get_plugin_name(), $this->version );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'wp_ajax_nopriv_afg_get_front_styles', $this->review_meta->renderer, 'ajax_get_front_styles' );
-		$this->loader->add_action( 'wp_ajax_afg_get_front_styles',        $this->review_meta->renderer, 'ajax_get_front_styles' );
-
-		$this->loader->add_action( 'the_content', $this->review_meta->renderer, 'the_content');
-
-		$this->loader->add_action( 'get_the_excerpt', $this->review_meta->renderer, 'get_the_excerpt');
-
+		$this->loader->add_action( 'the_content',      $this->review_meta->renderer, 'the_content');
+		$this->loader->add_action( 'get_the_excerpt',  $this->review_meta->renderer, 'get_the_excerpt');
+		$this->loader->add_action( 'the_excerpt_rss',  $this->review_meta->renderer, 'get_the_excerpt');
+		$this->loader->add_action( 'the_content_feed', $this->review_meta->renderer, 'the_content_feed', 10, 2);
 
 	}
 

@@ -43,7 +43,7 @@ abstract class AmazonProduct_Abstract {
     /**
      * Constructor
      *
-     * @param string $xml XML Representation of Object
+     * @param string $xml XML Redisplay of Object
      */
     public function __construct( $xml = null ) {
         if( ! is_null( $xml ) ) {
@@ -128,7 +128,7 @@ abstract class AmazonProduct_Abstract {
     }
 
     /**
-     * return JSON representation of Object
+     * return JSON redisplay of Object
      * @return String
      */
     public function toJSON( ) {

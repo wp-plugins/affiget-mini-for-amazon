@@ -5,6 +5,10 @@
 	border: 1px solid transparent;
 }
 
+.afg-feature-list.editable:not(.editing){
+	cursor: pointer;
+} 
+
 .entry-content .afg-feature-list table,
 .afg-feature-list table {
 	empty-cells: show;
@@ -13,9 +17,9 @@
 }
 
 .wp-admin .afg-feature-list.editing table {
-	margin: 0 0 0 20px;
+	margin: 0 0 0 0px;
 	/*margin-right: 20px;*/
-	width: 95%
+	width: 100%
 }
 
 .afg-feature-list.placeholder .spinner {
@@ -35,7 +39,36 @@
 	empty-cells: show;
 	display: table-cell;
 	line-height: 1.5;
-	padding: 2px;	
+	padding-top: 2px;
+	padding-bottom: 2px;	
+}
+
+.entry-content .afg-feature-list.editing th,
+.form-table .afg-feature-list.editing th,
+.afg-feature-list.editing th{		 
+	padding-left: 21px;
+	padding-right: 2px; 
+}
+
+.entry-content .afg-feature-list.editing span.label,
+.form-table .afg-feature-list.editing span.label,
+.afg-feature-list.editing span.label {
+	min-height: 18px;
+	margin-top:2px;
+	display: inline-block;
+}
+
+.entry-content .afg-feature-list.editing input.label,
+.form-table .afg-feature-list.editing input.label,
+.afg-feature-list.editing input.label {
+	min-height: 20px;
+}
+
+.entry-content .afg-feature-list.editing td,
+.form-table .afg-feature-list.editing td,
+.afg-feature-list td{
+	padding-left: 2px;
+	padding-right: 24px;			 
 }
 
 .entry-content .afg-feature-list th,
@@ -95,13 +128,24 @@
 	display: none;
 }
 
+.afg-feature-list .disabled,
+.afg-feature-list .disabled th,
+.afg-feature-list .disabled td,
+.afg-feature-list .disabled th span,
+.afg-feature-list .disabled td span,
+.afg-feature-list .disabled input.label, 
+.afg-feature-list .disabled input.value,
 .form-table .afg-feature-list .disabled,
 .form-table .afg-feature-list .disabled th,
-.afg-feature-list .disabled,
-.disabled input.label, 
-.disabled input.value,
+.form-table .afg-feature-list .disabled td,
+.form-table .afg-feature-list .disabled th span,
+.form-table .afg-feature-list .disabled td span,
+.form-table .afg-feature-list .disabled td a,
+.form-table .afg-feature-list .disabled td a:visited,
 .entry-content .afg-feature-list .disabled th,
 .entry-content .afg-feature-list .disabled td,
+.entry-content .afg-feature-list .disabled th span,
+.entry-content .afg-feature-list .disabled td span,
 .entry-content .afg-feature-list .disabled td a,
 .entry-content .afg-feature-list .disabled td a:visited {
 	color: #ccc;
@@ -146,8 +190,8 @@
 	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAhZJREFUeNpsUk1rE1EUfW8+mplkNk06GVCx1Gzcibh2KVhBJeDCnf/DTd35O1wqLooUoYSkVNqUSqEfSV0FumszmUkmdjKTj3lvxvMmDQzBC48H795z73nnHlqr7UmEEEoykSRJekRQStOzHModiM6L8aDIXFWVRJLktCCOOYkiJjHGpGwTASSccwBUTgGXZYmUy+aqYRhFkfN9v9/t2kNFUWI0p2ggIxIljhNSKBRYsbiKifFzwyhsAvRM07SKYK1puQ7OSRBMfmLakecNWBiOZQUTeC63Yq2vP/gIeu90XbsnJnW7vR0UypZlbpZKxZfj8fgD58m3MAw+z2ZRnxweHlUGA+9XchdRFHlnZ62q6/ZXbLtnXFxcvuc89kUO7JLBYFhvNn8/JJ433Jk/xikQxV/q9X06nU63gmD0tNHYVx3H/ZqtAfi7hI+qS6uIQRHAWYOx+A2lEhNvS9tQCcY+9v3R8YIqY7wPqq9arUv9/Lyttdt/qlD97yKP2oNm8/gR3d2tk3w+f79S2dgyzdJbyF5GR9brOdtCHNNcq4oRWMONbTvbnc7Vp+l00qNwjoyOXCzWssovAH6NdTyBuhuCOdS8ur0dnUKsH2i2J4wiFpkaQNx44NfXNzUka7qum3DPmgBCZTcMJy7nDCZRqDS3VKIsfitoqaoqxOFhGDq4nYxXKXLysldTMTMNpP+ZOlsj4p8AAwCWKE9O4IK1GgAAAABJRU5ErkJggg==') 2px 2px no-repeat;
 }
 
-.dragger, 
-.disabler {
+.afg-feature-list .dragger, 
+.afg-feature-list .disabler {
 	position: absolute;
 	display: inline-block;
 	opacity: 0;
@@ -160,11 +204,13 @@
 	cursor: pointer;
 }
 
-.dragger {
+.afg-feature-list .dragger {
 	margin: -2px 0px 0 -21px;
 }
-.disabler{
-	margin: -2px 0 0px 2px;
+
+.afg-feature-list .disabler{
+	margin: -2px 0 0px 0px;
+	z-index: 100;
 }
 
 .editing tr:hover .dragger,
@@ -172,8 +218,8 @@
 	opacity: 1;	
 }
 
-.dragger:hover,
-.disabler:hover {
+.afg-feature-list .dragger:hover,
+.afg-feature-list .disabler:hover {
 	background-color: #777 !important;
 	border: 3px solid #777;
 } 
@@ -216,12 +262,12 @@
 
 .afg-feature-list .edit{	
 	top: -17px;
-	left: -75px;	
+	left: -85px;	
 }
 
 .afg-feature-list.editing .close {	
 	top: 0px;
-	left: -76px;
+	left: -86px;
 }
 
 .entry-content .afg-feature-list .edit span,
@@ -229,23 +275,23 @@
 .entry-content .afg-feature-list.editing .close span, 
 .afg-feature-list.editing .close span{	
 	position: absolute;
-	height: 16px;
-	font-size: 10px;
-	padding: 0px 3px;
-	width: 70px;
+	height: 16px !important;
+	font-size: 10px !important;
+	padding: 0px 3px !important;
+	width: 80px !important;
 	opacity: 1;
 	margin: 0;
-	text-align: center;
-	line-height: 1.8;
-	color: #159E37;			
+	text-align: center !important;
+	line-height: 1.8 !important;
+	color: #159E37 !important;			
 }
 
 .entry-content .afg-feature-list:hover .edit span,
 .afg-feature-list:hover .edit span,
 .entry-content .afg-feature-list.editing:hover .close span,
 .afg-feature-list.editing:hover .close span {
-	background-color: #18C443;
-	color: white;
+	background-color: #18C443 !important;
+	color: white !important;
 }
 
 .afg-feature-list.editing .edit { /*don't show 'Modify table' when alreayd in edit mode */

@@ -124,64 +124,22 @@ class AffiGet_Admin {
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.5
 	 */
-	public function enqueue_styles( $hook ) {
+	public function enqueue_scripts_and_styles( $hook ) {
 
-		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in AffiGet_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The AffiGet_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/affiget-admin.css', array(), $this->version, 'all' );
-
-		if ( 'post.php' != $hook ) {
+		//load styles on Reviews List, Review Edit and Settings page
+		$screen = get_current_screen();
+		if( 'post' == $screen->base || 'edit' == $screen->base ){
+			if( $screen->post_type != AffiGet_Review_Meta::get_instance()->post_type_name ){
+				return;
+			}
+		} elseif( 'settings_page_affiget-settings-page' !== $screen->id ){
 			return;
 		}
 
-		$screen = get_current_screen();
-		$meta = AffiGet_Review_Meta::get_instance();
-
-		if ( $screen->post_type == $meta->post_type_name ){
-			wp_enqueue_script( $this->plugin_name.'-post-style', admin_url('admin-ajax.php?action=afg_get_admin_post_css&post='.(isset($_GET['post'])?$_GET['post']:'')), array( 'jquery', 'afg-raty-style' ), $this->version, false );
-		}
-
-	}
-
-	/**
-	 * Register the JavaScript for the dashboard.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts( $hook ) {
-
-		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in AffiGet_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The AffiGet_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/affiget-admin.js', array( 'jquery' ), $this->version, false );
-
-		if ( 'post.php' != $hook ) {
-			return;
-		}
-		$screen = get_current_screen();
-		$meta = AffiGet_Review_Meta::get_instance();
-
-		if ( $screen->post_type == $meta->post_type_name ){
-			wp_enqueue_script( 'afg-admin-post-script', admin_url('admin-ajax.php?action=afg_get_admin_post_js&post='.(isset($_GET['post'])?$_GET['post']:'')), array( 'jquery', 'afg-raty-script' ), $this->version, false );
-		}
-
+		wp_enqueue_style(  AFG_MINI . '-admin', plugin_dir_url( __FILE__ ) . 'css/affiget-admin.css', array(), AFG_VER, 'all' );
+		wp_enqueue_script( AFG_MINI . '-admin', plugin_dir_url( __FILE__ ) . 'js/affiget-admin.js', array( 'jquery' ), AFG_VER, false );
 	}
 
 	static function output_cacheable_css( $css, $expiration_in_minutes = 5 ){
@@ -361,7 +319,7 @@ class AffiGet_Admin {
 		//echo '<pre>';
 		//print_r(compact('links', 'plugin_file', 'plugin_data', 'context'));
 		//echo '</pre>';
-		if ( 'affiget-mini/affiget-mini.php' == $plugin_file || 'affiget-pro/affiget-pro.php' == $plugin_file ) {
+		if ( 'affiget-mini-for-amazon/affiget-mini.php' == $plugin_file || 'affiget-pro-for-amazon/affiget-pro.php' == $plugin_file ) {
 			$new_link = sprintf('<a href="%s">%s</a>',
 					admin_url('options-general.php?page=affiget-settings-page'),
 					esc_html__('Settings', 'afg')

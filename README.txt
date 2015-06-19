@@ -3,11 +3,11 @@ Contributors: sarutole
 Tags: Amazon,products,reviews,automatic,content,curation,online marketing,affiliate,affiliate marketing,ads,advertising,monetization,revenue,Amazon affiliates,Amazon Associate,review sites,niche blog,posting,post
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.0.5
+Stable tag: 1.1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Browse Amazon. "Like" products. Make money. A dead-simple formula for your online success.
+Browse Amazon. "Like" products. Make money. (Or just create reviews for your blog with a single click.)
 
 == Description ==
 
@@ -23,15 +23,15 @@ Here's how this works:
 
 AffiGet utilizes the official Amazon Product Advertising API; therefore, **all product details are always correct and up-to-date**. 
 
-To make money for featuring/promoting some Amazon products on your site, you have to register for the [Amazon Associates](https://affiliate-program.amazon.com/ "Join now!") programme -- it free and easy to join! With AffiGet, you can create reviews for products *on all international Amazon sites* (Amazon.co.uk, Amazon.de, etc.).
+To make money for featuring/promoting some Amazon products on your site, you have to register for the [Amazon Associates](https://affiliate-program.amazon.com/ "Join now!") programme -- it's free and easy to join! With AffiGet, you can create reviews for products *from all international Amazon sites* (Amazon.co.uk, Amazon.de, etc.).
 
 = Automatic content creation =
 
-AffiGet Mini **automatically populates your review posts** with all the relevant product details and meta information:
+AffiGet Mini **automatically populates your review posts** with all the relevant product data and post meta information:
 
 * post title
 * auto-scheduled/current date
-* category/tags
+* category, tags
 * product images
 * product description
 * product attributes
@@ -49,11 +49,10 @@ AffiGet Mini seemlessly extends the admin Dashboard with **handy productivity fe
 
 * a thumb image and a link to the Amazon product page in the Reviews list; 
 * a button-link to instantly resync product data; 
-* a switch to change publishing date from auto-scheduled to current ("Auto" vs "Now");
 * metaboxes to modify the most relevant aspects of your review; 
 * [... and more](https://wordpress.org/plugins/affiget-mini-for-amazon/other_notes "for more details see the Other notes section").
 
-= A welcoming design without effort =
+= Effective design without effort =
 
 AffiGet does not force its design decisions on you -- the presentation of reviews takes cue from your WordPress theme. 
 
@@ -116,8 +115,9 @@ AffiGet Mini adds these **productivity features** to the Dashboard:
 	* A metabox to select rating stars.
 	* A metabox with pricing details.
 	* A metabox with a call-to-action (i.e. an image which will represent a link to Amazon product page).
+	* A metabox to select which review elements will be displayed to your visitors and in what order.
 
-= A welcoming design without effort =
+= Effective design without effort =
 
 On the front side, as well as in the RSS feed, the reviews created by AffiGet will show up alongside your regular posts.
 
@@ -136,7 +136,10 @@ These are the elements that AffiGet Mini **automatically displays on the review 
 * **Pricing details**;
 * **Call-to-action** (an image representing a link to Amazon product page).
 
-Please note, that the presentation of Featured image, gallery, excerpt/introduction is defined by your theme -- AffiGet has no effect on how these elements are presented on your site.
+You can also choose to automatically show Featured image on your review post.
+You can also customize what elements will go into the excerpt (which might be used by your theme to render reviews on Search/Archive page and in RSS feeds).
+
+Please note, that the for the newly created reviews display format gets inherited from the latest review in category.
 
 = Built by professionals =
 
@@ -154,7 +157,7 @@ AffiGet *can be easily translated* to different languages (contributions most we
 	* input your *Amazon Associates* credentials;
 	* drag the *Afg+ button* to your Bookmarklets toolbar.
 	
-After you activate AffiGet, a new menu item is added to your Dashboard, labeled "Reviews".
+After you activate AffiGet, a new post type and a corresponding menu item is added to your Dashboard, labeled "Reviews".
 
 == Frequently Asked Questions ==
 
@@ -178,10 +181,16 @@ Consider upgrading to [AffiGet Pro](http://affiget.com/ "Upgrade today!") -- a p
 7. You can click Publish (Delete) to remotely publish (trash) your review post.
 8. A review constructed by AffiGet Mini (using the standard Twenty Twelve theme). Note, the rating stars and the product attributes table are **front-end editable**!
 9. The AffiGet Settings page
-10. The Reviews page (note the product image and a link to the Amazon product page; te automatically assigned category is also presented).
+10. The Reviews page (note the product image and a link to the Amazon product page; the automatically assigned category is also presented).
 11. The Review editing page. Note, highlighted elements are resolved automatically.
 
 == Changelog ==
+
+= Version 1.1.0 (2015-6-19) =
+* New feature: select what elements are displayed on a review page, and in excerpt.
+* New feature: add featured image on review page (in case your theme does not do it automatically).
+* New feature: RSS feed now shows the elements that are configured to be included in an excerpt.
+* Fix: a number of minor bugs and display quirks.
 
 = Version 1.0.5 (2015-6-4) =
 * Improved the overall look and feel of the Product details table.
@@ -191,7 +200,7 @@ Consider upgrading to [AffiGet Pro](http://affiget.com/ "Upgrade today!") -- a p
 * Fix: eliminated a PHP notice which occured on the edit review page.
 * Fix: now review title does not get overwritten with a product title on resync.
 * Fix: when no featured image is attached, now product images get re-fetched upon resync.
-* Throughly tested with Firefox, Chrome, and Safari.
+* Thoroughly tested with Firefox, Chrome, and Safari.
 
 = Version 1.0.0 (2015-5-15) =
 Initial release.

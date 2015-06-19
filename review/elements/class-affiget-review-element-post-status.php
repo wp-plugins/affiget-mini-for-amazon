@@ -11,7 +11,7 @@ class AffiGet_Review_Element_Post_Status extends AffiGet_Abstract_Element
 
 		parent::__construct( $meta, $name, $params ); //calls resolve_settings(), which calls get_settings_config()
 
-		if( ! $this->is_enabled() ) return;
+		if( ! $this->is_status( AffiGet_Abstract_Element::STATUS_ENABLED ) ) return;
 
 		$field = 'post_date_gmt';
 		add_filter("afg_review_controller__read_post_fields__sanitize_{$field}", array( &$this, 'sanitize_post_date_gmt'), 10, 3);
@@ -26,9 +26,7 @@ class AffiGet_Review_Element_Post_Status extends AffiGet_Abstract_Element
 
 		add_filter('afg_review_storage__apply_differences__preserve_fields', array(&$this, 'preserve_fields_when_updating'), 10, 1);
 
-		if( ! is_admin() && $this->is_auto_presentation()){
-			add_action("afg_front__html_{$this->name}", array(&$this,'front_html'), 10, 1);
-		}
+		add_action("afg_front__html_{$this->name}", array(&$this,'front_html'), 10, 1);
 
 		//<state><action><hint>
 		$this->statuses = array(

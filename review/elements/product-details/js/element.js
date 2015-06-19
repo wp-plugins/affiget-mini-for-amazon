@@ -19,7 +19,7 @@
 
 		    return this.each(function() {
 		    	
-		    	var $ctrl = $(this), $input, $inLabel, $inValue, $disabler, post, nonce;
+		    	var $ctrl = $(this), $input, $inLabel, $inValue, $disabler, $dragger, post, nonce;
 		    	
 		    	if( 'stopEditing' == method ){
 		    		return stopEditing();
@@ -66,15 +66,27 @@
 				    		$done.on('click', stopEditing );
 				    		$ctrl.append( $done );
 			    		}			    		
-			    	
-				    	/*$ctrl.on( 'click.afg', function(ev){
-				    		$('.afg-feature-list').not( $ctrl ).afgFeatureList('stopEditing');
-				    		startEditing();			    		
+
+			    		$('body:not(.wp-admin)').on('click.afg', function(ev){
+			    			$('.afg-feature-list.editing').afgFeatureList('stopEditing');/*stop editing all tables*/
+			    		});
+			    		
+				    	$ctrl.on( 'click.afg', function(ev){
+				    		var $target = $(ev.target);
+				    		$('.afg-feature-list').not( $ctrl ).afgFeatureList('stopEditing');/*stop editing other tables*/
+				    		if( ! $target.is('.close span,a')){
+					    		startEditing();
+				    			ev.stopPropagation();	
+				    		} 
+				    		if( $target.is('a') ){
+				    			return true;
+				    		}				    		
 				    		return false;			    		
-				    	});*/
+				    	});
 	
 				    	$ctrl.find('table,ul,th,li.label,td,li.span,div.list,div.item').disableSelection();
 				    	$disabler = $('<span class="offset-right"><span class="disabler ui-icon"></span></span>');
+				    	$dragger  = $('<span class="offset-left"><span class="dragger ui-icon ui-icon-reorder" title="'+opts.msg['dragItemHint']+'"></span></span>');
 				    	
 				    	if( 'editing' == opts.initialMode ){
 				    		startEditing();
@@ -111,14 +123,20 @@
 		    	function _extendListForEditing(){		    		
 		    		var entryTmpl; //= '<tr class="new-entry hidden"><th></th><td></td></tr>';
 		    		
+					function fixWidthHelper(e, ui) {
+						ui.children().each(function() {
+							$(this).width($(this).width());
+							//console.log($(this).width(), $(this));
+						});
+						return ui;
+					}
+					
 		    		if( ! $ctrl.is('.extended')){
 			    		$ctrl.find('th').contents().wrap('<span class="label"></span>');
 			    		$ctrl.find('th:empty').append('<span class="label"></span>');
 			    		$ctrl.find('td').contents().wrap('<span class="value"></span>');
 			    		$ctrl.find('td:empty').append('<span class="value"></span>');
 			    		
-			    		$ctrl.find('.label,li.label').before('<span class="offset-left"><span class="dragger ui-icon ui-icon-reorder" title="'+opts.msg['dragItemHint']+'"></span></span>');
-
 			    		if( $ctrl.is('.contains-table') ){
 				    		$ctrl.find('.list tbody').sortable({
 				    			'axis':'y', 
@@ -126,8 +144,9 @@
 				    		    'stop': function( ) {
 				    	            submitData();
 				    	            return true;
-				    	        }								    			
-				    		});
+				    	        },
+								'helper': fixWidthHelper
+				    		}).disableSelection();
 			    		} else {
 				    		$ctrl.find('.list').sortable({
 				    			'axis':'y', 
@@ -135,8 +154,9 @@
 				    		    'stop': function( ) {
 				    	            submitData();
 				    	            return true;
-				    	        }				    			
-				    		});			    			
+				    	        },
+								'helper': fixWidthHelper
+				    		}).disableSelection();			    			
 			    		}
 			    		$ctrl.addClass('extended');
 		    		}
@@ -199,7 +219,8 @@
 		    		}
 		    		
 		    		if( $ctrl.is('.contains-table') ){
-		    			$item.find('td').prepend( $disabler );
+		    			$item.find('th').prepend( $dragger )
+		    			$item.find('td').prepend( $disabler );		    			
 		    		}
 		    		
 		    		return false;
@@ -420,32 +441,32 @@
 	    	    		}
 	    	    	} /* unveilItemEditor */
 	    	    	
-	    	    	function submitInputChanges( callback, $input ){
+	    	    	function submitInputChanges( callback, $edit ){
 	    	    		var $span; 
 	    	    		
-	    	    		if( typeof $input === 'undefined' ){
+	    	    		if( typeof $edit === 'undefined' ){
 	    	    			
 	    	    			submitInputChanges( null, $inLabel );
 	    	    			submitInputChanges( callback, $inValue );
 	    	    			
-	    	    		} else if( typeof $input !== 'undefined' ){
+	    	    		} else if( typeof $edit !== 'undefined' ){
 	    	    			
-	    	    			$span = $input.prev();
+	    	    			$span = $edit.prev();
 	    	    			
-		    				if( $.trim( $span.data('initial-val')) != $.trim( $input.val()) ){
+		    				if( $.trim( $span.data('initial-val')) != $.trim( $edit.val()) ){
 		    					/* input value is different from the initial value */
 		    					
 		    					/* assign new value to the underlying span */
 		    					if( $span.has('a').length ){
-		        					$span.find('a').text( $input.val() );
+		        					$span.find('a').text( $edit.val() );
 		    					} else {
-		    						$span.text( $input.val() );
+		    						$span.text( $edit.val() );
 		    					}
 		    					
 		    					/* assign new value as a new initial-val?
 		    					$span
 		    						.removeData('modified-val')
-	    							.data('initial-val', $input.val());
+	    							.data('initial-val', $edit.val());
 		    					*/	    							
 		    					
 		    					submitData();
@@ -457,8 +478,8 @@
 		    				}			    				
 	    				}
 	    					
-	    				if( $input.is('.value') ){
-	    					if( '' == $.trim( $input.val() )){ /* the value part is empty --> mark item as empty */
+	    				if( $edit.is('.value') ){
+	    					if( '' == $.trim( $edit.val() )){ /* the value part is empty --> mark item as empty */
 		    					$item.addClass('empty');
 		    				} else {
 		    					$item.removeClass('empty');
@@ -466,15 +487,15 @@
 	    				}
 	    	    	} /* submitInputChanges */	    			
 	    			
-	    	    	function revertInputChanges( callback, $input ){
+	    	    	function revertInputChanges( callback, $edit ){
 	    	    		
 	    	    		/* avoid referencing $label and $value in this func! */
 	    	    		var $span;
 	    	    		
-	    	    		if( typeof $input !== 'undefined' ){
+	    	    		if( typeof $edit !== 'undefined' ){
 	    	    			
 	    	    			/* assign initial value to span */
-	    	    			$span = $input.prev();
+	    	    			$span = $edit.prev();
 	    	    			if( $span.has('a').length ){
 	    	    				$span.find('a').text( $span.data('initial-val') );
 	    	    			} else {
@@ -482,8 +503,8 @@
 	    	    			} 
 	    	    			
 	    	    			/* store current input value as a modified-val -- might be useful in the future */
-	    	    			$span.data('modified-val', $.trim( $input.val() ));
-	    	    			$input.val( $span.data('initial-val') );	    	    			
+	    	    			$span.data('modified-val', $.trim( $edit.val() ));
+	    	    			$edit.val( $span.data('initial-val') );	    	    			
 
 		    	    		if( typeof callback === 'function'){
 	    	    				callback();
@@ -571,6 +592,10 @@
 		    		//console.dir(payload);
 		    		
 		    		payload = JSON.stringify( payload );
+		    		
+		    		if( typeof $input === 'undefined' ){
+		    			$input = $ctrl.find('input');
+		    		}
 		    		
 		    		$input.val( payload );
 		    		
@@ -714,7 +739,7 @@
 		$(document).on('widget-updated widget-added', function(e){
 			////console.log(e);
 		    $('.afg-feature-list').afgFeatureList();
-		});		
+		});				
 		
 		$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
 			var post_id;

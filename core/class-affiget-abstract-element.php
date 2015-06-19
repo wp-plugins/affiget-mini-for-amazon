@@ -33,6 +33,18 @@ abstract class AffiGet_Abstract_Element
 
 	protected $settings;
 
+	protected $supported_formats;
+
+	const STATUS_DISABLED  = 0;
+	const STATUS_ENABLED   = 1;
+
+	const DISPLAY_DISABLED = 0;
+	const DISPLAY_ENABLED  = 1;
+
+	const DISPLAY_MODE_ALWAYS_DISABLED = 0;
+	const DISPLAY_MODE_ALWAYS_ENABLED  = 1;
+	const DISPLAY_MODE_MODIFIABLE      = 2;
+
 	// ------------------------------------------------------------------------------------
 
 	function __construct( AffiGet_Abstract_Meta $meta, $name, array $params ){
@@ -54,60 +66,29 @@ abstract class AffiGet_Abstract_Element
 
 		$this->init_params = $params;
 
-		/*params should contain the following fields
+		/*  Params should contain the following fields:
+
 			title: text
 			label: text
 			description: text
+			status: enabled | disabled
+			display: array
 
-			status: enabled|disabled
-
-			dialog: enabled|disabled
-			dialog_mode: modifiable|always_enabled|always_disabled
-
-			presentation: auto|manual
-			presentation_mode: modifiable|always_auto|always_manual
-
-			shortcode: enabled|disabled
-			shortcode_mode: modifiable|always_enabled|always_disabled
 		*/
-
 		$required_fields = array(
-			'title', 'label', 'description',
-			'status',
-			'dialog',       'dialog_mode',
-			'presentation', 'presentation_mode',
-			'shortcode',    'shortcode_mode',
+			'title', 'label', 'description', 'status', 'display',
 		);
 
 		$missing_fields = array_diff( $required_fields , array_keys( $params ));
 		if( ! empty( $missing_fields ) ){
 			throw new AffiGet_Exception('Missing fields for $param: '.join(',', $missing_fields).'!');
 		}
-		if( 'enabled' != $params['status'] && 'disabled' != $params['status']){
-			throw new AffiGet_Exception('Unsupported value for $param[status]: "'.$params['status'].'"!');
-		}
-		if( 'enabled' != $params['dialog'] && 'disabled' != $params['dialog']){
-			throw new AffiGet_Exception('Unsupported value for $param[dialog]: "'.$params['dialog'].'"!');
-		}
-		if( ! in_array( $params['dialog_mode'], array('modifiable', 'always_enabled', 'always_disabled'))){
-			throw new AffiGet_Exception('Unsupported value for $param[dialog_mode]: "'.$params['dialog_mode'].'"!');
-		}
-		if( 'auto' != $params['presentation'] && 'manual' != $params['presentation']){
-			throw new AffiGet_Exception('Unsupported value for $param[presentation]: "'.$params['presentation'].'"!');
-		}
-		if( ! in_array( $params['presentation_mode'], array('modifiable', 'always_auto', 'always_manual'))){
-			throw new AffiGet_Exception('Unsupported value for $param[presentation_mode]: "'.$params['presentation_mode'].'"!');
-		}
-		if( 'enabled' != $params['shortcode'] && 'disabled' != $params['shortcode']){
-			throw new AffiGet_Exception('Unsupported value for $param[shortcode]: "'.$params['shortcode'].'"!');
-		}
-		if( ! in_array( $params['shortcode_mode'], array('modifiable', 'always_enabled', 'always_disabled'))){
-			throw new AffiGet_Exception('Unsupported value for $param[shortcode_mode]: "'.$params['shortcode_mode'].'"!');
-		}
 
 		$this->id         = "afg_{$name}";
 
 		$this->control_id = "afg_{$name}";
+
+		$this->supported_formats = array('post', 'tooltip', 'widget', 'excerpt', 'shortcode', 'dialog');
 
 		$this->settings = $this->resolve_settings( $params );
 
@@ -120,11 +101,6 @@ abstract class AffiGet_Abstract_Element
 		if( isset( $params['declare_meta_fields'] ) && ! empty( $params['declare_meta_fields'] )){
 			add_filter('afg_review_meta__declare_meta_fields', array(&$this, 'declare_meta_fields'));
 		}
-
-		//if( has_action("afg_admin_add_meta_box_{$name}" )){
-			//add_action('pre_post_update', array( &$this, 'metabox_save' ), 1, 1);
-			//add_action( 'save_post', array( $element, 'metabox_save' ), 2, 2);
-		//}
 	}
 
 	// SETTINGS ------------------------------------------------------------------------------------
@@ -150,24 +126,34 @@ abstract class AffiGet_Abstract_Element
 		//uncomment for debugging
 		delete_option( $this->id . '_settings' );
 
-		$stored = get_option( $this->id . '_settings' );
-		if( false !== $stored ){
-			return $stored;
-		}
+		//$stored = get_option( "{$this->id}_settings" );
+		//if( false !== $stored ){
+		//	return $stored;
+		//}
 
-		$defaults = array();
+		$defaults = array('display' => array());
 
+		//Collect the hardcoded settings.
 		$configs = $this->get_settings_config( $params );
 		foreach( $configs as $field => $config ){
-			$defaults[ $field ] = $config['default'];
+			if( strpos( $field, 'display_in_' ) !== FALSE ){
+				$defaults['display'][ str_replace('display_in_', '', $field) ] = array( $config['default'], self::DISPLAY_MODE_MODIFIABLE );
+			} else {
+				$defaults[ $field ] = $config['default'];
+			}
 		}
 
 		$settings = array();
+
+		//Hardcoded/stored settings extend the params coming from constructor params.
+		//In other words, constuctor params override hardcoded/stored settings.
 		$settings = wp_parse_args( $params, $defaults );
+
+		//afg_log(__METHOD__.','.__LINE__, compact('params', 'configs', 'defaults', 'settings') );
 
 		//$this->_log( 'Storing option', array('element'=>$this->id, 'params'=>$params, 'defaults'=>$defaults, 'settings'=>$settings ));
 
-		add_option( $this->id . '_settings', $settings );
+		add_option( "{$this->id}_settings", $settings );
 
 		return $settings;
 	}
@@ -180,25 +166,16 @@ abstract class AffiGet_Abstract_Element
 						'name'    => 'status',
 						'atts'    => '',
 						'type'    => 'toggle',
-						'default' => 'enabled',
-						'label'   => __('Show on Afg+ Dialog', 'afg'),
-						'hint'    => __('', 'afg'),
+						'default' => self::STATUS_ENABLED,
+						'label'   => __('Element status', 'afg'),
+						'hint'    => __('Whether the element is enabled.', 'afg'),
 						'help'    => __('Status Help', 'afg'),
 						'config'  => array(
-								'on-label'  => __('Yes', 'afg'),
-								'on-value'  => 'enabled',
-								'off-label' => __('No', 'afg'),
-								'off-value' => 'disabled',
+								'on-label'  => __('Enabled', 'afg'),
+								'on-value'  => self::STATUS_ENABLED,
+								'off-label' => __('Disabled', 'afg'),
+								'off-value' => self::STATUS_DISABLED,
 						)
-				),
-				'title' => array(
-						'name'    => 'title',
-						'atts'    => 'size="55"',
-						'type'    => 'text',
-						'default' => '',
-						'label'   => __('Title on page', 'afg'),
-						'hint'    => __('', 'afg'),
-						'help'    => __('Help', 'afg'),
 				),
 				'label' => array(
 						'name'    => 'label',
@@ -206,69 +183,157 @@ abstract class AffiGet_Abstract_Element
 						'type'    => 'text',
 						'default' => '',
 						'label'   => __('Short label', 'afg'),
-						'hint'    => __('', 'afg'),
+						'hint'    => __('Short label to represent element in Dashboard.', 'afg'),
 						'help'    => __('Help', 'afg'),
 				),
 				'description' => array(
-						'name'    => 'description',
+						'name'    => 'label',
 						'atts'    => 'size="55"',
 						'type'    => 'text',
 						'default' => '',
-						'label'   => __('Description on <em>Afg+ Dialog</em>', 'afg'),
-						'hint'    => __('', 'afg'),
+						'label'   => __('Description', 'afg'),
+						'hint'    => __('Description to show on <em>Afg+ Dialog</em>', 'afg'),
 						'help'    => __('Description Help', 'afg'),
 						'render'  => 'hidden',
 				),
-				'dialog' => array(
-						'name'    => 'dialog',
+				'title' => array(
+						'name'    => 'title',
+						'atts'    => 'size="55"',
+						'type'    => 'text',
+						'default' => '',
+						'label'   => __('Heading', 'afg'),
+						'hint'    => __('Title on page.', 'afg'),
+						'help'    => __('Help', 'afg'),
+				),
+				'display_in_metabox' => array(
+						'name'    => 'display_in_metabox',
 						'atts'    => '',
 						'type'    => 'toggle',
-						'default' => 'enabled',
+						'default' => self::DISPLAY_ENABLED,
+						'label'   => __('Display a metabox', 'afg'),
+						'hint'    => __('Display a metabox when editing post', 'afg'),
+						'help'    => __('Help', 'afg'),
+						'config'  => array(
+								'on-label'  => __('Yes', 'afg'),
+								'on-value'  => self::DISPLAY_ENABLED,
+								'off-label' => __('No', 'afg'),
+								'off-value' => self::DISPLAY_DISABLED,
+						)
+				),
+				'display_in_post' => array(
+						'name'    => 'display_in_post',
+						'atts'    => '',
+						'type'    => 'toggle',
+						'default' => self::DISPLAY_ENABLED,
+						'label'   => __('Display on page', 'afg'),
+						'hint'    => __('Automatically include in a full-content format', 'afg'),
+						'help'    => __('Help', 'afg'),
+						'config'  => array(
+								'on-label'  => __('Yes', 'afg'),
+								'on-value'  => self::DISPLAY_ENABLED,
+								'off-label' => __('No', 'afg'),
+								'off-value' => self::DISPLAY_DISABLED,
+						)
+				),
+				'display_in_section' => array(
+						'name'    => 'display_in_section',
+						'atts'    => '',
+						'type'    => 'toggle',
+						'default' => self::DISPLAY_ENABLED,
+						'label'   => __('Display in a section', 'afg'),
+						'hint'    => __('Automatically include in a section format', 'afg'),
+						'help'    => __('Help', 'afg'),
+						'config'  => array(
+								'on-label'  => __('Yes', 'afg'),
+								'on-value'  => self::DISPLAY_ENABLED,
+								'off-label' => __('No', 'afg'),
+								'off-value' => self::DISPLAY_DISABLED,
+						)
+				),
+				'display_in_tooltip' => array(
+						'name'    => 'display_in_tooltip',
+						'atts'    => '',
+						'type'    => 'toggle',
+						'default' => self::DISPLAY_ENABLED,
+						'label'   => __('Display in tooltip', 'afg'),
+						'hint'    => __('Automatically include in a tooltip format.', 'afg'),
+						'help'    => __('Help', 'afg'),
+						'config'  => array(
+								'on-label'  => __('Yes', 'afg'),
+								'on-value'  => self::DISPLAY_ENABLED,
+								'off-label' => __('No', 'afg'),
+								'off-value' => self::DISPLAY_DISABLED,
+						)
+				),
+				'display_in_widget' => array(
+						'name'    => 'display_in_widget',
+						'atts'    => '',
+						'type'    => 'toggle',
+						'default' => self::DISPLAY_ENABLED,
+						'label'   => __('Display in widget', 'afg'),
+						'hint'    => __('Automatically include in a widget format.', 'afg'),
+						'help'    => __('Help', 'afg'),
+						'config'  => array(
+								'on-label'  => __('Yes', 'afg'),
+								'on-value'  => self::DISPLAY_ENABLED,
+								'off-label' => __('No', 'afg'),
+								'off-value' => self::DISPLAY_DISABLED,
+						)
+				),
+				'display_in_excerpt' => array(
+						'name'    => 'display_in_excerpt',
+						'atts'    => '',
+						'type'    => 'toggle',
+						'default' => self::DISPLAY_ENABLED,
+						'label'   => __('Show in excerpt', 'afg'),
+						'hint'    => __('Automatically include in an excerpt format.', 'afg'),
+						'help'    => __('Help', 'afg'),
+						'config'  => array(
+								'on-label'  => __('Yes', 'afg'),
+								'on-value'  => self::DISPLAY_ENABLED,
+								'off-label' => __('No', 'afg'),
+								'off-value' => self::DISPLAY_DISABLED,
+						)
+				),
+				'display_in_dialog' => array(
+						'name'    => 'display_in_dialog',
+						'atts'    => '',
+						'type'    => 'toggle',
+						'default' => self::DISPLAY_ENABLED,
 						'label'   => __('Show on Afg+ Dialog', 'afg'),
-						'hint'    => __('', 'afg'),
-						'help'    => __('Status Help', 'afg'),
+						'hint'    => __('Automatically display on Afg+ dialog.', 'afg'),
+						'help'    => __('Help', 'afg'),
 						'config'  => array(
 								'on-label'  => __('Yes', 'afg'),
-								'on-value'  => 'enabled',
+								'on-value'  => self::DISPLAY_ENABLED,
 								'off-label' => __('No', 'afg'),
-								'off-value' => 'disabled',
+								'off-value' => self::DISPLAY_DISABLED,
 						)
 				),
-				'presentation' => array(
-						'name'    => 'presentation',
+				'display_in_shortcode' => array(
+						'name'    => 'display_in_shortcode',
 						'atts'    => '',
 						'type'    => 'toggle',
-						'default' => 'auto',
-						'label'   => __('Show on page automatically', 'afg'),
-						'hint'    => __('', 'afg'),
-						'help'    => __('Presentation Help', 'afg'),
-						/*
-						 'options' => array(
-						 		'auto'  => __('On', 'afg'),
-						 		'manual'=> __('Off', 'afg'),
-						 )*/
-						'config'  => array(
-								'on-label'  => __('Yes', 'afg'),
-								'on-value'  => 'auto',
-								'off-label' => __('No', 'afg'),
-								'off-value' => 'manual',
-						)
-				),
-				'shortcode' => array(
-						'name'    => 'shortcode',
-						'atts'    => '',
-						'type'    => 'toggle',
-						'default' => 'enabled',
-						'label'   => '<div class="two-lines">'.__('Enable shortcode', 'afg') . '<br/><code>['.$this->name.']</code></div>',
+						'default' => self::DISPLAY_ENABLED,
+						'label'   => __('Shortcode status', 'afg'),
 						'hint'    => '',
 						'help'    => __('Shortcode Help', 'afg'),
 						'render'  => 'hidden',
 						'config'  => array(
-								'on-label'  => __('Yes', 'afg'),
-								'on-value'  => 'enabled',
-								'off-label' => __('No', 'afg'),
-								'off-value' => 'disabled',
+								'on-label'  => __('Enabled', 'afg'),
+								'on-value'  => self::DISPLAY_ENABLED,
+								'off-label' => __('Disabled', 'afg'),
+								'off-value' => self::DISPLAY_DISABLED,
 						)
+				),
+				'display_position' => array(
+						'name'    => 'display_position',
+						'atts'    => '',
+						'type'    => 'spinner',
+						'default' => '0',
+						'label'   => __('Display position', 'afg'),
+						'hint'    => __('Position among other elements', 'afg'),
+						'help'    => __('Help', 'afg'),
 				),
 				'metabox_position' => array(
 						'name'    => 'metabox_position',
@@ -279,70 +344,63 @@ abstract class AffiGet_Abstract_Element
 						'hint'    => __('Placement in a review details metabox', 'afg'),
 						'help'    => __('Help', 'afg'),
 				),
-				/*
-				'role_view_frontend' => array(
-						'name'    => 'role_view_frontend',
-						'atts'    => '',
-						'type'    => 'Afg_Element_Settings_Role_Field',
-						'default' => 'unregistered',
-						'label'   => __('Permissions', 'afg'),
-						'hint'    => __('<br/>Minimum role needed to view this on page.', 'afg'),
-						'help'    => __('Status Help', 'afg'),
-				),
-				'role_edit_bookmarklet' => array(
-						'name'    => 'role_edit_bookmarklet',
-						'atts'    => '',
-						'type'    => 'Afg_Element_Settings_Role_Field',
-						'default' => 'author',
-						'label'   => __('', 'afg'),
-						'hint'    => __('<br/>Minimum role to edit this in <em>Afg+ Bookmarklet</em>.', 'afg'),
-						'help'    => __('Status Help', 'afg'),
-				),
-				'role_view_backend' => array(
-						'name'    => 'role_view_backend',
-						'atts'    => '',
-						'type'    => 'Afg_Element_Settings_Role_Field',
-						'default' => 'editor',
-						'label'   => __(''),
-						'hint'    => __('Minimum role to <strong>view on backend</strong>.'),
-						'help'    => __('Status Help'),
-				),
-				'role_edit_backend' => array(
-						'name'    => 'role_edit_backend',
-						'atts'    => '',
-						'type'    => 'Afg_Element_Settings_Role_Field',
-						'default' => 'editor',
-						'label'   => __(''),
-						'hint'    => __('Minimum role to <strong>edit on backend</strong>.'),
-						'help'    => __('Status Help'),
-				), */
 		);
 		return $config;
 	}
 
-	public function is_enabled(){
+	//element status: enabled|disabled
+	public function is_status( $status ){
 
-		return 'enabled' == $this->settings['status'];
+		if( $status != self::STATUS_ENABLED && $status != self::STATUS_DISABLED ){
+			throw new AffiGet_Exception('Unsupported element status: ' . $status);
+		}
+
+		if( is_array( $status )){
+			return in_array( $this->settings['status'], $status );
+		} else {
+			return $this->settings['status'] === $status;
+		}
 	}
 
-	public function is_enabled_dialog(){
+	//display status: 0|1
+	//format: post, tooltip, widget, excerpt, shortcode, dialog
+	public function check_display_status_for_format( $format, $status ){
 
-		return 'enabled' == $this->settings['dialog'];
+		if( ! in_array( $format, $this->supported_formats )){
+			throw new AffiGet_Exception('Unsupported display format: ' . $format );
+		}
+		if( $status != self::DISPLAY_ENABLED && $status != self::DISPLAY_DISABLED ){
+			throw new AffiGet_Exception('Unsupported display status: ' . $status );
+		}
+
+		if( is_array( $status )){
+			return in_array( $this->settings['display'][ $format ][0], $status );
+		} else {
+			return $this->settings['display'][ $format ][0] == $status;
+		}
 	}
 
-	public function is_auto_presentation(){
+	//display_mode: 0|1|2
+	//format: post, tooltip, widget, excerpt, shortcode, dialog
+	public function check_display_mode_for_format( $format, $mode ){
 
-		return 'auto' == $this->settings['presentation'];
+		if( ! in_array( $format, $this->supported_formats )){
+			throw new AffiGet_Exception('Unsupported display format: ' . $format );
+		}
+		if( $mode != self::DISPLAY_MODE_ALWAYS_DISABLED && $mode != self::DISPLAY_MODE_ALWAYS_ENABLED && $mode != self::DISPLAY_MODE_MODIFIABLED){
+			throw new AffiGet_Exception('Unsupported display mode: ' . $mode );
+		}
+
+		if( is_array( $mode )){
+			return in_array( $this->settings['display'][ $format ][1], $mode );
+		} else {
+			return $this->settings['display'][ $format ][1] == $mode;
+		}
 	}
 
-	public function is_enabled_shortcode(){
+	public function get_id(){
 
-		return 'enabled' == $this->settings['shortcode'];
-	}
-
-	public function get_title(){
-
-		return $this->settings['title'];
+		return $this->id;
 	}
 
 	public function get_name(){
@@ -350,9 +408,19 @@ abstract class AffiGet_Abstract_Element
 		return $this->name;
 	}
 
+	public function get_title(){
+
+		return $this->settings['title'];
+	}
+
 	public function get_meta(){
 
 		return $this->meta;
+	}
+
+	public function get_stored_settings(){
+
+		return get_option( "{$this->id}_settings" );
 	}
 
 	public function get_settings_value( $field ){
@@ -371,7 +439,7 @@ abstract class AffiGet_Abstract_Element
 
 	function do_shortcode( $atts ){
 
-		if( 'enabled' != $this->settings['shortcode'] ) return '';
+		if( self::DISPLAY_ENABLED != $this->settings['display']['shortcode'][0] ) return '';
 
 		//if( $review ) {
 			ob_start();
@@ -415,7 +483,7 @@ abstract class AffiGet_Abstract_Element
 	}
 
 	/**
-	 * Format and escape widget title for presentation on the front-end.
+	 * Format and escape widget title for display on the front-end.
 	 *
 	 * The heading is <h3> by default, but can be overriden,
 	 * by adding a different number of '#' before the title.
@@ -456,10 +524,6 @@ abstract class AffiGet_Abstract_Element
 				echo $result;
 		}
 		return $result;
-	}
-
-	function front_script(){
-		return;
 	}
 
 } /* AffiGet_Abstract_Element */

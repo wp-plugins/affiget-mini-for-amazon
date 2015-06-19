@@ -56,12 +56,10 @@ class AffiGet_Review_Element_Call_to_Action extends AffiGet_Abstract_Element
 			);
 		}
 
-		if( ! $this->is_enabled() ) return;
+		if( ! $this->is_status( AffiGet_Abstract_Element::STATUS_ENABLED ) ) return;
 
 		$element_name = $this->name;
-		if( ! is_admin() && $this->is_auto_presentation()){
-			add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
-		}
+		add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
 
 		//metavalue
 		$meta_key = AFG_META_PREFIX . $this->name;
@@ -81,8 +79,8 @@ class AffiGet_Review_Element_Call_to_Action extends AffiGet_Abstract_Element
 		return parent::get_settings_config();
 
 		$new_fields = array(
-				'presentation_format' => array(
-						'name'    => 'presentation_format',
+				'display_format' => array(
+						'name'    => 'display_format',
 						'atts'    => '',
 						'type'    => 'dropdown',
 						'options' => array(),
@@ -400,11 +398,11 @@ class AffiGet_Review_Element_Call_to_Action extends AffiGet_Abstract_Element
 
 	function enqueue_scripts_and_styles( $hook ) {
 
-		if( $this->meta->is_element_style_needed() ){
+		if( $this->meta->is_review_style_needed() ){
 			wp_enqueue_style( 'afg-call-to-action-style', plugins_url( '/css/element.css', (__FILE__)), array(), AFG_VER );
 		}
 
-		if( is_admin() && $this->meta->is_element_script_needed() ){
+		if( is_admin() && $this->meta->is_review_script_needed() ){
 
 			$params = array(
 					'captions' => self::$link_captions,

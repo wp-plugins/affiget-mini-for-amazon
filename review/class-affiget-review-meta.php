@@ -134,12 +134,13 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 	/**
 	 * Review is constituted of elements. We register all of them here.
 	 *
-	 * To simplify presentation/layout some elements have corresponding widgets.
+	 * To simplify display/layout some elements have corresponding widgets.
 	 * Elements should be registered before widgets, because some elements hook to their corresponding widgets via actions/filters.
 	 */
 	protected function _register_elements(){
 
 		require_once( 'elements/class-affiget-review-element-post-status.php' );
+		require_once( 'elements/featured-image/class-affiget-element-featured-image.php' );
 		require_once( 'elements/review-part/class-affiget-element-review-part.php' );
 		require_once( 'elements/product-details/class-affiget-review-element-product-details.php' );
 		require_once( 'elements/star-ratings/class-affiget-review-element-star-ratings.php' );
@@ -147,34 +148,68 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 		require_once( 'elements/call-to-action/class-affiget-review-element-call-to-action.php' );
 
 		$params = array(
-				'title'               => __('Post status', 'afg'),
-				'label'               => __('Post status', 'afg'),
+				'title'               => __('Post Status', 'afg'),
+				'label'               => __('Post Status', 'afg'),
 				'description'         => '',
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'always_enabled',
-				'presentation'        => 'manual',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_ALWAYS_DISABLED),
+				),
+				'display_position'    => 0,
 				'declare_meta_fields' => array('auto_date_gmt'),
 		);
 		$this->_elements['post_status']
 				= new AffiGet_Review_Element_Post_Status( $this, 'post_status', $params );
 
 		$params = array(
+				'title'               => __('-Product Image', 'afg'),
+				'label'               => __('Featured Image', 'afg'),
+				'description'         => __('Featured Image', 'afg'),
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 1,
+				'metabox_position'    => 0,
+				'declare_meta_fields' => array( 'featured_image' ),
+		);
+
+		$this->_elements['featured_image']
+				= new AffiGet_Element_Featured_Image( $this, 'featured_image', $params );
+
+
+		$params = array(
 				'title'               => __('-Introduction', 'afg'),
 				'label'               => __('Introduction', 'afg'),
-				'description'         => __('Introduction/Excerpt for this review', 'afg'),
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'modifiable',
-				'presentation'        => 'manual',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'description'         => __('Introduction for this review. Can be used as an excerpt representing this post.', 'afg'),
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 10,
+				'metabox_position'    => 10,
 				'declare_meta_fields' => array('review_intro'),
-				'metabox_position'    => 1,
 				'textarea_rows'       => 3,
 		);
 		$this->_elements['review_intro']
@@ -184,15 +219,20 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 				'title'               => __('-Product Details', 'afg'),
 				'label'               => __('Product Details', 'afg'),
 				'description'         => __('Available/presented product details. Also editable on the front-end!', 'afg'),
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'modifiable',
-				'presentation'        => 'auto',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 20,
+				'metabox_position'    => 50,
 				'declare_meta_fields' => array( 'product_details' ),
-				'metabox_position'    => 5,
 				'visible_attributes'  => array('Title'),
 		);
 
@@ -201,17 +241,22 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 
 		$params = array(
 				'title'               => __('-Review', 'afg'),
-				'label'               => __('Review', 'afg'),
+				'label'               => __('Review Content', 'afg'),
 				'description'         => __('Main review text', 'afg'),
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'modifiable',
-				'presentation'        => 'auto',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 30,
+				'metabox_position'    => 20,
 				'declare_meta_fields' => array('review_content'),
-				'metabox_position'    => 3,
 				'textarea_rows'       => 10,
 		);
 		$this->_elements['review_content']
@@ -221,33 +266,43 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 				'title'               => __('-Conclusion', 'afg'),
 				'label'               => __('Conclusion', 'afg'),
 				'description'         => __('Conclusion/Summary for this review', 'afg'),
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'modifiable',
-				'presentation'        => 'auto',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 40,
+				'metabox_position'    => 30,
 				'declare_meta_fields' => array('review_conclusion'),
-				'metabox_position'    => 4,
 				'textarea_rows'       => 3,
 		);
 		$this->_elements['review_conclusion']
 				= new AffiGet_Element_Review_Part( $this, 'review_conclusion', $params );
 
 		$params = array(
-				'title'               => __('-Star Ratings', 'afg'),
-				'label'               => __('Rating', 'afg'),
-				'description'         => __('Stars', 'afg'),
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'modifiable',
-				'presentation'        => 'auto',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'title'               => __('-Rating', 'afg'),
+				'label'               => __('Rating Stars', 'afg'),
+				'description'         => __('Rating stars', 'afg'),
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 50,
+				'metabox_position'    => 40,
 				'declare_meta_fields' => array( 'star_ratings' ),
-				'metabox_position'    => 6,
 		);
 
 		$this->_elements['star_ratings']
@@ -255,17 +310,22 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 
 		$params = array(
 				'title'               => __('-Pricing Details', 'afg'),
-				'label'               => __('Pricing', 'afg'),
+				'label'               => __('Pricing Details', 'afg'),
 				'description'         => __('Pricing Details', 'afg'),
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'modifiable',
-				'presentation'        => 'auto',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,    AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_DISABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,    AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,    AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 60,
+				'metabox_position'    => 60,
 				'declare_meta_fields' => array( 'pricing_details' ),
-				'metabox_position'    => 7,
 		);
 
 		$this->_elements['pricing_details']
@@ -275,15 +335,20 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 				'title'               => __('-Call-to-Action', 'afg'),
 				'label'               => __('Call-to-Action', 'afg'),
 				'description'         => __('Call-to-Action', 'afg'),
-				'status'              => 'enabled',
-				'dialog'              => 'enabled',
-				'dialog_mode'         => 'modifiable',
-				'presentation'        => 'auto',
-				'presentation_mode'   => 'modifiable',
-				'shortcode'           => 'disabled',
-				'shortcode_mode'      => 'modifiable',
+				'status'              => AffiGet_Abstract_Element::STATUS_ENABLED,
+				'display'             => array(
+						'metabox'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'post'        => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'section'     => array(AffiGet_Abstract_Element::DISPLAY_ENABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'tooltip'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'widget'      => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'excerpt'     => array(AffiGet_Abstract_Element::DISPLAY_DISABLED, AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'dialog'      => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+						'shortcode'   => array(AffiGet_Abstract_Element::DISPLAY_ENABLED,  AffiGet_Abstract_Element::DISPLAY_MODE_MODIFIABLE),
+				),
+				'display_position'    => 70,
+				'metabox_position'    => 7,
 				'declare_meta_fields' => array( 'call_to_action' ),
-				'metabox_position'    => 8,
 		);
 
 		$this->_elements['call_to_action']
@@ -447,7 +512,7 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 		return null;
 	}
 
-	function is_element_style_needed(){
+	function is_review_style_needed(){
 		global $post;
 
 		if( is_admin() ){
@@ -464,7 +529,7 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 		return true;
 	}
 
-	function is_element_script_needed(){
+	function is_review_script_needed(){
 		global $post;
 
 		if( is_admin() ){

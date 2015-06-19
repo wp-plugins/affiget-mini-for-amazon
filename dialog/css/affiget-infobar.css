@@ -22,9 +22,9 @@
 }
 
 .afg-toolbar.wide { 
-	width: 600px;	
-	margin-left:  -300px;
-	margin-right: -300px;
+	width: 630px;	
+	margin-left:  -315px;
+	margin-right: -315px;
 	
   -webkit-transition: width 2s ease-out, margin: 2s ease-out;
       -moz-transition: width 2s ease-out, margin: 2s ease-out;
@@ -256,7 +256,7 @@ Infobar items are these:
 }
 
 .afg-toolbar input.wide {
-	width: 510px; 
+	width: 540px; 
 	background-color: #E3EFFA;
 }
 

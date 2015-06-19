@@ -9,12 +9,10 @@ class AffiGet_Element_Review_Part extends AffiGet_Abstract_Element
 
 		parent::__construct( $meta, $name, $params ); //calls resolve_settings(), which calls get_settings_config()
 
-		if( ! $this->is_enabled() ) return;
+		if( ! $this->is_status( AffiGet_Abstract_Element::STATUS_ENABLED ) ) return;
 
 		$element_name = $this->name;
-		if( ! is_admin() && $this->is_auto_presentation()){
-			add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
-		}
+		add_action("afg_front__html_{$element_name}", array(&$this, 'front_html'), 10, 1);
 
 		//metavalue
 		$meta_key = AFG_META_PREFIX . $this->name;
@@ -73,24 +71,6 @@ class AffiGet_Element_Review_Part extends AffiGet_Abstract_Element
 
 	function register_cmb2_fields( &$fields ){
 
-		/*$fields[] = array(
-				'name'    => $this->settings['title'],
-				//'desc'    => __('Title to show on the front end.', 'afg'),
-				'id'      => AFG_META_PREFIX . $this->name .'_heading',
-				'type'    => 'title',
-				'position'=> $this->settings[ 'metabox_position' ],
-				//'default' => $this->settings['title'],
-		);*/
-
-		/*$fields[] = array(
-				'name'    => 'title',
-				'desc'    => __('Heading title to show on the front end.', 'afg'),
-				'id'      => AFG_META_PREFIX . $this->name .'_title',
-				'type'    => 'text',
-				'position'=> $this->settings[ 'metabox_position' ] + 1,
-				'default' => $this->settings['title'],
-		);*/
-
 		$fields[] = array(
 				'name'    => 'value',
 				'desc'    => $this->settings['description'],
@@ -109,6 +89,7 @@ class AffiGet_Element_Review_Part extends AffiGet_Abstract_Element
 						// 'closed'     => true,     // true to keep the metabox closed by default
 				)
 		);
+
 	}
 
 	function front_html( array $review_data ){
@@ -195,16 +176,8 @@ class AffiGet_Element_Review_Part extends AffiGet_Abstract_Element
 
 
 	function enqueue_scripts_and_styles( $hook ) {
-
 		global $post;
 
-		/*
-		if ( $hook ) {//backend
-			if( 'post.php' != $hook ){
-				return;
-			}
-		}
-		*/
 	} // end enqueue_scripts_and_styles
 }
 

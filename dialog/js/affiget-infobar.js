@@ -448,7 +448,7 @@
 
         	that.element.find('.view,.edit,.publish,.delete').hide();
         	
-        	$input.show().addClass('wide').next().fadeIn(600).end().focus();
+        	$input.show().addClass('wide').next().fadeIn(601).end().focus();
         	$input.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
  			    // code to execute after transition ends        		
         		//console.log('CSS3 transition ended.');
@@ -457,7 +457,7 @@
         	if( typeof callback == 'function'){
 	        	setTimeout( function(){				
 					callback.call( that ); 
-	        	}, 600);
+	        	}, 601);
     		}
     	}
     	
