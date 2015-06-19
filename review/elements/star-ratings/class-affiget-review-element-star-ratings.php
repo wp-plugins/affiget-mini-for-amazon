@@ -33,6 +33,7 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 		add_action( 'afg_review_renderer__register_metabox_fields', array(&$this, 'register_cmb2_fields'));
 		add_action( "cmb2_render_{$this->control_id}", array(&$this, 'render_cmb2_field'), 10, 5 );
 		add_filter( "cmb2_types_esc_{$this->control_id}", array(&$this, 'escape_cmb2_field'), 10, 4 );
+		//add_filter( "cmb2_sanitize_{$this->control_id}", array(&$this, 'sanitize_cmb2_field'), 10, 5 );
 
 		//assets
 		add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts_and_styles'));
@@ -107,7 +108,7 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 		$fields[] = array(
 				'name'    => 'value',
 				'desc'    => $this->settings['description'],
-				'id'      => AFG_META_PREFIX . $this->name,
+				'id'      => $this->name,
 				'type'    => 'afg_star_ratings',
 				//'options' => array( 'textarea_rows' => $this->settings[ 'textarea_rows' ] ),
 				'position'=> $this->settings[ 'metabox_position' ],
@@ -144,7 +145,7 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 
 	function render_cmb2_field( $field_args, $value, $post_id, $object_type, $field_type_object ){
 
-		if( $field_args->args['id'] === AFG_META_PREFIX . $this->name ){
+		if( $field_args->args['id'] === $this->name ){
 
 			$nonce = '';
 			if ( current_user_can('edit_post', $post_id )){
@@ -162,6 +163,13 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 		//short-circuit default escaping, as it results in PHP notices
 		//(because passed values cannot be easily converted to string)
 		return true;
+	}
+
+	function sanitize_cmb2_field( $override_value, $value, $object_id, $field_args, $sanitizer_object ){
+
+		$value = $this->sanitize_value( $value, AFG_META_PREFIX . $this->name, 'post' );
+		return $value;
+
 	}
 
 
@@ -208,7 +216,7 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 		if( 'widget-settings' != $context ){
 			printf("<input class='items' type='hidden' id='%s' name='%s' value='%s' />",
 					$input_id,
-					$this->control_id,
+					$fieldname,
 					$encoded
 			);
 		}
@@ -328,6 +336,11 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 		if( false === strpos( $meta_key, AFG_META_PREFIX . $this->name )){
 			//return $meta_value;
 			throw new AffiGet_Exception('Unexpected meta_key: ' . $meta_key );
+		}
+
+		if( is_null( $meta_value )) {
+			//return $meta_value;
+			throw new AffiGet_Exception('Null meta_value for ' . $meta_key );
 		}
 
 		if( is_string( $meta_value )){

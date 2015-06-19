@@ -196,7 +196,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 		$fields[] = array(
 				'name'    => 'value',
 				'desc'    => $this->settings['description'],
-				'id'      => AFG_META_PREFIX . $this->name,
+				'id'      => $this->name,
 				'type'    => 'afg_product_details', /* will hook to cmb2_render_afg_product_details to render this */
 				//'options' => array( 'textarea_rows' => $this->settings[ 'textarea_rows' ] ),
 				'position'=> $this->settings[ 'metabox_position' ],
@@ -233,7 +233,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 	function render_cmb2_field( $field_args, $value, $post_id, $object_type, $field_type_object ){
 
-		if( $field_args->args['id'] === AFG_META_PREFIX . $this->name ){
+		if( $field_args->args['id'] === $this->name ){
 
 			$nonce = '';
 			if ( current_user_can('edit_post', $post_id )){
