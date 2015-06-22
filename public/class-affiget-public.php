@@ -75,8 +75,8 @@ class AffiGet_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/affiget-public.css', array(), $this->version, 'all' );
 
-		wp_register_style ('afg-front-style', admin_url('/admin-ajax.php?action=afg_get_front_styles'), array(), null );
-		wp_enqueue_style  ('afg-front-style');
+		//wp_register_style ('afg-front-style', admin_url('/admin-ajax.php?action=afg_get_front_styles'), array(), null );
+		//wp_enqueue_style  ('afg-front-style');
 
 	}
 

@@ -43,24 +43,24 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 					'PublicationDate'        => _x('Publication date', 'product attribute', 'afg'),
 					'NumberOfPages'          => _x('Number of pages', 'product  attribute', 'afg'),
 					'Languages'              => _x('Languages', 'product attribute', 'afg'),
-					'ItemDimensions'         => _x('Item dimensions', 'product attribute', 'afg'),
+					//'ItemDimensions'         => _x('Item dimensions', 'product attribute', 'afg'),
 					'Label'                  => _x('Label', 'product attribute', 'afg'),
 					'Manufacturer'           => _x('Manufacturer', 'product attribute', 'afg'),
 					'ProductGroup'           => _x('Product group', 'product attribute', 'afg'),
 					'Studio'                 => _x('Studio', 'product attribute', 'afg'),
-					'NumberOfItems'          => _x('Number of items', 'product attribute', 'afg'),
-					'PackageDimensions'      => _x('Package dimensions', 'product attribute', 'afg'),
+					//'NumberOfItems'          => _x('Number of items', 'product attribute', 'afg'),
+					//'PackageDimensions'      => _x('Package dimensions', 'product attribute', 'afg'),
 					'ProductTypeName'        => _x('Product type name', 'product attribute', 'afg'),
 					'ListPrice'              => _x('List price', 'product attribute', 'afg'),
 					'LowestNewPrice'         => _x('Lowest New Price', 'product attribute', 'afg'),
 					'LowestUsedPrice'        => _x('Lowest Used Price', 'product attribute', 'afg'),
 					'LowestCollectiblePrice' => _x('Lowest Collectible Price', 'product attribute', 'afg'),
 					'LowestRefurbishedPrice' => _x('Lowest Refurbished Price', 'product attribute', 'afg'),
-					'IsEligibleForTradeIn' => _x('Is eligible for trade-in', 'product attribute', 'afg'),
-					'TradeInValue'         => _x('Trade-in value', 'product attribute', 'afg'),
+					//'IsEligibleForTradeIn' => _x('Is eligible for trade-in', 'product attribute', 'afg'),
+					//'TradeInValue'         => _x('Trade-in value', 'product attribute', 'afg'),
 
-					'EANList'              => _x('EAN list', 'product attribute', 'afg'),
-					'EAN'                  => _x('EAN', 'product attribute', 'afg'),
+					//'EANList'              => _x('EAN list', 'product attribute', 'afg'),
+					//'EAN'                  => _x('EAN', 'product attribute', 'afg'),
 
 					'DetailPageURL'        => _x('Product Details', 'link to product page', 'afg'),
 					'TechnicalDetails'     => _x('Technical Details', 'link to product page', 'afg'),
@@ -196,7 +196,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 		$fields[] = array(
 				'name'    => 'value',
 				'desc'    => $this->settings['description'],
-				'id'      => $this->name,
+				'id'      => '_' . AFG_META_PREFIX . $this->name, //prefixed with underscore to avoid showing a new entry in Custom fields
 				'type'    => 'afg_product_details', /* will hook to cmb2_render_afg_product_details to render this */
 				//'options' => array( 'textarea_rows' => $this->settings[ 'textarea_rows' ] ),
 				'position'=> $this->settings[ 'metabox_position' ],
@@ -233,7 +233,7 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 	function render_cmb2_field( $field_args, $value, $post_id, $object_type, $field_type_object ){
 
-		if( $field_args->args['id'] === $this->name ){
+		if( $field_args->args['id'] === '_'.AFG_META_PREFIX . $this->name ){
 
 			$nonce = '';
 			if ( current_user_can('edit_post', $post_id )){
@@ -517,7 +517,8 @@ class AffiGet_Review_Element_Product_Details extends AffiGet_Abstract_Element
 
 			if( ! array_key_exists( $attr, $this->features )){
 				//echo '<pre>';
-				throw new AffiGet_Exception('Unexpected attribute requested: ' . $attr );
+				continue;
+				//throw new AffiGet_Exception('Unexpected attribute requested: ' . $attr );
 			}
 
 			$type = $this->get_attribute_type( $attr );

@@ -164,6 +164,7 @@ class AffiGet_Review_Meta extends AffiGet_Abstract_Meta {
 				),
 				'display_position'    => 0,
 				'declare_meta_fields' => array('auto_date_gmt'),
+				'schedule_mode'       => 'now', //now | auto
 		);
 		$this->_elements['post_status']
 				= new AffiGet_Review_Element_Post_Status( $this, 'post_status', $params );

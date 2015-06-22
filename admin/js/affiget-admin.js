@@ -1,6 +1,95 @@
 (function( $ ) {
 	'use strict';
 
+	$(function() {
+		var $timestamp = $('.save-timestamp'), $schedule;
+		
+		if( ! $timestamp.length ) return;
+		
+		$timestamp
+			.addClass('button-primary')
+			.css({'margin-left':'5px'})
+			.before(' <a class="button" href="" id="afg-schedule-auto">' +(window.affiget.params.msg['auto']||'Auto')+ '</a>')
+			.before(' <a class="button" href="" id="afg-schedule-now" style="margin-right:52px">' +(window.affiget.params.msg['now']||'Now')+ '</a>')
+			.before( $('.cancel-timestamp') );
+		
+		$('#afg-schedule-now').click(function(){
+			var originalDate, currentDate, attemptedDate;
+			//$('#aa').after('&nbsp;&nbsp;&nbsp;').val( date.getFullYear() );
+			$('#aa').val( $('#cur_aa').val() );
+			$('#jj').val( $('#cur_jj').val() );
+			$('#hh').val( $('#cur_hh').val() );
+			$('#mn').val( $('#cur_mn').val() );
+			$('#mm').val( $('#cur_mm').val() );
+			
+			originalDate = new Date( $('#hidden_aa').val(), $('#hidden_mm').val() -1, $('#hidden_jj').val(), $('#hidden_hh').val(), $('#hidden_mn').val() );
+			currentDate  = new Date( $('#cur_aa').val(),    $('#cur_mm').val() -1,    $('#cur_jj').val(),    $('#cur_hh').val(),    $('#cur_mn').val() );
+			console.log(originalDate);
+			console.log(currentDate);
+			
+			$timestamp.click();	   
+			return false; 
+		});
+		
+		$('#afg-schedule-auto').click(function(){
+	        var data = {
+	            action: 'afg_autoschedule',
+	            post_id: $('#post_ID').val(),
+	            gmt: false
+	        }
+	        $.ajax({
+	            url: ajaxurl,
+	            data: data,
+	            type: 'POST',
+	            success: function(r) {
+	                var date = new Date(r);
+	                $('#aa').val(date.getFullYear());
+	                $('#jj').val(date.getDate());
+	                $('#hh').val(date.getHours());
+	                $('#mn').val((date.getMinutes() < 10 ? '0' : '') + date.getMinutes());
+	                $('#mm').val((date.getMonth() + 1 < 10 ? '0' : '') + (date.getMonth() + 1));
+	                $('.save-timestamp').click();
+	            },
+	            error: function(r) {
+	                alert('Could not get date'); 
+	            }
+
+	        }
+	        );
+	        return false;
+	   });
+
+	   // Edit page
+	   if ($('#afg_minTime, #afg_maxTime').length == 2) {
+	       $('#afg_minTime').blur(function() {
+	          $('#afg_minFormatted').html(afg_formatDate($(this).val()));
+	       });
+	       $('#afg_maxTime').blur(function() {
+	          $('#afg_maxFormatted').html(afg_formatDate($(this).val()));
+	       });
+	       $('#afg_minFormatted').html(afg_formatDate($('#afg_minTime').val()));
+	       $('#afg_maxFormatted').html(afg_formatDate($('#afg_maxTime').val()));
+	   }
+
+	   function afg_formatDate(str) {
+		   var ray = str.split(/:|\./);
+		   var ret = Array();
+		   // Need to make sure the array is exactly 3 length
+		   if (ray.length > 3) ray = ray.slice(ray.length - 3);
+		   while (ray.length < 3) ray.unshift(0)
+	
+		   // Convert 'em all to ints
+		   for (i=0; i<ray.length; ++i) ray[i] = parseInt(ray[i]);
+	
+		   if (ray[0] > 0) ret[ret.length] = ray[0] + ' day' + ((ray[0] > 1) ? 's': '');
+		   if (ray[1] > 0) ret[ret.length] = ray[1] + ' hour' + ((ray[1] > 1) ? 's': '');
+		   if (ray[2] > 0) ret[ret.length] = ray[2] + ' minute' + ((ray[2] > 1) ? 's': ''); 
+	
+		   return ret.join(', ');
+		}
+	});
+	
+	
 	$(function() {		
 		var $ctrl = $('#afg-display-formats-metabox ul'), $input, $dragger, $disabler;
 		
@@ -13,11 +102,14 @@
 		
 		$ctrl.sortable({
 			'axis': 'y', 
-			'handle': '.dragger',
+			//'handle': '.dragger',
+			'items': 'li:not(.format)',
+			'placeholder': 'afg-placeholder',
+			//'cancel': '.format',
 		    'stop': function( ) {
 		    	updateHiddenInput();
 	            return true;
-	        },
+	        }, 
 			'helper': fixWidthHelper
 		}).disableSelection();
 		

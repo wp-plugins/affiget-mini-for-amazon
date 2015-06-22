@@ -794,8 +794,8 @@ class AffiGet_Review_Controller {
 		//
 		$defaults = array(
 				'post_type'      => $post_type_name,
-				'post_date'      => date('Y-m-d H:i:00'),
-				'post_title'     => sprintf(__( 'Product %s', 'afg' ), $product_code),
+				'post_date'      => get_date_from_gmt( date('Y-m-d H:i:00')),
+				'post_title'     => sprintf(__( 'Product %s', 'afg' ), $product_code ),
 				'post_status'    => 'draft',
 				'post_author'    => 1,
 				'comment_status' => 'closed',
@@ -834,14 +834,14 @@ class AffiGet_Review_Controller {
 		$post_fields = array(); //temp storage
 
 		if( isset( $_REQUEST['afg_main_title'] )){
-			$post_fields['post_title']    = sanitize_post_field('post_title', $_REQUEST[ 'afg_main_title' ], '', 'db' );
+			$post_fields['post_title']  = sanitize_post_field('post_title', $_REQUEST[ 'afg_main_title' ], '', 'db' );
 		}
 		if( isset( $_REQUEST['afg_main_slug'] )){
-			$post_fields['post_name']     = sanitize_title_with_dashes( $_REQUEST[ 'afg_main_slug' ], '', 'save' );
+			$post_fields['post_name']   = sanitize_title_with_dashes( $_REQUEST[ 'afg_main_slug' ], '', 'save' );
 		}
-		if( !isset( $post_fields['post_name'] ) && isset( $post_fields['post_title'] )){
+		if( ! isset( $post_fields['post_name'] ) && isset( $post_fields['post_title'] )){
 			//derive from title
-			$post_fields['post_name'] = sanitize_title_with_dashes( $post_fields['post_title'], '', 'save' );
+			$post_fields['post_name']   = sanitize_title_with_dashes( $post_fields['post_title'], '', 'save' );
 		}
 		if( isset( $_REQUEST['afg_post_status'] )){
 			$post_fields['post_status'] = sanitize_text_field( $_REQUEST['afg_post_status'] );
@@ -1073,7 +1073,7 @@ class AffiGet_Review_Controller {
 			if(! empty( $descriptions )){
 				foreach( $descriptions as $desc ){
 					if( 'Product Description' == $desc['Source'] ){
-						$description = html_entity_decode( $desc['Content'] );
+						$description = balanceTags( html_entity_decode( $desc['Content'] ), $force = true );
 						break;
 					}
 				}
@@ -1130,27 +1130,30 @@ class AffiGet_Review_Controller {
 		//cats of current post
 		$cats = wp_get_object_terms( $post_id, 'category', array('fields' => 'ids') );
 
-		//find last review in category
 		$args = array(
 				'posts_per_page' => 1,
 				'category__in'   => array( $cats[0] ),
 				'post_type'      => $this->meta->post_type_name,
-				'meta_key'       => AFG_META_PREFIX . 'product_details'
+				'meta_key'       => AFG_META_PREFIX . 'product_details',
+				'post_status'    => array('publish','future','draft'),
+				'orderby'        => 'modified'
 		);
-
 		$prototype_post_id = 0;
 
+		//find last modified Published | Scheduled | Draft review in category
 		$latest_cat_review = new WP_Query( $args );
 		if( $latest_cat_review->have_posts() ){
 			$prototype_post_id = $latest_cat_review->post->ID;
 		} else {
+			//find last modified Published | Scheduled | Draft review in any category
 			unset( $args['category__in'] );
-			$latest_review = new WP_Query( $args );
-			if( $latest_review->have_posts() ){
-				$prototype_post_id = $latest_review->post->ID;
+			$latest_cat_review = new WP_Query( $args );
+			if( $latest_cat_review->have_posts() ){
+				$prototype_post_id = $latest_cat_review->post->ID;
 			}
 		}
 
+		//note, $prototype_post_id can still be 0.
 		do_action('afg_review_controller__inherit_from_latest_in_category', $post_id, $product_data, $is_new, $cats, $prototype_post_id );
 	}
 

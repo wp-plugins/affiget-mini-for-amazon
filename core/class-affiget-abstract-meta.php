@@ -190,10 +190,10 @@ abstract class AffiGet_Abstract_Meta {
 	}
 
 	/**
-	 * Get element by name.
+	 * Get element object by its name.
 	 *
 	 * @param string $element_name
-	 * @return boolean
+	 * @return AffiGet_Abstract_Element
 	 */
 	public function get_element( $element_name ){
 
@@ -220,6 +220,10 @@ abstract class AffiGet_Abstract_Meta {
 		return apply_filters( "afg_{$this->_post_type_name}_meta__get_elements_by_status", $result, $status );
 	}
 
+	/**
+	 *
+	 * @return AffiGet_Abstract_Element array
+	 */
 	public function get_elements(){
 
 		return apply_filters( "afg_{$this->_post_type_name}_meta__get_elements", $this->_elements );

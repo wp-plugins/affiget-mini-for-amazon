@@ -232,6 +232,7 @@ class AffiGet_Mini {
 		$this->loader->add_action( 'wp_ajax_afg_retrieve_review_field',         $review_controller, 'ajax_retrieve_review_field' );
 		$this->loader->add_action( 'wp_ajax_nopriv_afg_retrieve_review_field',  $review_controller, 'ajax_retrieve_review_field' );
 
+		$this->loader->add_action( 'wp_ajax_afg_autoschedule' ,   $review_admin, 'ajax_autoschedule' );
 		$this->loader->add_filter( 'query_vars',                  $review_admin, 'add_update_product_var' );
 		$this->loader->add_filter( 'manage_posts_columns',        $review_admin, 'admin_list__inject_image_column', 10, 2);
 		$this->loader->add_action( 'manage_posts_custom_column',  $review_admin, 'admin_list__post_data_row', 10, 2);

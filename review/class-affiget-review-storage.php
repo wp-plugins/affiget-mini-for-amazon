@@ -138,7 +138,7 @@ class AffiGet_Review_Storage {
 			throw new AffiGet_Exception('Parameter $review_data[post_fields] should not be empty!');
 		}
 
-		$has_meta = isset( $review_data['meta_fields'] ) && !empty( $review_data['meta_fields'] );
+		$has_meta = isset( $review_data['meta_fields'] )      && !empty( $review_data['meta_fields'] );
 		$has_tax  = isset( $review_data['taxonomic_fields'] ) && !empty( $review_data['taxonomic_fields'] );
 
 		$result = $this->commit_post_fields( $review_data['post_fields'] );
@@ -185,6 +185,7 @@ class AffiGet_Review_Storage {
 		//avoid regenerating post_content on every meta update
 
 		if( $post_id ){
+
 			$result = wp_update_post( $post_data, $wp_error = true );
 			if( ! is_wp_error( $result )){
 				//we need new post_id and other fully-escaped values
@@ -192,10 +193,11 @@ class AffiGet_Review_Storage {
 				return $inst->to_array();
 			}
 			return $result;
+
 		} else {
 			//do not generate post content on first insert
 
-			$was_filtering = remove_filter('wp_insert_post_data', array($this->meta->renderer, 'build_post_content'));
+			$was_filtering = remove_filter('wp_insert_post_data', array( $this->meta->renderer, 'build_post_content' ));
 
 			$result = wp_insert_post( $post_data, $wp_error = true );
 

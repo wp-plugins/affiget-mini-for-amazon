@@ -1,8 +1,8 @@
 .afg-feature-list {
 	display: block;
-	/*min-width: 14em;*/
+	max-width: 735px;
 	vertical-align: top;
-	border: 1px solid transparent;
+	border: 1px solid transparent;	
 }
 
 .afg-feature-list.editable:not(.editing){
@@ -14,12 +14,24 @@
 	empty-cells: show;
 	border-collapse: collapse;
 	margin: 0;
+	overflow-y: hidden;
+}
+
+.entry-content .afg-feature-list .ui-sortable-helper,
+.afg-feature-list .ui-sortable-helper {
+    display: table-row;
+	visibility: visible;
+	border: 1px solid #999;
 }
 
 .wp-admin .afg-feature-list.editing table {
 	margin: 0 0 0 0px;
 	/*margin-right: 20px;*/
 	width: 100%
+}
+
+.postbox-container .cmb2-wrap>.cmb-field-list>.cmb-row{
+	padding-top: 0.5em !important;
 }
 
 .afg-feature-list.placeholder .spinner {
@@ -88,7 +100,7 @@
 .afg-feature-list th,
 .afg-feature-list li label {
 	width: 33%;
-	min-width: 6.5em;	
+	/*min-width: 6.5em;*/	
 }
 
 .entry-content .afg-feature-list td,
@@ -96,7 +108,7 @@
 .afg-feature-list td,
 .afg-feature-list li span {
 	width: 66%;
-	min-width: 6.5em;	
+	/*min-width: 6.5em;*/	
 }
 
 .entry-content .afg-feature-list input[type="text"],
@@ -148,7 +160,7 @@
 .entry-content .afg-feature-list .disabled td span,
 .entry-content .afg-feature-list .disabled td a,
 .entry-content .afg-feature-list .disabled td a:visited {
-	color: #ccc;
+	color: #999;
 	text-decoration: line-through;
 }
 
@@ -196,10 +208,11 @@
 	display: inline-block;
 	opacity: 0;
  	background-repeat: no-repeat;
-    overflow: hidden;
+    /*overflow: hidden;*/
+	overflow-y: hidden;
     text-indent: -99999px;	
 	box-sizing: border-box;
-	background-color: #ccc;	
+	background-color: #999;	
 	border: 3px solid #eee;
 	cursor: pointer;
 }
@@ -224,12 +237,16 @@
 	border: 3px solid #777;
 } 
 
-.editing th, 
-.editing td {
+.editing th span, 
+.editing td span {
 	cursor: text;
 }
 
-.editing tr:hover {
+.editing tr{
+	cursor: ns-resize;
+}
+
+.editing tbody:not(.afg-sorting) tr:hover {
 	background-color: #eee;
 }
 
@@ -241,7 +258,8 @@
 	content: ": ";	
 }
 
-.afg-feature-list.editable:not(.editing):hover {
+.afg-feature-list.editable:not(.editing):hover,
+.afg-feature-list.editing {
 	border: 1px dotted #18C443;
 }
 
@@ -251,8 +269,8 @@
 
 /** Controls to EXPAND / COLLAPSE table **/
 
-.afg-feature-list .edit,
-.afg-feature-list.editing .close {
+.afg-feature-list .modify,
+.afg-feature-list.editing .minimize {
 	position: relative;
 	height: 0;
 	width: 0;
@@ -260,20 +278,20 @@
 	cursor: pointer;	
 }
 
-.afg-feature-list .edit{	
+.afg-feature-list .modify{	
 	top: -17px;
 	left: -85px;	
 }
 
-.afg-feature-list.editing .close {	
+.afg-feature-list.editing .minimize {	
 	top: 0px;
 	left: -86px;
 }
 
-.entry-content .afg-feature-list .edit span,
-.afg-feature-list .edit span
-.entry-content .afg-feature-list.editing .close span, 
-.afg-feature-list.editing .close span{	
+.entry-content .afg-feature-list .modify span,
+.afg-feature-list .modify span
+.entry-content .afg-feature-list.editing .minimize span, 
+.afg-feature-list.editing .minimize span{	
 	position: absolute;
 	height: 16px !important;
 	font-size: 10px !important;
@@ -283,22 +301,29 @@
 	margin: 0;
 	text-align: center !important;
 	line-height: 1.8 !important;
-	color: #159E37 !important;			
+	color: #159E37 !important;	
+	word-wrap: normal !important;
+	font-family: Helvetica, Arial, sans-serif !important;		
 }
 
-.entry-content .afg-feature-list:hover .edit span,
-.afg-feature-list:hover .edit span,
-.entry-content .afg-feature-list.editing:hover .close span,
-.afg-feature-list.editing:hover .close span {
+.entry-content .afg-feature-list:hover .modify span,
+.afg-feature-list:hover .modify span,
+.entry-content .afg-feature-list.editing:hover .minimize span,
+.afg-feature-list.editing:hover .minimize span {
 	background-color: #18C443 !important;
 	color: white !important;
 }
 
-.afg-feature-list.editing .edit { /*don't show 'Modify table' when alreayd in edit mode */
+.afg-feature-list.editing .modify { /*don't show 'Modify table' when alreayd in modify mode */
+	/*display: none;*/
+}
+
+.wp-admin .afg-feature-list .minimize, /* don't show 'Minify table' button in admin */
+.afg-feature-list:not(.editing) .minimize { /* or not in the editing mode yet */
 	display: none;
 }
 
-.wp-admin .afg-feature-list .close, /* don't show 'Minify table' button in admin */
-.afg-feature-list:not(.editing) .close { /* or not in the editing mode yet */
-	display: none;
+.afg-feature-list .afg-placeholder {
+	/*border: 1px dashed #eee !important;*/
+	background-color: #fafafa; 
 }

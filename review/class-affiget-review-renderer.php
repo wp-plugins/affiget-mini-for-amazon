@@ -346,6 +346,9 @@ class AffiGet_Review_Renderer {
 	affiget.params.msg["enabledItemHint"]  = "'.esc_attr__( 'Will show %1$s in a %2$s.', 'afg').'";
 	affiget.params.msg["disabledItemHint"] = "'.esc_attr__( 'Will not show %1$s in a %2$s.', 'afg').'";
 
+	affiget.params.msg["auto"] = "'.esc_attr__( 'Auto', 'afg').'";
+	affiget.params.msg["now"]  = "'.esc_attr__( 'Now', 'afg').'";
+
 	affiget.params.renderer', $params
 		);
 

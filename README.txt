@@ -1,9 +1,9 @@
 === AffiGet Mini for Amazon ===
 Contributors: sarutole
-Tags: Amazon,products,reviews,automatic,content,curation,online marketing,affiliate,affiliate marketing,ads,advertising,monetization,revenue,Amazon affiliates,Amazon Associate,review sites,niche blog,posting,post
+Tags: Amazon,products,reviews,review,book review,automatic,content,curation,online marketing,affiliate,affiliate marketing,ads,advertising,monetization,revenue,Amazon affiliates,Amazon Associate,review sites,niche blog,posting,post
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.1.0
+Stable tag: 1.1.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,7 +79,7 @@ AffiGet Mini **automatically adds the following details** to every new review:
 
 * **Post title** (initially the same as product title, but you can change that);
 * **Post slug** (calculated from the post title);
-* **Post date** (automatically scheduled for the next available time-slot);
+* **Post date** (published instantly, or auto-scheduled for the next available time-slot);
 * **Featured image** (corresponds to the primary product image);
 * **Gallery** (all product images are automatically downloaded and attached to the post);
 * **Review text** (initially the same as editorial description of the product);
@@ -109,6 +109,7 @@ AffiGet Mini adds these **productivity features** to the Dashboard:
 * Review editing page:
 	* A link to a product details page.
 	* A button-link to re-fetch product data from Amazon servers.
+	* A panel to choose between scheduling options: Auto or Now.
 	* A metabox for introduction text (which will be used as a post excerpt).
 	* A metabox for the main review text (initially populated with an editorial description of a product).
 	* A metabox for the conclusion text.
@@ -185,6 +186,10 @@ Consider upgrading to [AffiGet Pro](http://affiget.com/ "Upgrade today!") -- a p
 11. The Review editing page. Note, highlighted elements are resolved automatically.
 
 == Changelog ==
+= Version 1.1.5 (2015-6-22) =
+* Improved review auto-scheduling (a new review gets autoscheduled or not depending on the latest modified review in the same category).
+* Significantly improved usability of the Product Details table.
+* Fix: Custom Fields panel is no longer cluttered with needless data.   
 
 = Version 1.1.0 (2015-6-19) =
 * New feature: select what elements are displayed on a review page, and in excerpt.

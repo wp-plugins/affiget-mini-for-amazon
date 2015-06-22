@@ -98,12 +98,20 @@
 }
 
 #afg-display-formats-metabox li.disabled{
-	color: #ccc;
+	color: #999;
 	text-decoration: line-through; 
 }
 
 #afg-display-formats-metabox li.unavailable{
 	display: none;
+}
+
+#afg-display-formats-metabox li.element{
+	cursor:ns-resize;
+}
+
+#afg-display-formats-metabox li.element:not(.disabled){
+	text-shadow: 1px 1px 1px rgba(10,10,10,0.15);
 }
 
 #afg-display-formats-metabox li.element:hover{
@@ -127,7 +135,6 @@
 	vertical-align: top;
 	height: 22px;	
 	line-height: 22px;	
-	cursor: pointer;
 }
 
 .offset-left, 
@@ -160,6 +167,7 @@
 	height: 24px;
 	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAhZJREFUeNpsUk1rE1EUfW8+mplkNk06GVCx1Gzcibh2KVhBJeDCnf/DTd35O1wqLooUoYSkVNqUSqEfSV0FumszmUkmdjKTj3lvxvMmDQzBC48H795z73nnHlqr7UmEEEoykSRJekRQStOzHModiM6L8aDIXFWVRJLktCCOOYkiJjHGpGwTASSccwBUTgGXZYmUy+aqYRhFkfN9v9/t2kNFUWI0p2ggIxIljhNSKBRYsbiKifFzwyhsAvRM07SKYK1puQ7OSRBMfmLakecNWBiOZQUTeC63Yq2vP/gIeu90XbsnJnW7vR0UypZlbpZKxZfj8fgD58m3MAw+z2ZRnxweHlUGA+9XchdRFHlnZ62q6/ZXbLtnXFxcvuc89kUO7JLBYFhvNn8/JJ433Jk/xikQxV/q9X06nU63gmD0tNHYVx3H/ZqtAfi7hI+qS6uIQRHAWYOx+A2lEhNvS9tQCcY+9v3R8YIqY7wPqq9arUv9/Lyttdt/qlD97yKP2oNm8/gR3d2tk3w+f79S2dgyzdJbyF5GR9brOdtCHNNcq4oRWMONbTvbnc7Vp+l00qNwjoyOXCzWssovAH6NdTyBuhuCOdS8ur0dnUKsH2i2J4wiFpkaQNx44NfXNzUka7qum3DPmgBCZTcMJy7nDCZRqDS3VKIsfitoqaoqxOFhGDq4nYxXKXLysldTMTMNpP+ZOlsj4p8AAwCWKE9O4IK1GgAAAABJRU5ErkJggg==') 2px 2px no-repeat;
 }
+
 #afg-display-formats-metabox .dragger,
 #afg-display-formats-metabox .disabler {
 	position: absolute;
@@ -169,7 +177,7 @@
     overflow: hidden;
     text-indent: -99999px;	
 	box-sizing: border-box;
-	background-color: #ccc;	
+	background-color: #999;	
 	border: 3px solid #eee;
 	cursor: pointer;
 }
@@ -187,6 +195,12 @@
 #afg-display-formats-metabox li:hover .disabler {
 	opacity: 1;	
 }
+
+.afg-placeholder {
+	border: 1px dashed #eee !important;
+	/*background-color: red;*/ 
+}
+
 
 #afg-display-formats-metabox .dragger:hover,
 #afg-display-formats-metabox .disabler:hover {

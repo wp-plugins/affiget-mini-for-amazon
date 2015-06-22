@@ -28,7 +28,7 @@
 		    	init();
 
 		    	function init(){
-		    		var $post, $edit, $done;
+		    		var $post, $modify, $minimize;
 		    		
 			    	if( typeof $ctrl.data('afg-already-created') !== 'undefined' && $ctrl.data('afg-already-created') != null){
 			    		////console.log( 'afg-feature-list ', $ctrl.attr('id'), 'already-created' );
@@ -59,12 +59,14 @@
 			    		if( 'viewing' == opts.initialMode ){
 					    	$ctrl.data('mode', opts.initialMode);
 					    	
-				    		$edit = $('<div class="edit" title="'+opts.msg['modifyTableHint']+'"><span>'+opts.msg['modifyTable']+'</span></div>');
-				    		$edit.on('click', startEditing );
-				    		$ctrl.prepend( $edit );
-				    		$done = $('<div class="close" title="'+opts.msg['minimizeTableHint']+'"><span>'+opts.msg['minimizeTable']+'</span></div>');
-				    		$done.on('click', stopEditing );
-				    		$ctrl.append( $done );
+				    		$modify = $('<div class="modify" title="'+opts.msg['modifyTableHint']+'"><span>'+opts.msg['modifyTable']+'</span></div>');
+				    		$modify.data('modifyTableHint', opts.msg['modifyTableHint']).data('modifyTableText', opts.msg['modifyTable']);
+				    		$modify.on('click', startOrStopEditing );
+				    		$ctrl.prepend( $modify );
+				    		
+				    		$minimize = $('<div class="minimize" title="'+opts.msg['minimizeTableHint']+'"><span>'+opts.msg['minimizeTable']+'</span></div>');
+				    		$minimize.on('click', stopEditing );
+				    		$ctrl.append( $minimize );
 			    		}			    		
 
 			    		$('body:not(.wp-admin)').on('click.afg', function(ev){
@@ -74,7 +76,7 @@
 				    	$ctrl.on( 'click.afg', function(ev){
 				    		var $target = $(ev.target);
 				    		$('.afg-feature-list').not( $ctrl ).afgFeatureList('stopEditing');/*stop editing other tables*/
-				    		if( ! $target.is('.close span,a')){
+				    		if( ! $target.is('.minimize span,.modify span,a')){
 					    		startEditing();
 				    			ev.stopPropagation();	
 				    		} 
@@ -108,7 +110,7 @@
 			    	   and data for it either resolved from the contained list or gets downloaded. 
 			    	*/
 			    	
-			    	$input = $ctrl.find('input');
+			    	$input = $ctrl.find('input[type="hidden"]');
 		    		if( ! $input.length ){
 		    			$input = $( '#'+$ctrl.data('input') );
 		    			if( ! $input.length ){
@@ -123,15 +125,19 @@
 		    	function _extendListForEditing(){		    		
 		    		var entryTmpl; //= '<tr class="new-entry hidden"><th></th><td></td></tr>';
 		    		
-					function fixWidthHelper(e, ui) {
-						ui.children().each(function() {
-							$(this).width($(this).width());
-							//console.log($(this).width(), $(this));
+					function fixHelperWidth(ev, ui) {
+						//console.log('FixWidth', ev.target, ui);
+						ui.children().each(function(idx, el) {
+							var $el = $(el), w = $el.width(), wo = $el.outerWidth();
+							$(this).width( w );
+							$ctrl.find('colgroup col').eq(idx).width( wo );
 						});
+						ui.css({'background-color': 'white'});
 						return ui;
 					}
 					
 		    		if( ! $ctrl.is('.extended')){
+		    			$ctrl.find('table').prepend('<colgroup><col /><col /></colgroup>');
 			    		$ctrl.find('th').contents().wrap('<span class="label"></span>');
 			    		$ctrl.find('th:empty').append('<span class="label"></span>');
 			    		$ctrl.find('td').contents().wrap('<span class="value"></span>');
@@ -139,18 +145,43 @@
 			    		
 			    		if( $ctrl.is('.contains-table') ){
 				    		$ctrl.find('.list tbody').sortable({
+				    			'appendTo': 'body',
 				    			'axis':'y', 
-				    			'handle': '.dragger',
-				    		    'stop': function( ) {
+				    			//'handle': '.dragger',
+				    			'items': '> tr',
+				    			'helper': fixHelperWidth,
+				    			'opacity': 0.75,
+				    			//
+				    			'placeholder': 'afg-placeholder',
+				    			'forcePlaceholderSize': true,
+				    			'forceHelperSize': true,
+				    			'start': function (event, ui) {
+				    		        // Build a placeholder cell that spans all the cells in the row
+				    		        var cellCount = 0;
+				    		        $( event.target ).addClass('afg-sorting');
+				    		        $('td, th', ui.helper).each(function () {
+				    		            // For each TD or TH try and get it's colspan attribute, and add that or 1 to the total
+				    		            var colspan = 1;
+				    		            var colspanAttr = $(this).attr('colspan');
+				    		            if( colspanAttr > 1){
+				    		                colspan = colspanAttr;
+				    		            }
+				    		            cellCount += colspan-0; //js is forced to treat the variables as numbers instead of strings
+				    		        });				    		        
+				    		        // Add the placeholder UI - note that this is the item's content, so TD rather than TR
+				    		        ui.placeholder.html('<th colspan="' + cellCount + '">&nbsp;</th>');
+				    		    },				    			
+				    		    'stop': function(event) {
+				    		    	$( event.target ).removeClass('afg-sorting');
 				    	            submitData();
 				    	            return true;
-				    	        },
-								'helper': fixWidthHelper
+				    	        }								
 				    		}).disableSelection();
 			    		} else {
 				    		$ctrl.find('.list').sortable({
 				    			'axis':'y', 
-				    			'handle': '.dragger',
+				    			/*'handle': '.dragger',*/
+				    			'placeholder': 'placeholder',
 				    		    'stop': function( ) {
 				    	            submitData();
 				    	            return true;
@@ -195,7 +226,7 @@
 	    			} else if( $trg.is('a') ){
 		    			showItemEditor( $item, $trg.parent());
 		    			return false; /*prevent navigation*/
-		    		} else if( $trg.is('input')){
+		    		} else if( $trg.is('input[type=text]')){
 		    			//console.log('In focus:', $trg.is('input:focus'));
 		    			if( ! $trg.is('input:focus') ){
 		    				$trg.focus();
@@ -236,6 +267,14 @@
 		    		return false;
 		    	}/* onItemMouseLeave */	    		
 		    	
+	    		function startOrStopEditing(){
+	    			if( $ctrl.is('.editing') ){
+	    				stopEditing();
+	    			} else {
+	    				startEditing();
+	    			}
+	    		} /* startOrStopEditing */
+	    		
 		    	function startEditing(){ 
 
 		    		if( ! $ctrl.is('.editable') ){
@@ -244,7 +283,9 @@
 		    		}
 		    		if( $ctrl.data('mode') === 'editing' ) return;
 		    		
-		    		////console.log( $ctrl.attr('id'),'start editing');		    		
+		    		////console.log( $ctrl.attr('id'),'start editing');
+		    		
+		    		$ctrl.find('.modify').attr('title', opts.msg['minimizeTableHint']).find('span').text( opts.msg['minimizeTable'] );
 		    		
 		    		_extendListForEditing();
 		    		
@@ -264,11 +305,15 @@
 		    	
 		    	function stopEditing(){/* public method */
 		    		
+		    		var $btn;
+		    		
+		    		
 		    		if( $ctrl.data('mode') !== 'editing' ) return;
 		    		
-		    		////console.log( $ctrl.attr('id'), 'stop editing');
-		    		
 		    		$ctrl.find('.disabled').addClass('hidden');
+		    		
+		    		$btn = $ctrl.find('.modify');  		
+		    		$btn.attr('title', $btn.data('modifyTableHint') ).find('span').text( $btn.data('modifyTableText') );
 		    		
 		    		////console.log($ctrl.attr('id'),'unbinding item events', $ctrl.find('.item').length);
 		    		
@@ -276,9 +321,9 @@
 		    			.removeClass('editing')
 	    				.data('mode', 'viewing');
 	    				
-		    		$('html, body').animate({
+		    		/*$('html, body').animate({
                         scrollTop: ($ctrl.offset().top - 50)
-                    }, 1000);		    		
+                    }, 1000);*/		    		
 	    			
 	    			/*$ctrl.width( $ctrl.width() - 29 );*//* fat border is no more, restore original width*/	    			
 	    			
@@ -298,19 +343,23 @@
     				$label   = $item.find('.label:not(input)');
     				$value   = $item.find('.value:not(input)');
     				
-	    			////console.log( 'showItemEditor', $item, $active.text() );    				
+	    			//console.log( 'showItemEditor', $item, $active.text(), $label.text(), $value.text() );    				
 	    			
 	    			setupItemEdit();
 	    			startItemEdit();
 	    			
 	    			function setupItemEdit(){
 	    				
-	    	    		if( typeof $inLabel === 'undefined' || null == $inLabel ){
-	    					
+	    	    		if( typeof $inLabel !== 'undefined' && null !== $inLabel ){
+	    	    			
+	    					//revertInputChanges();
+		    	    		hideItemEditor();
+		    	    		
+	    	    		} else {	    					
 			    			$inLabel = $('<input class="label" type="text" />');
 			    			$inLabel.on('keyup', function(ev){
 			    				
-			    				if( ev.keyCode == 27 ){
+			    				if( ev.keyCode == 27 ){ 
 			    					ev.preventDefault();
 				    				ev.stopPropagation();
 				    				
@@ -327,8 +376,8 @@
 			    				
 			    			}).on('blur', function( ev ){
 			    				var $target = $( ev.target );
-			    				
 			    				//console.log('blur.label', $target.val());
+			    				//console.trace();
 			    				submitInputChanges( null, $target );
 			    				return true;
 			    				
@@ -377,10 +426,7 @@
 			    				return true;
 			    			});
 			    			
-	    				} else {
-	    					//revertInputChanges();
-		    	    		hideItemEditor();	    					
-	    				}
+	    				} 
 	    			} /* setupItemEdit */
 	    			
 	    	    	function startItemEdit(){
@@ -523,10 +569,12 @@
 
     	    	function hideItemEditor( callback, delay ){
     	    		
+    	    		//console.log('hideItemEditor', $ctrl.find('.item input.label').val(), $ctrl.find('.item input.value').val());
+    	    		
     	    		delay = delay || 0;
     	    		
-    	    		$ctrl.find('.item input.label').hide().prev().show(); //hide input, show preceding span
-    	    		$ctrl.find('.item input.value').hide().prev().show();
+    	    		$ctrl.find('.item input.label').hide().blur().prev().show(); //hide input, show preceding span
+    	    		$ctrl.find('.item input.value').hide().blur().prev().show(); //blur is enforced here to avoid it getting blured on DOM re-append
 
 	    			if( typeof callback == 'function'){
 	    				if( delay ){
@@ -594,7 +642,7 @@
 		    		payload = JSON.stringify( payload );
 		    		
 		    		if( typeof $input === 'undefined' ){
-		    			$input = $ctrl.find('input');
+		    			$input = $ctrl.find('input[type="hidden"]');
 		    		}
 		    		
 		    		$input.val( payload );

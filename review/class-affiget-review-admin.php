@@ -221,6 +221,12 @@ class AffiGet_Review_Admin {
 		echo '<div class="misc-pub-section afg-product-sync">';
 		echo $product_sync;
 		$this->admin_post_edit_product_link();
+
+		/*echo '<p>AutoDate:'.get_post_meta( $post->ID, AFG_META_PREFIX. 'auto_date_gmt', true).'</p>';
+		echo '<p>PostDate:'.$post->post_date_gmt.'</p>';
+		echo '<p>Modified:'.$post->post_modified_gmt.'</p>';
+		echo '<p>Auto:'. (get_post_meta( $post->ID, AFG_META_PREFIX. 'auto_date_gmt', true) == $post->post_date_gmt).'</p>';
+		*/
 		echo '</div>';
 	}
 
@@ -330,5 +336,16 @@ class AffiGet_Review_Admin {
 	    <div class="error">
 	        <p><?php _e( 'Product data could not be updated!', 'afg' ); ?></p>
 	    </div><?php
+	}
+
+	//
+	// Backend function for ajax calls
+	//
+	function ajax_autoschedule(){
+
+		$post_status = $this->meta->get_element('post_status');
+		$post_status->autoschedule();
+
+		die();
 	}
 }

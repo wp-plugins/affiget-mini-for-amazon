@@ -16,6 +16,8 @@ if ( ! class_exists('AffiGet_Review_Element_Star_Ratings', false)):
 
 class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 {
+	const DEFAULT_RATING = 4;
+
 	function __construct( AffiGet_Abstract_Meta $meta, $name, array $params ){
 
 		parent::__construct( $meta, $name, $params ); //calls resolve_settings(), which calls get_settings_config()
@@ -108,7 +110,7 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 		$fields[] = array(
 				'name'    => 'value',
 				'desc'    => $this->settings['description'],
-				'id'      => $this->name,
+				'id'      => '_' . AFG_META_PREFIX . $this->name, //prefixed with underscore to avoid showing a new entry in Custom fields
 				'type'    => 'afg_star_ratings',
 				//'options' => array( 'textarea_rows' => $this->settings[ 'textarea_rows' ] ),
 				'position'=> $this->settings[ 'metabox_position' ],
@@ -145,7 +147,7 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 
 	function render_cmb2_field( $field_args, $value, $post_id, $object_type, $field_type_object ){
 
-		if( $field_args->args['id'] === $this->name ){
+		if( $field_args->args['id'] === '_'.AFG_META_PREFIX . $this->name ){
 
 			$nonce = '';
 			if ( current_user_can('edit_post', $post_id )){
@@ -436,7 +438,7 @@ class AffiGet_Review_Element_Star_Ratings extends AffiGet_Abstract_Element
 
 		$aspects = array_map('trim', explode( ',', $this->settings['aspects'] ));
 		foreach( $aspects as $aspect ){
-			$result['aspects'][] = array( $aspect, 0 );
+			$result['aspects'][] = array( $aspect, self::DEFAULT_RATING );//Assigning default rating of four!
 		}
 
 		return $result;

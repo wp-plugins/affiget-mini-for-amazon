@@ -14,27 +14,27 @@ class AffiGet_Review_Element_Post_Status extends AffiGet_Abstract_Element
 		if( ! $this->is_status( AffiGet_Abstract_Element::STATUS_ENABLED ) ) return;
 
 		$field = 'post_date_gmt';
-		add_filter("afg_review_controller__read_post_fields__sanitize_{$field}", array( &$this, 'sanitize_post_date_gmt'), 10, 3);
+		add_filter("afg_review_controller__read_post_fields__sanitize_{$field}", array(&$this, 'sanitize_post_date_gmt'), 10, 3);
 
-		add_action('afg_review_controller__read_post_fields__validate', array( &$this, 'validate_post_fields'), 10, 4);
+		add_action('afg_review_controller__read_post_fields__validate', array(&$this, 'validate_post_fields'), 10, 4);
 
 		add_filter('afg_review_controller__get_post_defaults', array(&$this, 'modify_post_defaults'), 10, 4 );
 
-		add_filter('afg_review_storage__commit_post_fields', array(&$this, 'assign_defaults_from_latest_post'));
+		add_action('afg_review_controller__inherit_from_latest_in_category', array(&$this, 'inherit_from_latest_in_category'), 10, 5 );
 
 		add_action('afg_review_controller__prepare_review_data_init', array(&$this, 'set_auto_date'), 10, 2 );
 
 		add_filter('afg_review_storage__apply_differences__preserve_fields', array(&$this, 'preserve_fields_when_updating'), 10, 1);
 
-		add_action("afg_front__html_{$this->name}", array(&$this,'front_html'), 10, 1);
+		add_action("afg_front__html_{$this->name}", array(&$this, 'front_html'), 10, 1);
 
 		//<state><action><hint>
 		$this->statuses = array(
-				"private" => array( __('Saved privately', 'afg'), __('Save privately', 'afg'), __('Save privately', 'afg')),
-				"draft"   => array( __('Saved as a draft', 'afg'), __('Save as a draft', 'afg'), __('Save as a draft', 'afg')),
-				"pending" => array( __('Marked for review', 'afg'), __('Save + Mark for review', 'afg'), __('Save + Mark for review', 'afg')),
-				"future"  => array( __('Scheduled for publishing', 'afg'), __('Save + Make public', 'afg'), __('Save + Make public', 'afg')),
-				"publish" => array( __('Published', 'afg'), __('Save + Make public', 'afg'), __('Save + Make public', 'afg'))
+				"private" => array( __('Saved privately', 'afg'),          __('Save privately', 'afg'),         __('Save privately', 'afg')),
+				"draft"   => array( __('Saved as a draft', 'afg'),         __('Save as a draft', 'afg'),        __('Save as a draft', 'afg')),
+				"pending" => array( __('Marked for review', 'afg'),        __('Save + Mark for review', 'afg'), __('Save + Mark for review', 'afg')),
+				"future"  => array( __('Scheduled for publishing', 'afg'), __('Save + Make public', 'afg'),     __('Save + Make public', 'afg')),
+				"publish" => array( __('Published', 'afg'),                __('Save + Make public', 'afg'),     __('Save + Make public', 'afg'))
 		);
 	}
 
@@ -188,45 +188,70 @@ class AffiGet_Review_Element_Post_Status extends AffiGet_Abstract_Element
 		return $defaults;
 	}
 
-	function assign_defaults_from_latest_post( $post_arr ){
+	function inherit_from_latest_in_category( $post_id, $product_data, $is_new, $cats, $prototype_post_id ){
 
-		$args = array(
-				'posts_per_page' => 1,
-				'post_type'      => $this->meta->post_type_name,
-		);
+		$post_arr = get_post( $post_id, ARRAY_A );
+		//afg_log( __METHOD__, compact('post_id', 'prototype_post_id', 'post_arr' ));
 
-		if( isset( $post_arr['ID'] ) && is_numeric( $post_arr['ID'] )){
-			$args['post__not_in'] = array( absint( $post_arr['ID'] ) );
+		$mode = 'auto';
+		if( $prototype_post_id ){
+			$latest = get_post( $prototype_post_id );
+			$post_arr['comment_status'] = $latest->comment_status;
+			$post_arr['ping_status']    = $latest->ping_status;
+
+			//if prototype has autodate overriden, do not use scheduling on current post
+			if( get_post_meta( $prototype_post_id, AFG_META_PREFIX. 'auto_date_gmt', true) !== $latest->post_date_gmt ){
+				$mode = 'now';
+			}
+		} else {
+			$post_arr['comment_status'] = $this->settings['default_comment_status'];
+			$post_arr['ping_status']    = $this->settings['default_trackback_status'];
+			$mode                       = $this->settings['schedule_mode'];
 		}
 
-		$latest = new WP_Query( $args );
-
-		if( $latest->have_posts() ){
-			$post_arr['comment_status'] = $latest->post->comment_status;
-			$post_arr['ping_status']    = $latest->post->ping_status;
+		if( 'auto' == $mode ){
+			//if autodate not yet assigned
+			$auto_date_gmt = get_post_meta( $post_id, AFG_META_PREFIX. 'auto_date_gmt', true);
+			if( $post_arr['post_date_gmt'] !== $auto_date_gmt ){
+				$post_arr['post_date_gmt']     = $auto_date_gmt;
+				$post_arr['post_date']         = get_date_from_gmt( $auto_date_gmt );
+				$post_arr['post_modified_gmt'] = date('Y-m-d H:i:00' );
+				$post_arr['post_modified']     = get_date_from_gmt( $post_arr['post_modified_gmt'] );
+			}
+		} else {
+			//overwrite, in case autodate was initially assigned
+			$post_arr['post_date_gmt']     = date('Y-m-d H:i:00' );
+			$post_arr['post_date']         = get_date_from_gmt( $post_arr['post_date_gmt'] );
+			$post_arr['post_modified_gmt'] = $post_arr['post_date_gmt'];
+			$post_arr['post_modified']     = $post_arr['post_date'];
 		}
 
-		do_action_ref_array(
-				'afg_post_status__assign_defaults_from_latest_post',
-				array( &$post_arr, $latest->to_array() )
-		);
+		$result = wp_update_post( $post_arr );
+		if( is_wp_error( $result ) ){
+			afg_log( __METHOD__, $result );
+		}
 
-		return $post_arr;
+		return $post_id;
 	}
 
 	function set_auto_date( array &$review_data, $defaults ){
 
 		$auto_timestamp = $this->get_autoschedule_timestamp();
-		$auto_date      = date('Y-m-d H:i:00', $auto_timestamp ); //drop seconds if any
-		$review_data['meta_fields']['auto_date_gmt'] = $auto_date;
+		$auto_date_gmt  = date('Y-m-d H:i:00', $auto_timestamp ); //drop seconds if any
+
+		$review_data['meta_fields']['auto_date_gmt'] = $auto_date_gmt;
 
 		//adjust post dates
 		if( 'auto' == $this->settings['schedule_mode'] ){
-			$review_data['post_fields']['post_date_gmt'] = $auto_date;
-			$review_data['post_fields']['post_date']     = get_date_from_gmt( $auto_date );
+			$review_data['post_fields']['post_date_gmt']     = $auto_date_gmt;
+			$review_data['post_fields']['post_date']         = get_date_from_gmt( $auto_date_gmt );
+			$review_data['post_fields']['post_modified_gmt'] = date('Y-m-d H:i:00' );
+			$review_data['post_fields']['post_modified']     = get_date_from_gmt( $review_data['post_fields']['post_modified_gmt'] );
 		} else {
-			$date = date('Y-m-d H:i:00' );
-			$review_data['post_fields']['post_date_gmt'] = get_gmt_from_date( $review_data['post_fields']['post_date'] );
+			$review_data['post_fields']['post_date_gmt']     = date('Y-m-d H:i:00' );
+			$review_data['post_fields']['post_date']         = get_date_from_gmt( $review_data['post_fields']['post_date_gmt'] );
+			$review_data['post_fields']['post_modified_gmt'] = $review_data['post_fields']['post_date_gmt'];
+			$review_data['post_fields']['post_modified']     = $review_data['post_fields']['post_date'];
 		}
 	}
 
@@ -247,7 +272,7 @@ class AffiGet_Review_Element_Post_Status extends AffiGet_Abstract_Element
 
 		//gmt time is canonical
 		if( isset( $post_fields['post_date_gmt'] )){
-			$post_fields['post_date'] = get_date_from_gmt( $post_fields['post_date_gmt'] );
+			$post_fields['post_date']     = get_date_from_gmt( $post_fields['post_date_gmt'] );
 		} elseif( isset( $post_fields['post_date'] )){
 			$post_fields['post_date_gmt'] = get_gmt_from_date( $post_fields['post_date'] );
 		}
@@ -276,14 +301,11 @@ class AffiGet_Review_Element_Post_Status extends AffiGet_Abstract_Element
 
 		$post_id = false;
 
-		if( isset( $_REQUEST['post_id'] ) && is_numeric( $_REQUEST['post_id'] )){
-			$post_id = (int) $_REQUEST['post_id'];
+		if( isset( $_REQUEST['post_id'] ) && 0 < absint( $_REQUEST['post_id'] )){
+			$post_id = absint( $_REQUEST['post_id'] );
 		}
 
-		$gmt = false;
-		if( isset( $_REQUEST['gmt'] ) ){
-			$gmt = ('true' == $_REQUEST['gmt']);
-		}
+		$gmt = isset( $_REQUEST['gmt'] ) ? ('true' == $_REQUEST['gmt']) : false;
 
 		echo date( 'D M j Y H:i:00', $this->get_autoschedule_timestamp( $post_id, $gmt ) );
 		die();
@@ -405,7 +427,7 @@ class AffiGet_Review_Element_Post_Status extends AffiGet_Abstract_Element
 			array_unshift( $ray, 0 );
 		}
 
-		return intval($ray[2]) + (60 * intval($ray[1])) + (60 * 24 * intval($ray[0]));
+		return intval( $ray[2] ) + (60 * intval( $ray[1] )) + (60 * 24 * intval( $ray[0] ));
 	}
 
 	protected function get_time_string( $num ) {
