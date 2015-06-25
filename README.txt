@@ -11,9 +11,9 @@ Browse Amazon. "Like" products. Make money. (Or just create reviews for your blo
 
 == Description ==
 
-AffiGet Mini is a free plugin to **remotely add Amazon products to your blog**.
+AffiGet Mini is an advanced plugin to **remotely add Amazon products to your blog with a single click**.
 
-Use AffiGet to **build profitable review sites** and to **monetize your blog**!
+AffiGet provides a semi-automatic way to **build profitable review sites** and to **monetize your blog**!
 
 Here's how this works:
 
@@ -67,10 +67,6 @@ AffiGet is **engineered to work nicely with all well-behaved plugins and themes*
 The plugin is thoroughly tested with the latest versions of *Firefox, Chrome, and Safari*.
 
 AffiGet *can be easily translated* to different languages (contributions most welcome!).
-
-= AffiGet Pro =
-
-[AffiGet Pro](http://affiget.com "Upgrade today!") is a premium version of this plugin: it comes with **professional email support, extended configuration settings, and a number of widgets** (that integrate beautifully with Page Builder by SiteOrigin plugin to provide a fine control over the front-end presentation of your reviews).
 
 == Other Notes ==
 = Automatic content creation =
@@ -168,22 +164,17 @@ Absolutely! AffiGet pre-populates reviews with the available product data, but y
 = Will AffiGet work with my WordPress theme? =
 Yes! AffiGet has been developed to work with any WordPress installation. You might be required to add some custom styling for the layouts to appear correctly should your theme have CSS code that conflicts. For starters we’ve made it fully compatible with the default WordPress themes.
 
-= What if I want more control over how my review is presented? =
-Consider upgrading to [AffiGet Pro](http://affiget.com/ "Upgrade today!") -- a premium version of this plugin: it is designed to work with the free and wildly popular drag & drop layout management plugin [Page Builder by SiteOrigin](https://wordpress.org/plugins/siteorigin-panels/ "Install now!").
-
 == Screenshots ==
 
 1. The Afg+ bookmarklet as seen in Chrome's Bookmarks bar.
 2. The AffiGet Mini infobar slides into view when you click the Afg+ bookmarklet.
 3. The infobar shows current title of the review post. Initially it is the same as product's title.
-4. You can modify the title right on the infobar.
-5. After you submit your new title, the post's slug will be modified, too.
-6. You can click View (Edit) to open your new review in a new tab for preview (editing).
-7. You can click Publish (Delete) to remotely publish (trash) your review post.
-8. A review constructed by AffiGet Mini (using the standard Twenty Twelve theme). Note, the rating stars and the product attributes table are **front-end editable**!
-9. The AffiGet Settings page
-10. The Reviews page (note the product image and a link to the Amazon product page; the automatically assigned category is also presented).
-11. The Review editing page. Note, highlighted elements are resolved automatically.
+4. You can modify the title right on the infobar. (You can also publish/trash posts right from infobar).
+5. You can click View (Edit) to open your new review in a new tab for preview (or editing).
+6. A review post created by AffiGet Mini (represented using the standard Twenty Fourteen theme). Note, the rating stars and the product attributes table are **front-end editable**!
+7. The Edit Review page: the highlighted elements are added/resolved by the plugin automatically.
+8. The Reviews page: AffiGet adds a new post type; list of reviews shows product image and a link to the Amazon product page; the post category is assigned automatically).
+9. The AffiGet Settings page. The setup is minimal, as every new review inherits its settings from the last-modified review in category.
 
 == Changelog ==
 = Version 1.1.5 (2015-6-22) =
